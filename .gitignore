@@ -1,0 +1,38 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+/.idea/sonarlint/issuestore/7/b/7b29243880224874ffb0cb34cc2b17d2961d9771
+/.idea/sonarlint/issuestore/index.pb
+/.idea/$PROJECT_FILE$
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/qaplug_profiles.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
