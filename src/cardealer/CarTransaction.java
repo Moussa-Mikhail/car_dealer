@@ -7,7 +7,7 @@ public class CarTransaction extends Transaction{
 
     public CarTransaction(String buyerName, CarInfo carInfo, int price) {
 
-        super(buyerName, carInfo.toString(), price);
+        super(buyerName, carInfo.printableString(), price);
     }
 
     @Override

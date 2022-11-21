@@ -35,11 +35,22 @@ public class CarInfo {
     }
 
     @Override
+    public String toString() {
+        return "CarInfo{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", color='" + color + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
 
         if (this == o) {
             return true;
         }
+
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
@@ -72,8 +83,7 @@ public class CarInfo {
         return result;
     }
 
-    @Override
-    public String toString() {
+    public String printableString() {
         return String.format("%s %d %s %s", color, year, make, model);
     }
 }

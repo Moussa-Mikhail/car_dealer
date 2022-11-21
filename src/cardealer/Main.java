@@ -23,17 +23,17 @@ public class Main {
 
             final String buyerName = buyer.getName();
 
-            System.out.printf("The buyer %s wants a %s.%n", buyerName, carInfo);
+            System.out.printf("The buyer %s wants a %s.%n", buyerName, carInfo.printableString());
 
             if (carDealer.hasCar(carInfo)) {
 
                 final var price = carDealer.getPrice(carInfo);
 
-                System.out.printf("The dealership has a %s for $%d.%n", carInfo, price);
+                System.out.printf("The dealership has a %s for $%d.%n", carInfo.printableString(), price);
 
                 carDealer.sellCar(buyerName, carInfo);
 
-                System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo, buyerName, price);
+                System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo.printableString(), buyerName, price);
 
                 System.out.printf("The dealership also offers an extended warranty for $%d.%n", CarDealer.WARRANTY_PRICE);
 
@@ -50,7 +50,7 @@ public class Main {
 
             } else {
 
-                System.out.printf("The dealership does not have a %s.%n", carInfo);
+                System.out.printf("The dealership does not have a %s.%n", carInfo.printableString());
             }
 
             System.out.println();
