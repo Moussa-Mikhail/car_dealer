@@ -21,13 +21,18 @@ public class TransactionLog {
 
         final var transaction = new Transaction(buyerName, info, price);
 
-        transactionsList.add(transaction);
+        addTransaction(transaction);
+    }
 
-        maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
+    public void addTransaction(Transaction transaction) {
 
-        maxInfoLength = Math.max(maxInfoLength, transaction.getInfo().length());
+            transactionsList.add(transaction);
 
-        maxPriceLength = Math.max(maxPriceLength, String.valueOf(transaction.getPrice()).length());
+            maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
+
+            maxInfoLength = Math.max(maxInfoLength, transaction.getInfo().length());
+
+            maxPriceLength = Math.max(maxPriceLength, String.valueOf(transaction.getPrice()).length());
     }
 
     public void printTransactions() {
