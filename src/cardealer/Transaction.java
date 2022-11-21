@@ -31,8 +31,11 @@ public class Transaction {
 
     @Override
     public String toString() {
-
-        return String.format("%s, %s, $%d", buyerName, info, price);
+        return "Transaction{" +
+                "buyerName='" + buyerName + '\'' +
+                ", info='" + info + '\'' +
+                ", price=" + price +
+                '}';
     }
 
     @Override
