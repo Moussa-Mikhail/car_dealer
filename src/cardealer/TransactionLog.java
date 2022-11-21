@@ -17,13 +17,6 @@ public class TransactionLog {
         return transactionsList;
     }
 
-    public void addTransaction(String buyerName, String info, int price) {
-
-        final var transaction = new Transaction(buyerName, info, price);
-
-        addTransaction(transaction);
-    }
-
     public void addTransaction(Transaction transaction) {
 
             transactionsList.add(transaction);
