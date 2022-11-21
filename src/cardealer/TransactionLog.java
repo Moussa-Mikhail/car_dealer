@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Moussa
  */
-public class Transactions {
+public class TransactionLog {
 
     private final List<Transaction> transactionsList = new ArrayList<>();
     private int maxBuyerNameLength = 0;
@@ -17,7 +17,9 @@ public class Transactions {
         return transactionsList;
     }
 
-    public void addTransaction(Transaction transaction) {
+    public void addTransaction(String buyerName, String info, int price) {
+
+        final var transaction = new Transaction(buyerName, info, price);
 
         transactionsList.add(transaction);
 
