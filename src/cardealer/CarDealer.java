@@ -11,9 +11,10 @@ public class CarDealer {
 
     public static final int INITIAL_NUM_CARS = 300;
     public static final int WARRANTY_PRICE = 2000;
+    public static final String EXTENDED_WARRANTY = "Extended Warranty";
     private final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
     private final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
-    private final Transactions transactions = new Transactions();
+    private final TransactionLog transactions = new TransactionLog();
     private int numCarsSold = 0;
     private int totalSales = 0;
 
@@ -75,7 +76,7 @@ public class CarDealer {
         return carInfoToPrice.getOrDefault(carInfo, 0);
     }
 
-    public void sellCarTo(String buyerName, CarInfo carInfo) {
+    public void sellCar(String buyerName, CarInfo carInfo) {
 
         if (!hasCar(carInfo)) {
 
@@ -84,9 +85,7 @@ public class CarDealer {
 
         final var price = getPrice(carInfo);
 
-        final var transaction = new Transaction(buyerName, carInfo.toString(), price);
-
-        transactions.addTransaction(transaction);
+        transactions.addTransaction(buyerName, String.valueOf(carInfo), price);
 
         removeCar(carInfo);
 
@@ -97,9 +96,7 @@ public class CarDealer {
 
     public void sellWarranty(Buyer buyer) {
 
-        final var transaction = new Transaction(buyer.getName(), "Extended Warranty", WARRANTY_PRICE);
-
-        transactions.addTransaction(transaction);
+        transactions.addTransaction(buyer.getName(), EXTENDED_WARRANTY, WARRANTY_PRICE);
 
         totalSales += WARRANTY_PRICE;
     }

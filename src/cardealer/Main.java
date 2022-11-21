@@ -31,7 +31,7 @@ public class Main {
 
                 System.out.printf("The dealership has a %s for $%d.%n", carInfo, price);
 
-                carDealer.sellCarTo(buyerName, carInfo);
+                carDealer.sellCar(buyerName, carInfo);
 
                 System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo, buyerName, price);
 
