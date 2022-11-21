@@ -31,6 +31,42 @@ public class Transaction {
 
     @Override
     public String toString() {
+
         return String.format("%s, %s, $%d", buyerName, info, price);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Transaction that = (Transaction) o;
+
+        if (getPrice() != that.getPrice()) {
+            return false;
+        }
+
+        if (!getBuyerName().equals(that.getBuyerName())) {
+            return false;
+        }
+
+        return getInfo().equals(that.getInfo());
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = getBuyerName().hashCode();
+
+        result = 31 * result + getInfo().hashCode();
+
+        result = 31 * result + getPrice();
+        return result;
     }
 }
