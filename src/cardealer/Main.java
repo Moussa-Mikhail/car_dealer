@@ -45,7 +45,7 @@ public class Main {
 
                 } else {
 
-                    System.out.printf("The buyer %s did not want an extended warranty.%n", buyerName);
+                    System.out.printf("%s did not want an extended warranty.%n", buyerName);
                 }
 
             } else {
