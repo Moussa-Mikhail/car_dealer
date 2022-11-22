@@ -11,13 +11,39 @@ public class Main {
 
         final var numDeals = Integer.parseInt(args[0]);
 
-        final CarDealer carDealer = new LuxuryCarDealer();
+        final boolean isLuxury;
+
+        if (args.length > 1) {
+
+            isLuxury = "-luxury".equals(args[1]);
+
+        } else {
+
+            isLuxury = false;
+        }
+
+        final CarDealer carDealer;
+
+        if (isLuxury) {
+
+            carDealer = new LuxuryCarDealer();
+
+        } else {
+
+            carDealer = new CarDealer();
+        }
 
         for (int i = 0; i < numDeals; i++) {
 
             System.out.printf("Deal #%d: %n", i + 1);
 
-            final Buyer buyer = LuxuryBuyer.generateRandomBuyer();
+            final Buyer buyer;
+
+            if (isLuxury) {
+                buyer = LuxuryBuyer.generateRandomBuyer();
+            } else {
+                buyer = Buyer.generateRandomBuyer();
+            }
 
             final var carInfo = buyer.getWantedCar();
 

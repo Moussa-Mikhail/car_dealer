@@ -11,31 +11,42 @@ public class CarDealer {
 
     protected static final String WARRANTY_INFO = "Extended Warranty";
 
-    protected static final int INITIAL_NUM_CARS = 300;
+    private static final int INITIAL_NUM_CARS = 300;
 
-    protected static final int MIN_PRICE_IN_THOUSANDS = 40;
+    private static final int MIN_PRICE_IN_THOUSANDS = 40;
 
-    protected static final int PRICE_RANGE_IN_THOUSANDS = 30;
+    private static final int PRICE_RANGE_IN_THOUSANDS = 30;
 
-    protected static final int WARRANTY_PRICE = 2000;
+    private static final int WARRANTY_PRICE = 2000;
 
     private static final Models MODELS = Models.standardModels();
 
-    protected final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
+    private final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
 
-    protected final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
+    private final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
 
-    protected final TransactionLog transactions = new TransactionLog();
+    private final TransactionLog transactions = new TransactionLog();
 
-    protected int numCarsSold = 0;
+    private int numCarsSold = 0;
 
-    protected int totalSales = 0;
+    private int totalSales = 0;
 
     public CarDealer() {
 
         populateInventory(INITIAL_NUM_CARS, MODELS);
 
         setPrices(MIN_PRICE_IN_THOUSANDS, PRICE_RANGE_IN_THOUSANDS);
+    }
+
+    @Override
+    public String toString() {
+        return "CarDealer{" +
+                "carInfoToNumber=" + carInfoToNumber +
+                ", carInfoToPrice=" + carInfoToPrice +
+                ", transactions=" + transactions +
+                ", numCarsSold=" + numCarsSold +
+                ", totalSales=" + totalSales +
+                '}';
     }
 
     protected void populateInventory(int initialNumCars, Models models) {
