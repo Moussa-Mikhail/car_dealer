@@ -39,6 +39,32 @@ public class Models {
         return new Models(makeToModels);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Models models = (Models) o;
+
+        return makeToModels.equals(models.makeToModels);
+    }
+
+    @Override
+    public int hashCode() {
+        return makeToModels.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Models{" +
+                "makeToModels=" + makeToModels +
+                '}';
+    }
+
     public Set<String> getMakes() {
         return makeToModels.keySet();
     }

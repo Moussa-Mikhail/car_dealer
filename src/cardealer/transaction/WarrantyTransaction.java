@@ -1,6 +1,6 @@
-package cardealer;
+package cardealer.transaction;
 
-import static cardealer.CarDealer.WARRANTY_INFO;
+import static cardealer.cardealer.CarDealer.WARRANTY_INFO;
 
 /**
  * @author Moussa

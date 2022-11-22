@@ -1,4 +1,7 @@
-package cardealer;
+package cardealer.cardealer;
+
+import cardealer.Models;
+import cardealer.buyer.Buyer;
 
 /**
  * @author Moussa

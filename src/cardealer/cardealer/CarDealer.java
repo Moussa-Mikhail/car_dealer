@@ -1,4 +1,13 @@
-package cardealer;
+package cardealer.cardealer;
+
+import cardealer.CarInfo;
+import cardealer.GetRandom;
+import cardealer.Models;
+import cardealer.TransactionLog;
+import cardealer.buyer.Buyer;
+import cardealer.transaction.CarTransaction;
+import cardealer.transaction.Transaction;
+import cardealer.transaction.WarrantyTransaction;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,9 +18,9 @@ import java.util.Map;
  */
 public class CarDealer {
 
-    protected static final String WARRANTY_INFO = "Extended Warranty";
+    public static final String WARRANTY_INFO = "Extended Warranty";
 
-    private static final int INITIAL_NUM_CARS = 300;
+    private static final int INITIAL_NUM_CARS = 600;
 
     private static final int MIN_PRICE_IN_THOUSANDS = 40;
 

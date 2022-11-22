@@ -1,4 +1,8 @@
-package cardealer;
+package cardealer.buyer;
+
+import cardealer.CarInfo;
+import cardealer.Models;
+import cardealer.Name;
 
 /**
  * @author Moussa
@@ -22,7 +26,7 @@ public class LuxuryBuyer extends Buyer {
 
     @Override
     public String toString() {
-        return "LuxuryBuyer{}";
+        return "LuxuryBuyer{} " + super.toString();
     }
 }
 

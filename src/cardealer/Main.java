@@ -1,5 +1,10 @@
 package cardealer;
 
+import cardealer.buyer.Buyer;
+import cardealer.buyer.LuxuryBuyer;
+import cardealer.cardealer.CarDealer;
+import cardealer.cardealer.LuxuryCarDealer;
+
 import static cardealer.GetRandom.RANDOM_GEN;
 
 /**
@@ -9,27 +14,21 @@ public class Main {
 
     public static void main(String... args) {
 
-        final var numDeals = Integer.parseInt(args[0]);
+        var numDeals = Integer.parseInt(args[0]);
 
-        final boolean isLuxury;
+        boolean isLuxury;
 
         if (args.length > 1) {
-
             isLuxury = "-luxury".equals(args[1]);
-
         } else {
-
             isLuxury = false;
         }
 
-        final CarDealer carDealer;
+        CarDealer carDealer;
 
         if (isLuxury) {
-
             carDealer = new LuxuryCarDealer();
-
         } else {
-
             carDealer = new CarDealer();
         }
 
@@ -37,7 +36,7 @@ public class Main {
 
             System.out.printf("Deal #%d: %n", i + 1);
 
-            final Buyer buyer;
+            Buyer buyer;
 
             if (isLuxury) {
                 buyer = LuxuryBuyer.generateRandomBuyer();
@@ -45,9 +44,9 @@ public class Main {
                 buyer = Buyer.generateRandomBuyer();
             }
 
-            final var carInfo = buyer.getWantedCar();
+            var carInfo = buyer.getWantedCar();
 
-            final String buyerName = buyer.getName();
+            String buyerName = buyer.getName();
 
             System.out.printf("The buyer %s wants a %s.%n", buyerName, carInfo.printableString());
 
@@ -59,7 +58,7 @@ public class Main {
 
             }
 
-            final var price = carDealer.getPrice(carInfo);
+            var price = carDealer.getPrice(carInfo);
 
             System.out.printf("The dealership has a %s for $%d.%n", carInfo.printableString(), price);
 
