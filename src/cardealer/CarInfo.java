@@ -2,12 +2,13 @@ package cardealer;
 
 import java.util.List;
 
-
 /**
  * @author Moussa
  */
 public class CarInfo {
 
+    public static final int MIN_YEAR = 2000;
+    public static final int YEAR_RANGE = 20;
     private final String make;
     private final String model;
     private final int year;
@@ -21,27 +22,27 @@ public class CarInfo {
     }
 
 
-    public static CarInfo generateRandomCarInfo() {
+    public static CarInfo generateRandomCarInfo(Models models, int minYear, int yearRange) {
 
-        final var make = GetRandom.getRandomElement(Models.getMakes());
+        final var make = GetRandom.getRandomElement(models.getMakes());
 
-        final var model = GetRandom.getRandomElement(Models.getModels(make));
+        final var model = GetRandom.getRandomElement(models.getModels(make));
 
-        final var year = GetRandom.RANDOM_GEN.nextInt(5) + 2015;
+        final var year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
 
         final var color = GetRandom.getRandomElement(List.of(Color.values())).toString();
 
         return new CarInfo(make, model, year, color);
     }
 
+    public static CarInfo generateRandomCarInfo(Models models) {
+
+        return generateRandomCarInfo(models, MIN_YEAR, YEAR_RANGE);
+    }
+
     @Override
     public String toString() {
-        return "CarInfo{" +
-                "make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", year=" + year +
-                ", color='" + color + '\'' +
-                '}';
+        return "CarInfo{" + "make='" + make + '\'' + ", model='" + model + '\'' + ", year=" + year + ", color='" + color + '\'' + '}';
     }
 
     @Override

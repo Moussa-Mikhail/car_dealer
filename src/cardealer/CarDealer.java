@@ -9,37 +9,44 @@ import java.util.Map;
  */
 public class CarDealer {
 
-    public static final int INITIAL_NUM_CARS = 300;
-    public static final int WARRANTY_PRICE = 2000;
-    public static final String WARRANTY_INFO = "Extended Warranty";
-    private final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
-    private final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
-    private final TransactionLog transactions = new TransactionLog();
-    private int numCarsSold = 0;
-    private int totalSales = 0;
+    protected static final String WARRANTY_INFO = "Extended Warranty";
+    protected static final int INITIAL_NUM_CARS = 300;
+    protected static final int MIN_PRICE_IN_THOUSANDS = 40;
+    protected static final int PRICE_RANGE_IN_THOUSANDS = 30;
+    protected static final int WARRANTY_PRICE = 2000;
+    private static final Models MODELS = Models.standardModels();
+    protected final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
+    protected final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
+    protected final TransactionLog transactions = new TransactionLog();
+    protected int numCarsSold = 0;
+    protected int totalSales = 0;
 
     public CarDealer() {
 
-        populateInventory();
+        populateInventory(INITIAL_NUM_CARS, MODELS);
 
-        setPrices();
+        setPrices(MIN_PRICE_IN_THOUSANDS, PRICE_RANGE_IN_THOUSANDS);
     }
 
-    private void populateInventory() {
+    protected void populateInventory(int initialNumCars, Models models) {
 
-        for (int i = 0; i < INITIAL_NUM_CARS; i++) {
+        carInfoToNumber.clear();
 
-            final var carInfo = CarInfo.generateRandomCarInfo();
+        for (int i = 0; i < initialNumCars; i++) {
+
+            final var carInfo = CarInfo.generateRandomCarInfo(models);
 
             addCar(carInfo);
         }
     }
 
-    private void setPrices() {
+    protected void setPrices(int minPriceInThousands, int priceRangeInThousands) {
+
+        carInfoToPrice.clear();
 
         for (final var carInfo : carInfoToNumber.keySet()) {
 
-            final var priceInThousands = GetRandom.RANDOM_GEN.nextInt(30) + 40;
+            final var priceInThousands = GetRandom.RANDOM_GEN.nextInt(priceRangeInThousands) + minPriceInThousands;
 
             final var price = priceInThousands * 1000;
 
@@ -98,14 +105,23 @@ public class CarDealer {
 
     public void sellWarranty(Buyer buyer) {
 
-        final var transaction = new WarrantyTransaction(buyer.getName());
+        final var transaction = new WarrantyTransaction(buyer.getName(), WARRANTY_PRICE);
 
         transactions.addTransaction(transaction);
 
         totalSales += WARRANTY_PRICE;
     }
 
-    private void removeCar(CarInfo carInfo) {
+    protected void sellWarranty(Buyer buyer, int price) {
+
+        final var transaction = new WarrantyTransaction(buyer.getName(), price);
+
+        transactions.addTransaction(transaction);
+
+        totalSales += price;
+    }
+
+    protected void removeCar(CarInfo carInfo) {
 
         carInfoToNumber.merge(carInfo, -1, Integer::sum);
     }
@@ -113,5 +129,9 @@ public class CarDealer {
     public void printTransactions() {
 
         transactions.printTransactions();
+    }
+
+    public int getWarrantyPrice() {
+        return WARRANTY_PRICE;
     }
 }

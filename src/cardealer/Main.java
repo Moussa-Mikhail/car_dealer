@@ -11,13 +11,13 @@ public class Main {
 
         final var numDeals = Integer.parseInt(args[0]);
 
-        final var carDealer = new CarDealer();
+        final CarDealer carDealer = new LuxuryCarDealer();
 
         for (int i = 0; i < numDeals; i++) {
 
             System.out.printf("Deal #%d: %n", i + 1);
 
-            final var buyer = Buyer.generateRandomBuyer();
+            final Buyer buyer = LuxuryBuyer.generateRandomBuyer();
 
             final var carInfo = buyer.getWantedCar();
 
@@ -25,32 +25,33 @@ public class Main {
 
             System.out.printf("The buyer %s wants a %s.%n", buyerName, carInfo.printableString());
 
-            if (carDealer.hasCar(carInfo)) {
+            if (!carDealer.hasCar(carInfo)) {
 
-                final var price = carDealer.getPrice(carInfo);
+                System.out.printf("The dealership does not have a %s.%n%n", carInfo.printableString());
 
-                System.out.printf("The dealership has a %s for $%d.%n", carInfo.printableString(), price);
+                continue;
 
-                carDealer.sellCar(buyerName, carInfo);
+            }
 
-                System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo.printableString(), buyerName, price);
+            final var price = carDealer.getPrice(carInfo);
 
-                System.out.printf("The dealership also offers an extended warranty for $%d.%n", CarDealer.WARRANTY_PRICE);
+            System.out.printf("The dealership has a %s for $%d.%n", carInfo.printableString(), price);
 
-                if (RANDOM_GEN.nextBoolean()) {
+            carDealer.sellCar(buyerName, carInfo);
 
-                    carDealer.sellWarranty(buyer);
+            System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo.printableString(), buyerName, price);
 
-                    System.out.printf("The dealership sold an extended warranty to %s for $%d.%n", buyerName, CarDealer.WARRANTY_PRICE);
+            System.out.printf("The dealership also offers an extended warranty for $%d.%n", carDealer.getWarrantyPrice());
 
-                } else {
+            if (RANDOM_GEN.nextBoolean()) {
 
-                    System.out.printf("%s did not want an extended warranty.%n", buyerName);
-                }
+                carDealer.sellWarranty(buyer);
+
+                System.out.printf("The dealership sold an extended warranty to %s for $%d.%n", buyerName, carDealer.getWarrantyPrice());
 
             } else {
 
-                System.out.printf("The dealership does not have a %s.%n", carInfo.printableString());
+                System.out.printf("%s did not want an extended warranty.%n", buyerName);
             }
 
             System.out.println();
