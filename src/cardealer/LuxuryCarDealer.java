@@ -5,6 +5,8 @@ package cardealer;
  */
 public final class LuxuryCarDealer extends CarDealer {
 
+    private static final int INITIAL_NUM_CARS = 600;
+
     private static final int WARRANTY_PRICE = 5000;
 
     private static final Models LUXURY_MODELS = Models.luxuryModels();
