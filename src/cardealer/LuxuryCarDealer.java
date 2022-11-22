@@ -6,8 +6,11 @@ package cardealer;
 public final class LuxuryCarDealer extends CarDealer {
 
     private static final int WARRANTY_PRICE = 5000;
+
     private static final Models LUXURY_MODELS = Models.luxuryModels();
+
     private static final int MIN_PRICE_IN_THOUSANDS = 80;
+
     private static final int PRICE_RANGE_IN_THOUSANDS = 60;
 
     public LuxuryCarDealer() {
