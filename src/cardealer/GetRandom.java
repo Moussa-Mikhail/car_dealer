@@ -12,7 +12,7 @@ public class GetRandom {
     public static final Random RANDOM_GEN = new Random();
 
     private GetRandom() {
-        throw new AssertionError("Utility class.");
+        throw new UnsupportedOperationException("Utility class.");
     }
 
     public static <E> E getRandomElement(List<E> list) {

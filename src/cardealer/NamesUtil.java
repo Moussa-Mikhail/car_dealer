@@ -33,7 +33,7 @@ public class NamesUtil {
     }
 
     private NamesUtil() {
-        throw new AssertionError("Utility class.");
+        throw new UnsupportedOperationException("Utility class.");
     }
 
     public static String getRandomName() {
