@@ -32,6 +32,22 @@ public final class CarInfo {
         return new CarInfo(make, model, year, color);
     }
 
+    public String getMake() {
+        return make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
     @Override
     public String toString() {
         return "CarInfo{" + "make='" + make + '\'' + ", model='" + model + '\'' + ", year=" + year + ", color='" + color + '\'' + '}';
