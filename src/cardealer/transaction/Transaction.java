@@ -1,5 +1,8 @@
 package cardealer.transaction;
 
+/**
+ * @author Moussa
+ */
 public interface Transaction {
     /**
      * @return the name of the buyer
