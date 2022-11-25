@@ -17,12 +17,9 @@ public class NamesUtil {
     private static final List<String> NAMES = new ArrayList<>();
     private static final String FILENAME = "names.txt";
 
-
     static {
-
         URL url = NamesUtil.class.getResource(FILENAME);
         assert url != null;
-
 
         // Copied and modified from
         // https://www.digitalocean.com/community/tutorials/java-read-file-line-by-line
