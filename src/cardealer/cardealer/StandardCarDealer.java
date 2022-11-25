@@ -8,7 +8,6 @@ import cardealer.MakesAndModels;
 public final class StandardCarDealer extends AbstractCarDealer {
     private static final int MIN_YEAR = 2010;
     private static final int YEAR_RANGE = 10;
-
     private static final MakesAndModels MAKE_AND_MODELS = MakesAndModels.getStandardMakesAndModels();
 
     public StandardCarDealer() {
