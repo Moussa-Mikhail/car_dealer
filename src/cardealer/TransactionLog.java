@@ -15,6 +15,7 @@ public class TransactionLog {
     private int maxInfoLength = 1;
     private int maxPriceLength = 1;
 
+    @SuppressWarnings("unused")
     public List<Transaction> getTransactionsList() {
         return transactionsList;
     }
