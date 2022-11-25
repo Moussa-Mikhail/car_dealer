@@ -16,28 +16,24 @@ import java.util.Map;
  */
 public class AbstractCarDealer implements CarDealer {
     public static final String WARRANTY_INFO = "Extended Warranty";
-    protected static final int INITIAL_NUM_CARS = 600;
+    protected static final int INITIAL_NUM_CARS = 400;
     protected static final int MIN_PRICE_IN_THOUSANDS = 40;
     protected static final int PRICE_RANGE_IN_THOUSANDS = 30;
-    private static final int WARRANTY_PRICE = 2000;
+    protected static final int WARRANTY_PRICE = 2000;
     protected final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
     protected final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
     protected final TransactionLog transactions = new TransactionLog();
     protected int numCarsSold = 0;
     protected int totalSales = 0;
 
-    protected void populateInventory(int initialNumCars, MakesAndModels makesAndModels) {
-        carInfoToNumber.clear();
-
+    protected void populateInventory(int initialNumCars, MakesAndModels makesAndModels, int minYear, int yearRange) {
         for (int i = 0; i < initialNumCars; i++) {
-            var carInfo = CarInfo.generateRandomCarInfo(makesAndModels);
+            var carInfo = CarInfo.generateRandomCarInfo(makesAndModels, minYear, yearRange);
             addCar(carInfo);
         }
     }
 
     protected void setPrices(int minPriceInThousands, int priceRangeInThousands) {
-        carInfoToPrice.clear();
-
         for (var carInfo : carInfoToNumber.keySet()) {
             var priceInThousands = GetRandom.RANDOM_GEN.nextInt(priceRangeInThousands) + minPriceInThousands;
             var price = priceInThousands * 1000;
