@@ -3,6 +3,8 @@ package cardealer.cardealer;
 import cardealer.carinfo.CarInfo;
 import cardealer.buyer.Buyer;
 
+import java.util.Set;
+
 /**
  * @author Moussa
  */
@@ -15,6 +17,8 @@ public interface CarDealer {
     boolean hasCar(CarInfo carInfo);
 
     /**
+     * If the car is not available then it returns -1.
+     *
      * @param carInfo the car info
      * @return the price of the car
      */
@@ -45,4 +49,11 @@ public interface CarDealer {
      * @return the total sales.
      */
     int getTotalSales();
+
+    /**
+     * @return returns the set of available makes.
+     */
+    Set<CarInfo> getAvailableCars();
+
+
 }

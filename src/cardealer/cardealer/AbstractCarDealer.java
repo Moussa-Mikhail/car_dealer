@@ -10,6 +10,7 @@ import cardealer.transaction.WarrantyTransaction;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Moussa
@@ -42,12 +43,25 @@ public class AbstractCarDealer implements CarDealer {
     }
 
     @Override
+    public Set<CarInfo> getAvailableCars() {
+        return carInfoToNumber.keySet();
+    }
+
+    @Override
     public int getTotalSales() {
         return totalSales;
     }
 
-    private void addCar(CarInfo carInfo) {
+    protected void addCar(CarInfo carInfo) {
         carInfoToNumber.merge(carInfo, 1, Integer::sum);
+    }
+
+    protected void removeCar(CarInfo carInfo) {
+        carInfoToNumber.merge(carInfo, -1, Integer::sum);
+
+        if (carInfoToNumber.get(carInfo) == 0) {
+            carInfoToNumber.remove(carInfo);
+        }
     }
 
     public int getQuantity(CarInfo carInfo) {
@@ -62,7 +76,7 @@ public class AbstractCarDealer implements CarDealer {
 
     @Override
     public int getPrice(CarInfo carInfo) {
-        return carInfoToPrice.getOrDefault(carInfo, 0);
+        return carInfoToPrice.getOrDefault(carInfo, -1);
     }
 
     @Override
@@ -90,10 +104,6 @@ public class AbstractCarDealer implements CarDealer {
         var transaction = new WarrantyTransaction(buyer.getName(), price);
         transactions.addTransaction(transaction);
         totalSales += price;
-    }
-
-    protected void removeCar(CarInfo carInfo) {
-        carInfoToNumber.merge(carInfo, -1, Integer::sum);
     }
 
     @Override
