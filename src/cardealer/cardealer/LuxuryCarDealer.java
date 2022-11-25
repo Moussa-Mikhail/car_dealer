@@ -1,7 +1,7 @@
 package cardealer.cardealer;
 
-import cardealer.MakesAndModels;
-import cardealer.buyer.Buyer;
+import cardealer.ModelsDataProvider;
+import cardealer.buyer.IBuyer;
 
 /**
  * @author Moussa
@@ -10,7 +10,7 @@ public final class LuxuryCarDealer extends AbstractCarDealer {
 
     private static final int INITIAL_NUM_CARS = 600;
     private static final int WARRANTY_PRICE = 5000;
-    private static final MakesAndModels LUXURY_MAKE_AND_MODELS = MakesAndModels.getLuxuryMakesAndModels();
+    private static final ModelsDataProvider LUXURY_MAKE_AND_MODELS = ModelsDataProvider.getLuxuryMakesAndModels();
     private static final int MIN_PRICE_IN_THOUSANDS = 80;
     private static final int PRICE_RANGE_IN_THOUSANDS = 60;
     private static final int MIN_YEAR = 2010;
@@ -27,7 +27,7 @@ public final class LuxuryCarDealer extends AbstractCarDealer {
     }
 
     @Override
-    public void sellWarranty(Buyer buyer) {
+    public void sellWarranty(IBuyer buyer) {
         sellWarranty(buyer, WARRANTY_PRICE);
     }
 

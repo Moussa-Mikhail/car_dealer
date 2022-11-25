@@ -1,6 +1,6 @@
 package cardealer;
 
-import cardealer.transaction.Transaction;
+import cardealer.transaction.ITransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +10,17 @@ import java.util.List;
  */
 public class TransactionLog {
 
-    private final List<Transaction> transactionsList = new ArrayList<>();
+    private final List<ITransaction> transactionsList = new ArrayList<>();
     private int maxBuyerNameLength = 1;
     private int maxInfoLength = 1;
     private int maxPriceLength = 1;
 
     @SuppressWarnings("unused")
-    public List<Transaction> getTransactionsList() {
+    public List<ITransaction> getTransactionsList() {
         return transactionsList;
     }
 
-    public void addTransaction(Transaction transaction) {
+    public void addTransaction(ITransaction transaction) {
         transactionsList.add(transaction);
         maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
         maxInfoLength = Math.max(maxInfoLength, transaction.getInfo().length());

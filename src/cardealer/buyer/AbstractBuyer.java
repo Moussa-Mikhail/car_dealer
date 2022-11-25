@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * @author Moussa
  */
-abstract class AbstractBuyer implements Buyer {
+abstract class AbstractBuyer implements IBuyer {
     protected final String name;
     protected final CarInfo wantedCar;
 

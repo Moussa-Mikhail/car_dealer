@@ -1,14 +1,14 @@
 package cardealer.cardealer;
 
 import cardealer.carinfo.CarInfo;
-import cardealer.buyer.Buyer;
+import cardealer.buyer.IBuyer;
 
 import java.util.Set;
 
 /**
  * @author Moussa
  */
-public interface CarDealer {
+public interface ICarDealer {
     /**
      * @param carInfo the car info
      * @return true if the car is available, false otherwise.
@@ -34,12 +34,12 @@ public interface CarDealer {
      * sells car to buyer
      * @param buyer the buyer
      */
-    void sellCar(Buyer buyer);
+    void sellCar(IBuyer buyer);
 
     /**
      * @param buyer the buyer
      */
-    void sellWarranty(Buyer buyer);
+    void sellWarranty(IBuyer buyer);
 
     /**
      * prints all transactions.

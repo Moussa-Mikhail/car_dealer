@@ -3,7 +3,7 @@ package cardealer.transaction;
 /**
  * @author Moussa
  */
-public class StandardTransaction implements Transaction {
+public class StandardTransaction implements ITransaction {
 
     private final String buyerName;
 
@@ -52,7 +52,7 @@ public class StandardTransaction implements Transaction {
             return false;
         }
 
-        Transaction that = (Transaction) o;
+        ITransaction that = (ITransaction) o;
 
         if (getPrice() != that.getPrice()) {
             return false;

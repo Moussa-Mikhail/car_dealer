@@ -5,7 +5,7 @@ import cardealer.carinfo.CarInfo;
 /**
  * @author Moussa
  */
-public interface Buyer {
+public interface IBuyer {
     /**
      * @return the name of the buyer
      */

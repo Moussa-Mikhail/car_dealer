@@ -2,9 +2,9 @@ package cardealer.cardealer;
 
 import cardealer.carinfo.CarInfo;
 import cardealer.GetRandom;
-import cardealer.MakesAndModels;
+import cardealer.ModelsDataProvider;
 import cardealer.TransactionLog;
-import cardealer.buyer.Buyer;
+import cardealer.buyer.IBuyer;
 import cardealer.transaction.CarTransaction;
 import cardealer.transaction.WarrantyTransaction;
 
@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * @author Moussa
  */
-public class AbstractCarDealer implements CarDealer {
+public class AbstractCarDealer implements ICarDealer {
     public static final String WARRANTY_INFO = "Extended Warranty";
     protected static final int INITIAL_NUM_CARS = 400;
     protected static final int MIN_PRICE_IN_THOUSANDS = 40;
@@ -27,9 +27,9 @@ public class AbstractCarDealer implements CarDealer {
     protected int numCarsSold = 0;
     protected int totalSales = 0;
 
-    protected void populateInventory(int initialNumCars, MakesAndModels makesAndModels, int minYear, int yearRange) {
+    protected void populateInventory(int initialNumCars, ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
         for (int i = 0; i < initialNumCars; i++) {
-            var carInfo = CarInfo.generateRandomCarInfo(makesAndModels, minYear, yearRange);
+            var carInfo = CarInfo.generateRandomCarInfo(modelsDataProvider, minYear, yearRange);
             addCar(carInfo);
         }
     }
@@ -96,16 +96,16 @@ public class AbstractCarDealer implements CarDealer {
     }
 
     @Override
-    public void sellCar(Buyer buyer) {
+    public void sellCar(IBuyer buyer) {
         sellCar(buyer.getName(), buyer.getWantedCar());
     }
 
     @Override
-    public void sellWarranty(Buyer buyer) {
+    public void sellWarranty(IBuyer buyer) {
         sellWarranty(buyer, WARRANTY_PRICE);
     }
 
-    protected void sellWarranty(Buyer buyer, int price) {
+    protected void sellWarranty(IBuyer buyer, int price) {
         var transaction = new WarrantyTransaction(buyer.getName(), price);
         transactions.addTransaction(transaction);
         totalSales += price;

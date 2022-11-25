@@ -3,7 +3,7 @@ package cardealer.transaction;
 /**
  * @author Moussa
  */
-public interface Transaction {
+public interface ITransaction {
     /**
      * @return the name of the buyer
      */

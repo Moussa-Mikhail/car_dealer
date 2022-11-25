@@ -1,6 +1,6 @@
 package cardealer.buyer;
 
-import cardealer.MakesAndModels;
+import cardealer.ModelsDataProvider;
 import cardealer.NamesUtil;
 import cardealer.carinfo.CarInfo;
 
@@ -17,17 +17,17 @@ public class RandomBuyerGenerator {
 
         var name = NamesUtil.getRandomName();
 
-        var makesAndModels = MakesAndModels.getLuxuryMakesAndModels();
+        var makesAndModels = ModelsDataProvider.getLuxuryMakesAndModels();
 
         var wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
 
         return new LuxuryBuyer(name, wantedCar);
     }
 
-    public static Buyer generateStandardBuyer() {
+    public static IBuyer generateStandardBuyer() {
         var name = NamesUtil.getRandomName();
 
-        var makesAndModels = MakesAndModels.getStandardMakesAndModels();
+        var makesAndModels = ModelsDataProvider.getStandardMakesAndModels();
 
         var wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
 
