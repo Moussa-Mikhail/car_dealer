@@ -1,6 +1,6 @@
-package cardealer;
+package cardealer.carinfo;
 
-import java.util.List;
+import cardealer.MakesAndModels;
 
 /**
  * @author Moussa
@@ -22,17 +22,8 @@ public class CarInfo {
     }
 
 
-    public static CarInfo generateRandomCarInfo(Models models, int minYear, int yearRange) {
-        final var make = GetRandom.getRandomElement(models.getMakes());
-        final var model = GetRandom.getRandomElement(models.getModels(make));
-        final var year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
-        final var color = GetRandom.getRandomElement(List.of(Color.values())).toString();
-
-        return new CarInfo(make, model, year, color);
-    }
-
-    public static CarInfo generateRandomCarInfo(Models models) {
-        return generateRandomCarInfo(models, MIN_YEAR, YEAR_RANGE);
+    public static CarInfo generateRandomCarInfo(MakesAndModels makesAndModels) {
+        return RandomCarInfoGenerator.generateRandomCarInfo(makesAndModels, MIN_YEAR, YEAR_RANGE);
     }
 
     @Override
