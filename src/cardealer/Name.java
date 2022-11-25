@@ -33,16 +33,12 @@ public class Name {
         final Scanner scanner;
 
         try {
-
             scanner = new Scanner(file);
-
         } catch (FileNotFoundException e) {
-
             throw new RuntimeException(e);
         }
 
         while (scanner.hasNextLine()) {
-
             NAMES.add(scanner.nextLine());
         }
 
@@ -53,7 +49,6 @@ public class Name {
     }
 
     public static String getRandomName() {
-
         return GetRandom.getRandomElement(NAMES);
     }
 }

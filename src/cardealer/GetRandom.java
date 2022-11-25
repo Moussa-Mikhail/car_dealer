@@ -16,15 +16,12 @@ public class GetRandom {
     }
 
     public static <E> E getRandomElement(List<E> list) {
-
         final var randIdx = RANDOM_GEN.nextInt(list.size());
-
         return list.get(randIdx);
     }
 
     public static <E> E getRandomElement(Collection<E> collection) {
         // Copied from https://stackoverflow.com/a/40087987/18650633
-
         return collection.stream()
                 .skip(RANDOM_GEN.nextInt(collection.size()))
                 .findFirst().orElseThrow();

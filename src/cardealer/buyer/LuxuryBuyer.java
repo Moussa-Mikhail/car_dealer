@@ -16,11 +16,8 @@ public class LuxuryBuyer extends Buyer {
     }
 
     public static LuxuryBuyer generateRandomBuyer() {
-
         String randomName = Name.getRandomName();
-
         CarInfo randCar = CarInfo.generateRandomCarInfo(MODELS);
-
         return new LuxuryBuyer(randomName, randCar);
     }
 

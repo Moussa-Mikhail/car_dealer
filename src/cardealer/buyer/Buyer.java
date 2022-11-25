@@ -32,6 +32,7 @@ public class Buyer {
         if (!name.equals(buyer.name)) {
             return false;
         }
+
         return wantedCar.equals(buyer.wantedCar);
     }
 
@@ -51,16 +52,12 @@ public class Buyer {
     }
 
     public static Buyer generateRandomBuyer(Models models) {
-
         final var name = Name.getRandomName();
-
         final var carInfo = CarInfo.generateRandomCarInfo(models);
-
         return new Buyer(name, carInfo);
     }
 
     public static Buyer generateRandomBuyer() {
-
         return generateRandomBuyer(MODELS);
     }
 

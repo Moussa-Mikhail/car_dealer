@@ -20,13 +20,9 @@ public class TransactionLog {
     }
 
     public void addTransaction(Transaction transaction) {
-
         transactionsList.add(transaction);
-
         maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
-
         maxInfoLength = Math.max(maxInfoLength, transaction.getInfo().length());
-
         maxPriceLength = Math.max(maxPriceLength, String.valueOf(transaction.getPrice()).length());
     }
 
@@ -46,7 +42,6 @@ public class TransactionLog {
             final var transactionString = String.format(format, numStr, buyerName, info, price);
 
             System.out.print(transactionString);
-
         }
 
     }

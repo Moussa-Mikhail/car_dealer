@@ -8,7 +8,6 @@ import static cardealer.cardealer.CarDealer.WARRANTY_INFO;
 public class WarrantyTransaction extends Transaction {
 
     public WarrantyTransaction(String buyerName, int price) {
-
         super(buyerName, WARRANTY_INFO, price);
     }
 
