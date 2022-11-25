@@ -6,11 +6,9 @@ import cardealer.Models;
 import cardealer.TransactionLog;
 import cardealer.buyer.Buyer;
 import cardealer.transaction.CarTransaction;
-import cardealer.transaction.Transaction;
 import cardealer.transaction.WarrantyTransaction;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -67,16 +65,8 @@ public class CarDealer {
         }
     }
 
-    public int getNumCarsSold() {
-        return numCarsSold;
-    }
-
     public int getTotalSales() {
         return totalSales;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions.getTransactionsList();
     }
 
     public void addCar(CarInfo carInfo) {
