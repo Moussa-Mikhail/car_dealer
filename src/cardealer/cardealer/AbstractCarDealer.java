@@ -96,6 +96,11 @@ public class AbstractCarDealer implements CarDealer {
     }
 
     @Override
+    public void sellCar(Buyer buyer) {
+        sellCar(buyer.getName(), buyer.getWantedCar());
+    }
+
+    @Override
     public void sellWarranty(Buyer buyer) {
         sellWarranty(buyer, WARRANTY_PRICE);
     }

@@ -31,6 +31,12 @@ public interface CarDealer {
     void sellCar(String buyerName, CarInfo carInfo);
 
     /**
+     * sells car to buyer
+     * @param buyer the buyer
+     */
+    void sellCar(Buyer buyer);
+
+    /**
      * @param buyer the buyer
      */
     void sellWarranty(Buyer buyer);
