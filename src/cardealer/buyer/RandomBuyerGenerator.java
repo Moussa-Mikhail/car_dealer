@@ -2,7 +2,7 @@ package cardealer.buyer;
 
 import cardealer.MakesAndModels;
 import cardealer.NamesUtil;
-import cardealer.carinfo.RandomCarInfoGenerator;
+import cardealer.carinfo.CarInfo;
 
 /**
  * @author Moussa
@@ -19,7 +19,7 @@ public class RandomBuyerGenerator {
 
         var makesAndModels = MakesAndModels.getLuxuryMakesAndModels();
 
-        var wantedCar = RandomCarInfoGenerator.generateRandomCarInfo(makesAndModels, 2010, 10);
+        var wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
 
         return new LuxuryBuyer(name, wantedCar);
     }
@@ -29,7 +29,7 @@ public class RandomBuyerGenerator {
 
         var makesAndModels = MakesAndModels.getStandardMakesAndModels();
 
-        var wantedCar = RandomCarInfoGenerator.generateRandomCarInfo(makesAndModels, 2010, 10);
+        var wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
 
         return new StandardBuyer(name, wantedCar);
     }
