@@ -5,7 +5,7 @@ import cardealer.carinfo.CarInfo;
 /**
  * @author Moussa
  */
-public class CarTransaction extends StandardTransaction {
+public final class CarTransaction extends StandardTransaction {
 
     public CarTransaction(String buyerName, CarInfo carInfo, int price) {
         super(buyerName, carInfo.printableString(), price);

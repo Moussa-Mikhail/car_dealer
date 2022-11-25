@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Moussa
  */
-public class CarInfo {
+public final class CarInfo {
 
     private final String make;
     private final String model;
