@@ -27,17 +27,15 @@ public class AbstractCarDealer implements CarDealer {
     protected int totalSales = 0;
 
     protected void populateInventory(int initialNumCars, MakesAndModels makesAndModels) {
-
         carInfoToNumber.clear();
 
         for (int i = 0; i < initialNumCars; i++) {
-            final var carInfo = CarInfo.generateRandomCarInfo(makesAndModels);
+            var carInfo = CarInfo.generateRandomCarInfo(makesAndModels);
             addCar(carInfo);
         }
     }
 
     protected void setPrices(int minPriceInThousands, int priceRangeInThousands) {
-
         carInfoToPrice.clear();
 
         for (var carInfo : carInfoToNumber.keySet()) {
