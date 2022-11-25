@@ -5,6 +5,7 @@ import cardealer.GetRandom;
 import cardealer.ModelsDataProvider;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Moussa
@@ -73,18 +74,12 @@ public final class CarInfo {
         if (!model.equals(carInfo.model)) {
             return false;
         }
-
         return color.equals(carInfo.color);
     }
 
     @Override
     public int hashCode() {
-        int result = make.hashCode();
-        result = 31 * result + model.hashCode();
-        result = 31 * result + year;
-        result = 31 * result + color.hashCode();
-
-        return result;
+        return Objects.hash(make, model, year, color);
     }
 }
 

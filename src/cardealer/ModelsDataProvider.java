@@ -15,14 +15,6 @@ public class ModelsDataProvider {
         this.makeToModels = makeToModels;
     }
 
-    public Set<String> getMakes() {
-        return makeToModels.keySet();
-    }
-
-    public Set<String> getModels(String make) {
-        return makeToModels.get(make);
-    }
-
     public static ModelsDataProvider getStandardMakesAndModels() {
 
         var makeToModels = Map.of(
@@ -46,6 +38,14 @@ public class ModelsDataProvider {
         );
 
         return new ModelsDataProvider(makeToModels);
+    }
+
+    public Set<String> getMakes() {
+        return makeToModels.keySet();
+    }
+
+    public Set<String> getModels(String make) {
+        return makeToModels.get(make);
     }
 
     @Override

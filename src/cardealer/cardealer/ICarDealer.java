@@ -1,7 +1,7 @@
 package cardealer.cardealer;
 
-import cardealer.carinfo.CarInfo;
 import cardealer.buyer.IBuyer;
+import cardealer.carinfo.CarInfo;
 
 import java.util.Set;
 
@@ -32,6 +32,7 @@ public interface ICarDealer {
 
     /**
      * sells car to buyer
+     *
      * @param buyer the buyer
      */
     void sellCar(IBuyer buyer);

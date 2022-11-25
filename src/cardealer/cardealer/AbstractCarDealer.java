@@ -1,10 +1,10 @@
 package cardealer.cardealer;
 
-import cardealer.carinfo.CarInfo;
 import cardealer.GetRandom;
 import cardealer.ModelsDataProvider;
 import cardealer.TransactionLog;
 import cardealer.buyer.IBuyer;
+import cardealer.carinfo.CarInfo;
 import cardealer.transaction.CarTransaction;
 import cardealer.transaction.WarrantyTransaction;
 
@@ -35,6 +35,10 @@ public class AbstractCarDealer implements ICarDealer {
         }
     }
 
+    protected void addCar(CarInfo carInfo) {
+        carInfoToNumber.merge(carInfo, 1, Integer::sum);
+    }
+
     protected void setPrices(int minPriceInThousands, int priceRangeInThousands) {
         for (var carInfo : carInfoToNumber.keySet()) {
             var priceInThousands = GetRandom.RANDOM_GEN.nextInt(priceRangeInThousands) + minPriceInThousands;
@@ -53,31 +57,9 @@ public class AbstractCarDealer implements ICarDealer {
         return totalSales;
     }
 
-    protected void addCar(CarInfo carInfo) {
-        carInfoToNumber.merge(carInfo, 1, Integer::sum);
-    }
-
-    protected void removeCar(CarInfo carInfo) {
-        carInfoToNumber.merge(carInfo, -1, Integer::sum);
-
-        if (carInfoToNumber.get(carInfo) == 0) {
-            carInfoToNumber.remove(carInfo);
-        }
-    }
-
-    public int getQuantity(CarInfo carInfo) {
-        return carInfoToNumber.getOrDefault(carInfo, 0);
-    }
-
     @Override
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    public boolean hasCar(CarInfo carInfo) {
-        return getQuantity(carInfo) > 0;
-    }
-
-    @Override
-    public int getPrice(CarInfo carInfo) {
-        return carInfoToPrice.getOrDefault(carInfo, -1);
+    public void sellCar(IBuyer buyer) {
+        sellCar(buyer.getName(), buyer.getWantedCar());
     }
 
     @Override
@@ -96,9 +78,27 @@ public class AbstractCarDealer implements ICarDealer {
         numCarsSold++;
     }
 
+    protected void removeCar(CarInfo carInfo) {
+        carInfoToNumber.merge(carInfo, -1, Integer::sum);
+
+        if (carInfoToNumber.get(carInfo) == 0) {
+            carInfoToNumber.remove(carInfo);
+        }
+    }
+
     @Override
-    public void sellCar(IBuyer buyer) {
-        sellCar(buyer.getName(), buyer.getWantedCar());
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean hasCar(CarInfo carInfo) {
+        return getQuantity(carInfo) > 0;
+    }
+
+    public int getQuantity(CarInfo carInfo) {
+        return carInfoToNumber.getOrDefault(carInfo, 0);
+    }
+
+    @Override
+    public int getPrice(CarInfo carInfo) {
+        return carInfoToPrice.getOrDefault(carInfo, -1);
     }
 
     @Override

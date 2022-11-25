@@ -35,7 +35,7 @@ abstract class AbstractBuyer implements IBuyer {
             return false;
         }
 
-        StandardBuyer that = (StandardBuyer) o;
+        AbstractBuyer that = (AbstractBuyer) o;
 
         if (!name.equals(that.name)) {
             return false;
