@@ -16,7 +16,7 @@ public class GetRandom {
     }
 
     public static <E> E getRandomElement(List<E> list) {
-        final var randIdx = RANDOM_GEN.nextInt(list.size());
+        var randIdx = RANDOM_GEN.nextInt(list.size());
         return list.get(randIdx);
     }
 
