@@ -7,11 +7,11 @@ import java.util.Set;
 /**
  * @author Moussa
  */
-public class MakesAndModels {
+public class ModelsDataProvider {
 
     private final Map<String, Set<String>> makeToModels;
 
-    public MakesAndModels(Map<String, Set<String>> makeToModels) {
+    public ModelsDataProvider(Map<String, Set<String>> makeToModels) {
         this.makeToModels = makeToModels;
     }
 
@@ -23,7 +23,7 @@ public class MakesAndModels {
         return makeToModels.get(make);
     }
 
-    public static MakesAndModels getStandardMakesAndModels() {
+    public static ModelsDataProvider getStandardMakesAndModels() {
 
         var makeToModels = Map.of(
                 "Toyota", Set.of("Camry", "Corolla", "RAV4"),
@@ -33,10 +33,10 @@ public class MakesAndModels {
                 "Subaru", Set.of("Crosstrek", "Forester", "Impreza")
         );
 
-        return new MakesAndModels(makeToModels);
+        return new ModelsDataProvider(makeToModels);
     }
 
-    public static MakesAndModels getLuxuryMakesAndModels() {
+    public static ModelsDataProvider getLuxuryMakesAndModels() {
 
         var makeToModels = Map.of(
                 "Mercedes", Set.of("C-Class", "E-Class", "S-Class"),
@@ -45,7 +45,7 @@ public class MakesAndModels {
                 "Lexus", Set.of("ES", "GS", "LS")
         );
 
-        return new MakesAndModels(makeToModels);
+        return new ModelsDataProvider(makeToModels);
     }
 
     @Override
@@ -64,9 +64,9 @@ public class MakesAndModels {
             return false;
         }
 
-        MakesAndModels makesAndModels = (MakesAndModels) o;
+        ModelsDataProvider modelsDataProvider = (ModelsDataProvider) o;
 
-        return makeToModels.equals(makesAndModels.makeToModels);
+        return makeToModels.equals(modelsDataProvider.makeToModels);
     }
 
     @Override
