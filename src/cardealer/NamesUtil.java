@@ -12,7 +12,7 @@ import java.util.List;
  * @author Moussa
  */
 @SuppressWarnings("java:S112")
-public class Name {
+public class NamesUtil {
 
     private static final List<String> NAMES = new ArrayList<>();
     private static final String FILENAME = "names.txt";
@@ -20,7 +20,7 @@ public class Name {
 
     static {
 
-        URL url = Name.class.getResource(FILENAME);
+        URL url = NamesUtil.class.getResource(FILENAME);
         assert url != null;
 
 
@@ -35,7 +35,7 @@ public class Name {
         }
     }
 
-    private Name() {
+    private NamesUtil() {
         throw new AssertionError("Utility class.");
     }
 
