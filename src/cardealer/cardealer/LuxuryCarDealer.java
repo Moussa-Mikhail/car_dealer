@@ -1,21 +1,21 @@
 package cardealer.cardealer;
 
-import cardealer.Models;
+import cardealer.MakesAndModels;
 import cardealer.buyer.Buyer;
 
 /**
  * @author Moussa
  */
-public final class LuxuryCarDealer extends CarDealer {
+public final class LuxuryCarDealer extends AbstractCarDealer {
 
     private static final int INITIAL_NUM_CARS = 600;
     private static final int WARRANTY_PRICE = 5000;
-    private static final Models LUXURY_MODELS = Models.luxuryModels();
+    private static final MakesAndModels LUXURY_MAKE_AND_MODELS = MakesAndModels.getLuxuryMakesAndModels();
     private static final int MIN_PRICE_IN_THOUSANDS = 80;
     private static final int PRICE_RANGE_IN_THOUSANDS = 60;
 
     public LuxuryCarDealer() {
-        populateInventory(INITIAL_NUM_CARS, LUXURY_MODELS);
+        populateInventory(INITIAL_NUM_CARS, LUXURY_MAKE_AND_MODELS);
         setPrices(MIN_PRICE_IN_THOUSANDS, PRICE_RANGE_IN_THOUSANDS);
     }
 
