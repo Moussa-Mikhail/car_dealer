@@ -1,6 +1,6 @@
 package cardealer.transaction;
 
-import cardealer.CarInfo;
+import cardealer.carinfo.CarInfo;
 
 /**
  * @author Moussa
