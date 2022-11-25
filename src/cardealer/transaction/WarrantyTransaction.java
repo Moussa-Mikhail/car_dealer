@@ -5,7 +5,7 @@ import static cardealer.cardealer.AbstractCarDealer.WARRANTY_INFO;
 /**
  * @author Moussa
  */
-public class WarrantyTransaction extends Transaction {
+public class WarrantyTransaction extends StandardTransaction {
 
     public WarrantyTransaction(String buyerName, int price) {
         super(buyerName, WARRANTY_INFO, price);
