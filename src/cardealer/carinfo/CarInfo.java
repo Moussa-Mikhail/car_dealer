@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class CarInfo {
 
-    public static final int MIN_YEAR = 2000;
-    public static final int YEAR_RANGE = 20;
     private final String make;
     private final String model;
     private final int year;
@@ -23,11 +21,6 @@ public class CarInfo {
         this.model = model;
         this.year = year;
         this.color = color;
-    }
-
-
-    public static CarInfo generateRandomCarInfo(MakesAndModels makesAndModels) {
-        return generateRandomCarInfo(makesAndModels, MIN_YEAR, YEAR_RANGE);
     }
 
     public static CarInfo generateRandomCarInfo(MakesAndModels makesAndModels, int minYear, int yearRange) {
