@@ -9,6 +9,7 @@ import cardealer.transaction.CarTransaction;
 import cardealer.transaction.WarrantyTransaction;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,7 +45,7 @@ public class AbstractCarDealer implements ICarDealer {
 
     @Override
     public Set<CarInfo> getAvailableCars() {
-        return carInfoToNumber.keySet();
+        return new HashSet<>(carInfoToNumber.keySet());
     }
 
     @Override
