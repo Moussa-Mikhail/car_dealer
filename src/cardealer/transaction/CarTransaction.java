@@ -8,7 +8,7 @@ import cardealer.carinfo.CarInfo;
 public final class CarTransaction extends StandardTransaction {
 
     public CarTransaction(String buyerName, CarInfo carInfo, int price) {
-        super(buyerName, carInfo.printableString(), price);
+        super(buyerName, carInfo.toString(), price);
     }
 
     @Override

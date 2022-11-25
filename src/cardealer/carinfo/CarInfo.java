@@ -50,7 +50,7 @@ public final class CarInfo {
 
     @Override
     public String toString() {
-        return "CarInfo{" + "make='" + make + '\'' + ", model='" + model + '\'' + ", year=" + year + ", color='" + color + '\'' + '}';
+        return String.format("%s %d %s %s", color, year, make, model);
     }
 
     @Override
@@ -85,10 +85,6 @@ public final class CarInfo {
         result = 31 * result + color.hashCode();
 
         return result;
-    }
-
-    public String printableString() {
-        return String.format("%s %d %s %s", color, year, make, model);
     }
 }
 
