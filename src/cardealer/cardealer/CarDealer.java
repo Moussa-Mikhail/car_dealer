@@ -87,6 +87,7 @@ public class CarDealer {
         return carInfoToNumber.getOrDefault(carInfo, 0);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean hasCar(CarInfo carInfo) {
         return getQuantity(carInfo) > 0;
     }

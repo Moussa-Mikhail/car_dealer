@@ -1,12 +1,12 @@
 package cardealer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * @author Moussa
@@ -23,25 +23,16 @@ public class Name {
         URL url = Name.class.getResource(FILENAME);
         assert url != null;
 
-        File file;
+
+        // Copied and modified from
+        // https://www.digitalocean.com/community/tutorials/java-read-file-line-by-line
         try {
-            file = new File(url.toURI());
+            NAMES.addAll(Files.readAllLines(Paths.get(url.toURI())));
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
-
-        final Scanner scanner;
-
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        while (scanner.hasNextLine()) {
-            NAMES.add(scanner.nextLine());
-        }
-
     }
 
     private Name() {
