@@ -8,6 +8,7 @@ import cardealer.carinfo.CarInfo;
  */
 public interface ISellsWarranty {
     int WARRANTY_PRICE = 2000;
+
     /**
      * @param buyer   the buyer
      * @param carInfo the car info
