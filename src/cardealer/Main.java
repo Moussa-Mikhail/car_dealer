@@ -2,7 +2,6 @@ package cardealer;
 
 import cardealer.buyer.IBuyer;
 import cardealer.buyer.LuxuryBuyer;
-import cardealer.buyer.RandomBuyerGenerator;
 import cardealer.buyer.StandardBuyer;
 import cardealer.cardealer.ISellsCars;
 import cardealer.cardealer.ISellsWarranty;
@@ -14,8 +13,6 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Function;
 
-import static cardealer.GetRandom.RANDOM_GEN;
-
 /**
  * @author Moussa
  */
@@ -26,19 +23,16 @@ public class Main {
     public static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
 
     public static void main(String... args) {
-
-        boolean keepGoing;
-
         Scanner scanner = new Scanner(System.in);
-
+        boolean keepGoing;
         do {
-            System.out.println("What is your name?");
-            String name = scanner.nextLine();
-
             System.out.println("What kind of car are you looking for?");
             int choice = getChoice("1. Standard\n2. Luxury", 2);
             boolean isLuxury = choice == 2;
             final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
+
+            System.out.println("What is your name?");
+            String name = scanner.nextLine();
 
             CarInfo carInfo = getSelection(carDealer);
             System.out.printf("You have selected a %s.%n", carInfo);
@@ -144,86 +138,5 @@ public class Main {
 
         System.out.println();
         return choice;
-    }
-
-    @SuppressWarnings("unused")
-    public static void simulateDealership(String... args) {
-
-        var numDeals = Integer.parseInt(args[0]);
-
-        boolean isLuxury;
-
-        if (args.length > 1) {
-            isLuxury = "-luxury".equals(args[1]);
-        } else {
-            isLuxury = false;
-        }
-
-        ISellsCars carDealer;
-
-        if (isLuxury) {
-            carDealer = new LuxuryCarAndWarrantyDealer();
-        } else {
-            carDealer = new StandardCarAndWarrantyDealer();
-        }
-
-        for (int i = 0; i < numDeals; i++) {
-
-            System.out.printf("Deal #%d: %n", i + 1);
-
-            IBuyer buyer;
-
-            if (isLuxury) {
-                buyer = RandomBuyerGenerator.generateLuxuryBuyer();
-            } else {
-                buyer = RandomBuyerGenerator.generateStandardBuyer();
-            }
-
-            var carInfo = buyer.getWantedCar();
-
-            String buyerName = buyer.getName();
-
-            System.out.printf("The buyer %s wants a %s.%n", buyerName, carInfo);
-
-            if (!carDealer.hasCar(carInfo)) {
-                System.out.printf("The dealership does not have a %s.%n%n", carInfo);
-                continue;
-            }
-
-            int price = carDealer.getPrice(carInfo);
-
-            System.out.printf("The dealership has a %s for $%d.%n", carInfo, price);
-
-            carDealer.sellCar(buyerName, carInfo);
-
-            System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo, buyerName, price);
-
-            ISellsWarranty warrantyDealer = (ISellsWarranty) carDealer;
-
-            int warrantyPrice = warrantyDealer.calcWarrantyPrice(carInfo);
-
-            System.out.printf("The dealership also offers an extended warranty for $%d.%n", warrantyPrice);
-
-            if (RANDOM_GEN.nextBoolean()) {
-
-                warrantyDealer.sellWarranty(buyer, carInfo);
-
-                System.out.printf("The dealership sold an extended warranty to %s for $%d.%n", buyerName, warrantyPrice);
-
-            } else {
-
-                System.out.printf("%s did not want an extended warranty.%n", buyerName);
-            }
-
-            System.out.println();
-        }
-
-        System.out.println();
-
-        carDealer.printTransactions();
-
-        System.out.printf("Total sales: $%d.%n", carDealer.getTotalSales());
-
-        System.out.println();
     }
 }
