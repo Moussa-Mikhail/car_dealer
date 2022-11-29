@@ -4,9 +4,10 @@ import cardealer.buyer.IBuyer;
 import cardealer.buyer.LuxuryBuyer;
 import cardealer.buyer.RandomBuyerGenerator;
 import cardealer.buyer.StandardBuyer;
-import cardealer.cardealer.ICarDealer;
-import cardealer.cardealer.LuxuryCarDealer;
-import cardealer.cardealer.StandardCarDealer;
+import cardealer.cardealer.ISellsCars;
+import cardealer.cardealer.ISellsWarranty;
+import cardealer.cardealer.LuxuryCarAndWarrantyDealer;
+import cardealer.cardealer.StandardCarAndWarrantyDealer;
 import cardealer.carinfo.CarInfo;
 
 import java.util.Scanner;
@@ -21,8 +22,8 @@ import static cardealer.GetRandom.RANDOM_GEN;
 public class Main {
 
     public static final String YES_OR_NO = "1. Yes\n2. No";
-    private static final ICarDealer STANDARD_CAR_DEALER = new StandardCarDealer();
-    private static final ICarDealer LUXURY_CAR_DEALER = new LuxuryCarDealer();
+    public static final ISellsCars LUXURY_CAR_DEALER = new LuxuryCarAndWarrantyDealer();
+    public static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
 
     public static void main(String... args) {
 
@@ -37,7 +38,7 @@ public class Main {
             System.out.println("What kind of car are you looking for?");
             int choice = getChoice("1. Standard\n2. Luxury", 2);
             boolean isLuxury = choice == 2;
-            final ICarDealer carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
+            final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
 
             CarInfo carInfo = getSelection(carDealer);
             System.out.printf("You have selected a %s.%n", carInfo);
@@ -52,13 +53,13 @@ public class Main {
                 carDealer.sellCar(buyer);
                 System.out.printf("Congratulations %s, you have bought a %s for $%d.%n", name, carInfo, price);
 
-                System.out.printf("Would you like to buy an extended warranty for $%d?%n", carDealer.getWarrantyPrice());
-                choice = getChoice(YES_OR_NO, 2);
+                if (carDealer instanceof ISellsWarranty) {
 
-                if (choice == 1) {
-                    carDealer.sellWarranty(buyer);
-                    System.out.printf("Congratulations %s, you have bought an extended warranty for $%d.%n", name, carDealer.getWarrantyPrice());
+                    ISellsWarranty warrantyDealer = (ISellsWarranty) carDealer;
+
+                    offerWarranty(warrantyDealer, buyer);
                 }
+
             }
 
             System.out.println("Would you like to select another car?");
@@ -75,15 +76,28 @@ public class Main {
         System.out.printf("Luxury Car Dealer Total Sales: $%d%n", LUXURY_CAR_DEALER.getTotalSales());
     }
 
-    private static CarInfo getSelection(ICarDealer carDealer) {
+    private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
+        CarInfo carInfo = buyer.getWantedCar();
+        String name = buyer.getName();
+
+        int choice;
+        int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
+
+        System.out.printf("Would you like to buy an extended warranty for $%d?%n", warrantyPrice);
+        choice = getChoice(YES_OR_NO, 2);
+
+        if (choice == 1) {
+            carDealer.sellWarranty(buyer, carInfo);
+            System.out.printf("Congratulations %s, you have bought an extended warranty for $%d.%n", name, warrantyPrice);
+        }
+    }
+
+    private static CarInfo getSelection(ISellsCars carDealer) {
         var carOptions = carDealer.getAvailableCars();
 
         getCarChoice("make", CarInfo::getMake, carOptions);
-
         getCarChoice("model", CarInfo::getModel, carOptions);
-
         getCarChoice("color", CarInfo::getColor, carOptions);
-
         getCarChoice("year", CarInfo::getYear, carOptions);
 
         assert carOptions.size() == 1;
@@ -106,17 +120,17 @@ public class Main {
     }
 
     public static int getChoice(Object[] options) {
-        StringBuilder prompt = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < options.length; i++) {
-            prompt.append(i + 1).append(". ").append(options[i]).append("\n");
+            stringBuilder.append(i + 1).append(". ").append(options[i]).append("\n");
         }
 
-        return getChoice(prompt.toString(), options.length);
+        return getChoice(stringBuilder.toString(), options.length);
     }
 
-    public static int getChoice(String prompt, int maxChoice) {
-        System.out.println(prompt);
+    public static int getChoice(String optionStr, int maxChoice) {
+        System.out.println(optionStr);
         System.out.println("Enter the number of your choice:");
 
         Scanner scanner = new Scanner(System.in);
@@ -129,7 +143,6 @@ public class Main {
         }
 
         System.out.println();
-
         return choice;
     }
 
@@ -146,12 +159,12 @@ public class Main {
             isLuxury = false;
         }
 
-        ICarDealer carDealer;
+        ISellsCars carDealer;
 
         if (isLuxury) {
-            carDealer = new LuxuryCarDealer();
+            carDealer = new LuxuryCarAndWarrantyDealer();
         } else {
-            carDealer = new StandardCarDealer();
+            carDealer = new StandardCarAndWarrantyDealer();
         }
 
         for (int i = 0; i < numDeals; i++) {
@@ -173,11 +186,8 @@ public class Main {
             System.out.printf("The buyer %s wants a %s.%n", buyerName, carInfo);
 
             if (!carDealer.hasCar(carInfo)) {
-
                 System.out.printf("The dealership does not have a %s.%n%n", carInfo);
-
                 continue;
-
             }
 
             int price = carDealer.getPrice(carInfo);
@@ -188,13 +198,17 @@ public class Main {
 
             System.out.printf("The dealership sold a %s to %s for $%d.%n", carInfo, buyerName, price);
 
-            System.out.printf("The dealership also offers an extended warranty for $%d.%n", carDealer.getWarrantyPrice());
+            ISellsWarranty warrantyDealer = (ISellsWarranty) carDealer;
+
+            int warrantyPrice = warrantyDealer.calcWarrantyPrice(carInfo);
+
+            System.out.printf("The dealership also offers an extended warranty for $%d.%n", warrantyPrice);
 
             if (RANDOM_GEN.nextBoolean()) {
 
-                carDealer.sellWarranty(buyer);
+                warrantyDealer.sellWarranty(buyer, carInfo);
 
-                System.out.printf("The dealership sold an extended warranty to %s for $%d.%n", buyerName, carDealer.getWarrantyPrice());
+                System.out.printf("The dealership sold an extended warranty to %s for $%d.%n", buyerName, warrantyPrice);
 
             } else {
 
@@ -211,6 +225,5 @@ public class Main {
         System.out.printf("Total sales: $%d.%n", carDealer.getTotalSales());
 
         System.out.println();
-
     }
 }

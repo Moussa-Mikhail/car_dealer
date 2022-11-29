@@ -6,7 +6,6 @@ import cardealer.TransactionLog;
 import cardealer.buyer.IBuyer;
 import cardealer.carinfo.CarInfo;
 import cardealer.transaction.CarTransaction;
-import cardealer.transaction.WarrantyTransaction;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,12 +15,10 @@ import java.util.Set;
 /**
  * @author Moussa
  */
-public class AbstractCarDealer implements ICarDealer {
-    public static final String WARRANTY_INFO = "Extended Warranty";
+public abstract class AbstractCarDealer implements ISellsCars {
     protected static final int INITIAL_NUM_CARS = 400;
     protected static final int MIN_PRICE_IN_THOUSANDS = 40;
     protected static final int PRICE_RANGE_IN_THOUSANDS = 30;
-    protected static final int WARRANTY_PRICE = 2000;
     protected final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
     protected final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
     protected final TransactionLog transactions = new TransactionLog();
@@ -102,23 +99,7 @@ public class AbstractCarDealer implements ICarDealer {
     }
 
     @Override
-    public void sellWarranty(IBuyer buyer) {
-        sellWarranty(buyer, WARRANTY_PRICE);
-    }
-
-    protected void sellWarranty(IBuyer buyer, int price) {
-        var transaction = new WarrantyTransaction(buyer.getName(), price);
-        transactions.addTransaction(transaction);
-        totalSales += price;
-    }
-
-    @Override
     public void printTransactions() {
         transactions.printTransactions();
-    }
-
-    @Override
-    public int getWarrantyPrice() {
-        return WARRANTY_PRICE;
     }
 }

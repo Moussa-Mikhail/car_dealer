@@ -8,12 +8,12 @@ import java.util.Set;
 /**
  * @author Moussa
  */
-public interface ICarDealer {
+public interface ISellsCars {
     /**
      * @param carInfo the car info
      * @return true if the car is available, false otherwise.
      */
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    @SuppressWarnings({"BooleanMethodIsAlwaysInverted", "unused"})
     boolean hasCar(CarInfo carInfo);
 
     /**
@@ -25,32 +25,24 @@ public interface ICarDealer {
     int getPrice(CarInfo carInfo);
 
     /**
+     * sells the car to the buyer.
+     *
      * @param buyerName the name of the buyer
      * @param carInfo   the car info
      */
     void sellCar(String buyerName, CarInfo carInfo);
 
     /**
-     * sells car to buyer
+     * sells the car to buyer
      *
      * @param buyer the buyer
      */
     void sellCar(IBuyer buyer);
 
     /**
-     * @param buyer the buyer
-     */
-    void sellWarranty(IBuyer buyer);
-
-    /**
      * prints all transactions.
      */
     void printTransactions();
-
-    /**
-     * @return the price of an extended warranty.
-     */
-    int getWarrantyPrice();
 
     /**
      * @return the total sales.
