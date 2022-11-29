@@ -17,7 +17,6 @@ import java.util.function.Function;
  * @author Moussa
  */
 public class Main {
-
     public static final String YES_OR_NO = "1. Yes\n2. No";
     public static final ISellsCars LUXURY_CAR_DEALER = new LuxuryCarAndWarrantyDealer();
     public static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
