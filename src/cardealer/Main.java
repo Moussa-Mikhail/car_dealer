@@ -17,14 +17,14 @@ import java.util.function.Function;
  * @author Moussa
  */
 public class Main {
-    public static final String YES_OR_NO = "1. Yes\n2. No";
     public static final ISellsCars LUXURY_CAR_DEALER = new LuxuryCarAndWarrantyDealer();
     public static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
 
     public static void main(String... args) {
-        Scanner scanner = new Scanner(System.in);
         boolean keepGoing;
         do {
+            Scanner scanner = new Scanner(System.in);
+
             System.out.println("What kind of car are you looking for?");
             int choice = getChoice("1. Standard\n2. Luxury", 2);
             boolean isLuxury = choice == 2;
@@ -38,8 +38,7 @@ public class Main {
 
             int price = carDealer.getPrice(carInfo);
             System.out.printf("The price of this car is $%d.%n", price);
-            System.out.println("Would you like to buy this car?");
-            choice = getChoice(YES_OR_NO, 2);
+            choice = getYesOrNo("Would you like to buy this car?");
 
             if (choice == 1) {
                 IBuyer buyer = isLuxury ? new LuxuryBuyer(name, carInfo) : new StandardBuyer(name, carInfo);
@@ -55,8 +54,7 @@ public class Main {
 
             }
 
-            System.out.println("Would you like to select another car?");
-            choice = getChoice(YES_OR_NO, 2);
+            choice = getYesOrNo("Would you like to select another car?");
             keepGoing = choice == 1;
         } while (keepGoing);
 
@@ -69,6 +67,11 @@ public class Main {
         System.out.printf("Luxury Car Dealer Total Sales: $%d%n", LUXURY_CAR_DEALER.getTotalSales());
     }
 
+    private static int getYesOrNo(String prompt) {
+        System.out.println(prompt);
+        return getChoice("1. Yes\n2. No", 2);
+    }
+
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
         CarInfo carInfo = buyer.getWantedCar();
         String name = buyer.getName();
@@ -76,8 +79,7 @@ public class Main {
         int choice;
         int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
 
-        System.out.printf("Would you like to buy an extended warranty for $%d?%n", warrantyPrice);
-        choice = getChoice(YES_OR_NO, 2);
+        choice = getYesOrNo(String.format("Would you like to buy an extended warranty for $%d?%n", warrantyPrice));
 
         if (choice == 1) {
             carDealer.sellWarranty(buyer, carInfo);
