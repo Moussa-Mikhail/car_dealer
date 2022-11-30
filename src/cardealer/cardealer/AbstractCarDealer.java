@@ -56,21 +56,15 @@ public abstract class AbstractCarDealer implements ISellsCars {
 
     @Override
     public void sellCar(IBuyer buyer) {
-        sellCar(buyer.getName(), buyer.getWantedCar());
-    }
-
-    @Override
-    public void sellCar(String buyerName, CarInfo carInfo) {
+        CarInfo carInfo = buyer.getWantedCar();
         if (!hasCar(carInfo)) {
             return;
         }
 
         var price = getPrice(carInfo);
-        var transaction = new CarTransaction(buyerName, carInfo, price);
+        var transaction = new CarTransaction(buyer.getName(), carInfo, price);
         transactions.addTransaction(transaction);
-
         removeCar(carInfo);
-
         totalSales += price;
         numCarsSold++;
     }

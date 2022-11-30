@@ -13,7 +13,7 @@ public interface ISellsCars {
      * @param carInfo the car info
      * @return true if the car is available, false otherwise.
      */
-    @SuppressWarnings({"BooleanMethodIsAlwaysInverted", "unused"})
+    @SuppressWarnings({"BooleanMethodIsAlwaysInverted"})
     boolean hasCar(CarInfo carInfo);
 
     /**
@@ -23,14 +23,6 @@ public interface ISellsCars {
      * @return the price of the car
      */
     int getPrice(CarInfo carInfo);
-
-    /**
-     * sells the car to the buyer.
-     *
-     * @param buyerName the name of the buyer
-     * @param carInfo   the car info
-     */
-    void sellCar(String buyerName, CarInfo carInfo);
 
     /**
      * sells the car to buyer
