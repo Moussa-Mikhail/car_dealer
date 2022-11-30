@@ -24,10 +24,9 @@ public class NamesUtil {
         // Copied and modified from
         // https://www.digitalocean.com/community/tutorials/java-read-file-line-by-line
         try {
-            NAMES.addAll(Files.readAllLines(Paths.get(url.toURI())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
+            var path = Paths.get(url.toURI());
+            NAMES.addAll(Files.readAllLines(path));
+        } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
