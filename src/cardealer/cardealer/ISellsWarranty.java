@@ -19,7 +19,8 @@ public interface ISellsWarranty {
      * @param carInfo the car info
      * @return the price of an extended warranty.
      */
-    default int calcWarrantyPrice(@SuppressWarnings("unused") CarInfo carInfo) {
+    @SuppressWarnings("unused")
+    default int calcWarrantyPrice(CarInfo carInfo) {
         return WARRANTY_PRICE;
     }
 }
