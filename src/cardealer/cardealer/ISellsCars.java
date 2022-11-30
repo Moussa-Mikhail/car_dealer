@@ -13,7 +13,7 @@ public interface ISellsCars {
      * @param carInfo the car info
      * @return true if the car is available, false otherwise.
      */
-    @SuppressWarnings({"BooleanMethodIsAlwaysInverted"})
+    @SuppressWarnings({"BooleanMethodIsAlwaysInverted", "unused"})
     boolean hasCar(CarInfo carInfo);
 
     /**
