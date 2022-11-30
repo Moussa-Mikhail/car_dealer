@@ -13,6 +13,7 @@ public class RandomBuyerGenerator {
         throw new IllegalStateException("Utility class");
     }
 
+    @SuppressWarnings("unused")
     public static LuxuryBuyer generateLuxuryBuyer() {
 
         var name = NamesUtil.getRandomName();
@@ -24,6 +25,7 @@ public class RandomBuyerGenerator {
         return new LuxuryBuyer(name, wantedCar);
     }
 
+    @SuppressWarnings("unused")
     public static IBuyer generateStandardBuyer() {
         var name = NamesUtil.getRandomName();
 
