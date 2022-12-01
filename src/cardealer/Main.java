@@ -28,9 +28,9 @@ public class Main {
             String name = getName();
             System.out.printf("Hello %s!%n%n", name);
 
-            System.out.println("What kind of car are you looking for?");
-            int choice = PromptUser.getChoice("Standard", "Luxury");
-            boolean isLuxury = choice == 2;
+            String[] options = {"Standard", "Luxury"};
+            String choice = PromptUser.getChoice("What kind of car are you looking for?", options);
+            boolean isLuxury = "Luxury".equals(choice);
             final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
 
             CarInfo carInfo = getCarSelection(carDealer);
@@ -93,7 +93,7 @@ public class Main {
     private static void getCarChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
         Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
-        Object chosenAttribute = PromptUser.presentOptions(prompt, availableAttributes);
+        Object chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
         carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
     }
 }
