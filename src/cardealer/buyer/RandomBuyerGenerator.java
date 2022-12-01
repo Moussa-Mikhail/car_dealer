@@ -19,9 +19,9 @@ public class RandomBuyerGenerator {
 
         String name = NamesUtil.getRandomName();
 
-        ModelsDataProvider makesAndModels = ModelsDataProvider.getLuxuryMakesAndModels();
+        ModelsDataProvider modelsDataProvider = ModelsDataProvider.getLuxuryModelsDataProvider();
 
-        CarInfo wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
+        CarInfo wantedCar = CarInfo.generateRandomCarInfo(modelsDataProvider, 2010, 10);
 
         return new LuxuryBuyer(name, wantedCar);
     }
@@ -30,9 +30,9 @@ public class RandomBuyerGenerator {
     public static IBuyer generateStandardBuyer() {
         String name = NamesUtil.getRandomName();
 
-        ModelsDataProvider makesAndModels = ModelsDataProvider.getStandardMakesAndModels();
+        ModelsDataProvider modelsDataProvider = ModelsDataProvider.getStandardModelsDataProvider();
 
-        CarInfo wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
+        CarInfo wantedCar = CarInfo.generateRandomCarInfo(modelsDataProvider, 2010, 10);
 
         return new StandardBuyer(name, wantedCar);
     }

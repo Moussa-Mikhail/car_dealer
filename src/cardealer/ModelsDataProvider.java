@@ -15,7 +15,7 @@ public class ModelsDataProvider {
         this.makeToModels = makeToModels;
     }
 
-    public static ModelsDataProvider getStandardMakesAndModels() {
+    public static ModelsDataProvider getStandardModelsDataProvider() {
 
         Map<String, Set<String>> makeToModels = Map.of(
                 "Toyota", Set.of("Camry", "Corolla", "RAV4"),
@@ -28,7 +28,7 @@ public class ModelsDataProvider {
         return new ModelsDataProvider(makeToModels);
     }
 
-    public static ModelsDataProvider getLuxuryMakesAndModels() {
+    public static ModelsDataProvider getLuxuryModelsDataProvider() {
 
         Map<String, Set<String>> makeToModels = Map.of(
                 "Mercedes", Set.of("C-Class", "E-Class", "S-Class"),
