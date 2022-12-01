@@ -67,7 +67,7 @@ public class Main {
 
     private static String getName() {
         System.out.println("What is your name?");
-        var console = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         return console.nextLine();
     }
 
@@ -87,7 +87,7 @@ public class Main {
 
         int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
 
-        var wantsToBuyWarranty = yesOrNoPrompt(String.format("Would you like to buy an extended warranty for $%d?%n", warrantyPrice));
+        boolean wantsToBuyWarranty = yesOrNoPrompt(String.format("Would you like to buy an extended warranty for $%d?%n", warrantyPrice));
 
         if (wantsToBuyWarranty) {
             carDealer.sellWarranty(buyer, carInfo);
@@ -96,7 +96,7 @@ public class Main {
     }
 
     private static CarInfo getCarSelection(ISellsCars carDealer) {
-        var carOptions = carDealer.getAvailableCars();
+        Set<CarInfo> carOptions = carDealer.getAvailableCars();
 
         getCarChoice("make", CarInfo::getMake, carOptions);
         getCarChoice("model", CarInfo::getModel, carOptions);
@@ -110,7 +110,7 @@ public class Main {
     private static void getCarChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
 
-        var availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
+        Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
         Object chosenAttribute = presentOptions(prompt, availableAttributes);
         carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
     }

@@ -25,10 +25,10 @@ public final class CarInfo {
     }
 
     public static CarInfo generateRandomCarInfo(ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
-        var make = GetRandom.getRandomElement(modelsDataProvider.getMakes());
-        var model = GetRandom.getRandomElement(modelsDataProvider.getModels(make));
-        var year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
-        var color = GetRandom.getRandomElement(List.of(Color.values())).toString();
+        String make = GetRandom.getRandomElement(modelsDataProvider.getMakes());
+        String model = GetRandom.getRandomElement(modelsDataProvider.getModels(make));
+        int year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
+        String color = GetRandom.getRandomElement(List.of(Color.values())).toString();
 
         return new CarInfo(make, model, year, color);
     }

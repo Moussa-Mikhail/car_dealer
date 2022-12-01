@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class NamesUtil {
         // Copied and modified from
         // https://www.digitalocean.com/community/tutorials/java-read-file-line-by-line
         try {
-            var path = Paths.get(url.toURI());
+            Path path = Paths.get(url.toURI());
             NAMES.addAll(Files.readAllLines(path));
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);

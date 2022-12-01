@@ -15,7 +15,7 @@ public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer imp
     public void sellWarranty(IBuyer buyer, CarInfo carInfo) {
         int price = calcWarrantyPrice(carInfo);
         totalSales += price;
-        var transaction = new WarrantyTransaction(buyer.getName(), price);
+        WarrantyTransaction transaction = new WarrantyTransaction(buyer.getName(), price);
         transactions.addTransaction(transaction);
     }
 

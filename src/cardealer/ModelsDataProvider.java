@@ -17,7 +17,7 @@ public class ModelsDataProvider {
 
     public static ModelsDataProvider getStandardMakesAndModels() {
 
-        var makeToModels = Map.of(
+        Map<String, Set<String>> makeToModels = Map.of(
                 "Toyota", Set.of("Camry", "Corolla", "RAV4"),
                 "Honda", Set.of("Accord", "Civic", "CR-V"),
                 "Ford", Set.of("F-150", "Fusion", "Mustang"),
@@ -30,7 +30,7 @@ public class ModelsDataProvider {
 
     public static ModelsDataProvider getLuxuryMakesAndModels() {
 
-        var makeToModels = Map.of(
+        Map<String, Set<String>> makeToModels = Map.of(
                 "Mercedes", Set.of("C-Class", "E-Class", "S-Class"),
                 "BMW", Set.of("3-Series", "5-Series", "7-Series"),
                 "Audi", Set.of("A4", "A6", "A8"),

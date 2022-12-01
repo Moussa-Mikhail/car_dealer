@@ -31,18 +31,18 @@ public class TransactionLog {
 
     public void printTransactions() {
         int maxNumberLength = String.valueOf(transactionsList.size()).length();
-        var headerPaddingLength = maxNumberLength + 1;
-        var format = "%-" + headerPaddingLength + "s %-" + maxBuyerNameLength + "s | %-" + maxInfoLength + "s | %" + maxPriceLength + "s%n";
+        int headerPaddingLength = maxNumberLength + 1;
+        String format = "%-" + headerPaddingLength + "s %-" + maxBuyerNameLength + "s | %-" + maxInfoLength + "s | %" + maxPriceLength + "s%n";
 
         System.out.printf(format, " ", NAME_HEADER, INFO_HEADER, PRICE_HEADER);
 
         for (int num = 0; num < transactionsList.size(); num++) {
-            var transaction = transactionsList.get(num);
-            var buyerName = transaction.getBuyerName();
-            var info = transaction.getInfo();
-            var price = transaction.getPrice();
-            var numStr = num + 1 + ".";
-            var transactionString = String.format(format, numStr, buyerName, info, price);
+            ITransaction transaction = transactionsList.get(num);
+            String buyerName = transaction.getBuyerName();
+            String info = transaction.getInfo();
+            int price = transaction.getPrice();
+            String numStr = num + 1 + ".";
+            String transactionString = String.format(format, numStr, buyerName, info, price);
 
             System.out.print(transactionString);
         }

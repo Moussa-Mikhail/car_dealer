@@ -27,7 +27,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
 
     protected void populateInventory(int initialNumCars, ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
         for (int i = 0; i < initialNumCars; i++) {
-            var carInfo = CarInfo.generateRandomCarInfo(modelsDataProvider, minYear, yearRange);
+            CarInfo carInfo = CarInfo.generateRandomCarInfo(modelsDataProvider, minYear, yearRange);
             addCar(carInfo);
         }
     }
@@ -37,9 +37,9 @@ public abstract class AbstractCarDealer implements ISellsCars {
     }
 
     protected void setPrices(int minPriceInThousands, int priceRangeInThousands) {
-        for (var carInfo : carInfoToNumber.keySet()) {
-            var priceInThousands = GetRandom.RANDOM_GEN.nextInt(priceRangeInThousands) + minPriceInThousands;
-            var price = priceInThousands * 1000;
+        for (CarInfo carInfo : carInfoToNumber.keySet()) {
+            int priceInThousands = GetRandom.RANDOM_GEN.nextInt(priceRangeInThousands) + minPriceInThousands;
+            int price = priceInThousands * 1000;
             carInfoToPrice.put(carInfo, price);
         }
     }
@@ -61,8 +61,8 @@ public abstract class AbstractCarDealer implements ISellsCars {
             return;
         }
 
-        var price = getPrice(carInfo);
-        var transaction = new CarTransaction(buyer.getName(), carInfo, price);
+        int price = getPrice(carInfo);
+        CarTransaction transaction = new CarTransaction(buyer.getName(), carInfo, price);
         transactions.addTransaction(transaction);
         removeCar(carInfo);
         totalSales += price;

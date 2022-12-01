@@ -7,6 +7,7 @@ import cardealer.carinfo.CarInfo;
 /**
  * @author Moussa
  */
+@SuppressWarnings("unused")
 public class RandomBuyerGenerator {
 
     private RandomBuyerGenerator() {
@@ -16,22 +17,22 @@ public class RandomBuyerGenerator {
     @SuppressWarnings("unused")
     public static LuxuryBuyer generateLuxuryBuyer() {
 
-        var name = NamesUtil.getRandomName();
+        String name = NamesUtil.getRandomName();
 
-        var makesAndModels = ModelsDataProvider.getLuxuryMakesAndModels();
+        ModelsDataProvider makesAndModels = ModelsDataProvider.getLuxuryMakesAndModels();
 
-        var wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
+        CarInfo wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
 
         return new LuxuryBuyer(name, wantedCar);
     }
 
     @SuppressWarnings("unused")
     public static IBuyer generateStandardBuyer() {
-        var name = NamesUtil.getRandomName();
+        String name = NamesUtil.getRandomName();
 
-        var makesAndModels = ModelsDataProvider.getStandardMakesAndModels();
+        ModelsDataProvider makesAndModels = ModelsDataProvider.getStandardMakesAndModels();
 
-        var wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
+        CarInfo wantedCar = CarInfo.generateRandomCarInfo(makesAndModels, 2010, 10);
 
         return new StandardBuyer(name, wantedCar);
     }
