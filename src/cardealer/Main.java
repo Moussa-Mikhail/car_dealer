@@ -64,8 +64,7 @@ public class Main {
 
     private static String getName() {
         System.out.println("What is your name?");
-        Scanner console = new Scanner(System.in);
-        return console.nextLine();
+        return CONSOLE.nextLine();
     }
 
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
