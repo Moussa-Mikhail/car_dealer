@@ -8,6 +8,7 @@ import cardealer.cardealer.ISellsWarranty;
 import cardealer.cardealer.LuxuryCarAndWarrantyDealer;
 import cardealer.cardealer.StandardCarAndWarrantyDealer;
 import cardealer.carinfo.CarInfo;
+import cardealer.utils.PromptUser;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -24,20 +25,20 @@ public class Main {
     public static void main(String... args) {
         boolean keepGoing;
         do {
-            System.out.println("What kind of car are you looking for?");
-            int choice = getChoice("1. Standard\n2. Luxury", 2);
-            boolean isLuxury = choice == 2;
-            final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
-
             String name = getName();
             System.out.printf("Hello %s!%n%n", name);
+
+            System.out.println("What kind of car are you looking for?");
+            int choice = PromptUser.getChoice("1. Standard\n2. Luxury", 2);
+            boolean isLuxury = choice == 2;
+            final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
 
             CarInfo carInfo = getCarSelection(carDealer);
             System.out.printf("You have selected a %s.%n", carInfo);
 
             int price = carDealer.getPrice(carInfo);
             System.out.printf("The price of this car is $%d.%n", price);
-            boolean wantsToBuy = yesOrNoPrompt("Would you like to buy this car?");
+            boolean wantsToBuy = PromptUser.yesOrNoPrompt("Would you like to buy this car?");
 
             if (wantsToBuy) {
                 IBuyer buyer = isLuxury ? new LuxuryBuyer(name, carInfo) : new StandardBuyer(name, carInfo);
@@ -49,7 +50,7 @@ public class Main {
                     offerWarranty(warrantyDealer, buyer);
                 }
             }
-            keepGoing = yesOrNoPrompt("Would you like to buy another car?");
+            keepGoing = PromptUser.yesOrNoPrompt("Would you like to buy another car?");
         } while (keepGoing);
 
         System.out.println("Standard Car Dealer Transactions:");
@@ -67,22 +68,12 @@ public class Main {
         return console.nextLine();
     }
 
-    /**
-     * @param prompt The prompt to display to the user
-     * @return true if the user selects yes, false otherwise
-     */
-    private static boolean yesOrNoPrompt(String prompt) {
-        System.out.println(prompt);
-        int choice = getChoice("1. Yes\n2. No", 2);
-        return choice == 1;
-    }
-
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
         CarInfo carInfo = buyer.getWantedCar();
         String name = buyer.getName();
         int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
-        String prompt = String.format("Would you like to buy a warranty for $%d%n", warrantyPrice);
-        boolean wantsToBuyWarranty = yesOrNoPrompt(prompt);
+        String prompt = String.format("Would you like to buy a warranty for $%d", warrantyPrice);
+        boolean wantsToBuyWarranty = PromptUser.yesOrNoPrompt(prompt);
         if (wantsToBuyWarranty) {
             carDealer.sellWarranty(buyer, carInfo);
             System.out.printf("Congratulations %s, you have bought an extended warranty for $%d.%n", name, warrantyPrice);
@@ -102,38 +93,7 @@ public class Main {
     private static void getCarChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
         Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
-        Object chosenAttribute = presentOptions(prompt, availableAttributes);
+        Object chosenAttribute = PromptUser.presentOptions(prompt, availableAttributes);
         carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
-    }
-
-    private static Object presentOptions(String prompt, Object[] options) {
-        System.out.println(prompt);
-        int choice = getChoice(options);
-        return options[choice - 1];
-    }
-
-    public static int getChoice(Object[] options) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < options.length - 1; i++) {
-            stringBuilder.append(i + 1).append(". ").append(options[i]).append("\n");
-        }
-        stringBuilder.append(options.length).append(". ").append(options[options.length - 1]);
-        return getChoice(stringBuilder.toString(), options.length);
-    }
-
-    public static int getChoice(String optionsStr, int maxChoice) {
-        System.out.println(optionsStr);
-        System.out.print("Enter the number of your choice: ");
-        int choice = nextInt();
-        while (choice < 1 || choice > maxChoice) {
-            System.out.println("Invalid choice. Please try again.");
-            choice = nextInt();
-        }
-        System.out.println();
-        return choice;
-    }
-
-    private static int nextInt() {
-        return Integer.parseInt(CONSOLE.nextLine());
     }
 }
