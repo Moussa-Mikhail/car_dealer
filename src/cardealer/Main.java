@@ -29,7 +29,7 @@ public class Main {
             System.out.printf("Hello %s!%n%n", name);
 
             System.out.println("What kind of car are you looking for?");
-            int choice = PromptUser.getChoice("1. Standard\n2. Luxury", 2);
+            int choice = PromptUser.getChoice("Standard", "Luxury");
             boolean isLuxury = choice == 2;
             final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
 

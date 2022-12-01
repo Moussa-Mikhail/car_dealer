@@ -16,7 +16,7 @@ public class PromptUser {
      */
     public static boolean yesOrNoPrompt(String prompt) {
         System.out.println(prompt);
-        int choice = getChoice("1. Yes\n2. No", 2);
+        int choice = getChoice("Yes", "No");
         return choice == 1;
     }
 
@@ -27,30 +27,22 @@ public class PromptUser {
         return Integer.parseInt(Main.CONSOLE.nextLine());
     }
 
-    public static Object presentOptions(String prompt, Object[] options) {
+    public static Object presentOptions(String prompt, Object... options) {
         System.out.println(prompt);
         int choice = getChoice(options);
         return options[choice - 1];
     }
 
-    public static int getChoice(Object[] options) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < options.length - 1; i++) {
-            stringBuilder.append(i + 1).append(". ").append(options[i]).append("\n");
+    public static int getChoice(Object... options) {
+        for (int i = 0; i < options.length; i++) {
+            System.out.printf("%d. %s%n", i + 1, options[i]);
         }
-        stringBuilder.append(options.length).append(". ").append(options[options.length - 1]);
-        return getChoice(stringBuilder.toString(), options.length);
-    }
-
-    public static int getChoice(String prompt, int maxChoice) {
-        System.out.println(prompt);
-        System.out.print("Enter the number of your choice: ");
+        System.out.print("Enter your choice: ");
         int choice = nextInt();
-        while (choice < 1 || choice > maxChoice) {
+        while (choice < 1 || choice > options.length) {
             System.out.println("Invalid choice. Please try again.");
             choice = nextInt();
         }
-        System.out.println();
         return choice;
     }
 }
