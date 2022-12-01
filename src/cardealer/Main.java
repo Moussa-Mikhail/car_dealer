@@ -28,8 +28,7 @@ public class Main {
             String name = getName();
             System.out.printf("Hello %s!%n%n", name);
 
-            String[] options = {"Standard", "Luxury"};
-            String choice = PromptUser.getChoice("What kind of car are you looking for?", options);
+            String choice = PromptUser.getChoice("What kind of car are you looking for?", "Standard", "Luxury");
             boolean isLuxury = "Luxury".equals(choice);
             final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
 

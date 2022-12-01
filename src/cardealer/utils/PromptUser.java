@@ -15,11 +15,12 @@ public final class PromptUser {
      * @return true if the user selects yes, false otherwise
      */
     public static boolean yesOrNoPrompt(String prompt) {
-        String choice = getChoice(prompt, new String[]{"Yes", "No"});
+        String choice = getChoice(prompt, "Yes", "No");
         return "Yes".equals(choice);
     }
 
-    public static <T> T getChoice(String prompt, T[] options) {
+    @SafeVarargs
+    public static <T> T getChoice(String prompt, T... options) {
         System.out.println(prompt);
         for (int i = 0; i < options.length; i++) {
             System.out.printf("%d. %s%n", i + 1, options[i]);
