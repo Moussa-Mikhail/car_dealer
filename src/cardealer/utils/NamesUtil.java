@@ -1,4 +1,4 @@
-package cardealer;
+package cardealer.utils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

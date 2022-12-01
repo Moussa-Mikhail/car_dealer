@@ -1,8 +1,8 @@
 package cardealer.carinfo;
 
-import cardealer.Color;
-import cardealer.GetRandom;
-import cardealer.ModelsDataProvider;
+import cardealer.utils.Color;
+import cardealer.utils.GetRandom;
+import cardealer.utils.ModelsDataProvider;
 
 import java.util.List;
 import java.util.Objects;

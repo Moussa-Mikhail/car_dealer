@@ -1,7 +1,7 @@
 package cardealer.cardealer;
 
-import cardealer.GetRandom;
-import cardealer.ModelsDataProvider;
+import cardealer.utils.GetRandom;
+import cardealer.utils.ModelsDataProvider;
 import cardealer.TransactionLog;
 import cardealer.buyer.IBuyer;
 import cardealer.carinfo.CarInfo;

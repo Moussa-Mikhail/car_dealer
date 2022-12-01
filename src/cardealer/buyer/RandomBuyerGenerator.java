@@ -1,7 +1,7 @@
 package cardealer.buyer;
 
-import cardealer.ModelsDataProvider;
-import cardealer.NamesUtil;
+import cardealer.utils.ModelsDataProvider;
+import cardealer.utils.NamesUtil;
 import cardealer.carinfo.CarInfo;
 
 /**
