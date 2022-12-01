@@ -8,7 +8,7 @@ import cardealer.utils.NamesUtil;
  * @author Moussa
  */
 @SuppressWarnings("unused")
-public class RandomBuyerGenerator {
+public final class RandomBuyerGenerator {
     private RandomBuyerGenerator() {
         throw new IllegalStateException("Utility class");
     }

@@ -5,7 +5,7 @@ import cardealer.Main;
 /**
  * @author Moussa
  */
-public class PromptUser {
+public final class PromptUser {
     private PromptUser() {
         throw new UnsupportedOperationException("Utility class.");
     }

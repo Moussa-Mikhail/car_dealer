@@ -13,7 +13,7 @@ import java.util.List;
  * @author Moussa
  */
 @SuppressWarnings("java:S112")
-public class NamesUtil {
+public final class NamesUtil {
     private static final List<String> NAMES = new ArrayList<>();
     private static final String FILENAME = "names.txt";
 
