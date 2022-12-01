@@ -6,11 +6,8 @@ import java.util.Objects;
  * @author Moussa
  */
 public class StandardTransaction implements ITransaction {
-
     private final String buyerName;
-
     private final String info;
-
     private final int price;
 
     public StandardTransaction(String buyerName, String info, int price) {
@@ -36,9 +33,7 @@ public class StandardTransaction implements ITransaction {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         StandardTransaction that = (StandardTransaction) o;
-
         if (price != that.price) {
             return false;
         }

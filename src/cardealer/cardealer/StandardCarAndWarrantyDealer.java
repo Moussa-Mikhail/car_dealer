@@ -25,5 +25,4 @@ public final class StandardCarAndWarrantyDealer extends AbstractCarAndWarrantyDe
                 ", totalSales=" + totalSales +
                 '}';
     }
-
 }

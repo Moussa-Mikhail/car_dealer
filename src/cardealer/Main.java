@@ -45,14 +45,10 @@ public class Main {
                 System.out.printf("Congratulations %s, you have bought a %s for $%d.%n", name, carInfo, price);
 
                 if (carDealer instanceof ISellsWarranty) {
-
                     ISellsWarranty warrantyDealer = (ISellsWarranty) carDealer;
-
                     offerWarranty(warrantyDealer, buyer);
                 }
-
             }
-
             keepGoing = yesOrNoPrompt("Would you like to buy another car?");
         } while (keepGoing);
 
@@ -84,11 +80,9 @@ public class Main {
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
         CarInfo carInfo = buyer.getWantedCar();
         String name = buyer.getName();
-
         int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
-
-        boolean wantsToBuyWarranty = yesOrNoPrompt(String.format("Would you like to buy an extended warranty for $%d?%n", warrantyPrice));
-
+        String prompt = String.format("Would you like to buy a warranty for $%d%n", warrantyPrice);
+        boolean wantsToBuyWarranty = yesOrNoPrompt(prompt);
         if (wantsToBuyWarranty) {
             carDealer.sellWarranty(buyer, carInfo);
             System.out.printf("Congratulations %s, you have bought an extended warranty for $%d.%n", name, warrantyPrice);
@@ -97,19 +91,16 @@ public class Main {
 
     private static CarInfo getCarSelection(ISellsCars carDealer) {
         Set<CarInfo> carOptions = carDealer.getAvailableCars();
-
         getCarChoice("make", CarInfo::getMake, carOptions);
         getCarChoice("model", CarInfo::getModel, carOptions);
         getCarChoice("color", CarInfo::getColor, carOptions);
         getCarChoice("year", CarInfo::getYear, carOptions);
-
         assert carOptions.size() == 1;
         return carOptions.iterator().next();
     }
 
     private static void getCarChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
-
         Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
         Object chosenAttribute = presentOptions(prompt, availableAttributes);
         carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
@@ -123,13 +114,10 @@ public class Main {
 
     public static int getChoice(Object[] options) {
         StringBuilder stringBuilder = new StringBuilder();
-
         for (int i = 0; i < options.length - 1; i++) {
             stringBuilder.append(i + 1).append(". ").append(options[i]).append("\n");
         }
-
         stringBuilder.append(options.length).append(". ").append(options[options.length - 1]);
-
         return getChoice(stringBuilder.toString(), options.length);
     }
 
@@ -137,7 +125,6 @@ public class Main {
         System.out.println(optionsStr);
         System.out.print("Enter the number of your choice: ");
         int choice = nextInt();
-
         while (choice < 1 || choice > maxChoice) {
             System.out.println("Invalid choice. Please try again.");
             choice = nextInt();

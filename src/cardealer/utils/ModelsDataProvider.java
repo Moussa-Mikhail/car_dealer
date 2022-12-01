@@ -8,7 +8,6 @@ import java.util.Set;
  * @author Moussa
  */
 public class ModelsDataProvider {
-
     private final Map<String, Set<String>> makeToModels;
 
     public ModelsDataProvider(Map<String, Set<String>> makeToModels) {
@@ -16,7 +15,6 @@ public class ModelsDataProvider {
     }
 
     public static ModelsDataProvider getStandardModelsDataProvider() {
-
         Map<String, Set<String>> makeToModels = Map.of(
                 "Toyota", Set.of("Camry", "Corolla", "RAV4"),
                 "Honda", Set.of("Accord", "Civic", "CR-V"),
@@ -24,19 +22,16 @@ public class ModelsDataProvider {
                 "Chevrolet", Set.of("Camaro", "Corvette", "Malibu"),
                 "Subaru", Set.of("Crosstrek", "Forester", "Impreza")
         );
-
         return new ModelsDataProvider(makeToModels);
     }
 
     public static ModelsDataProvider getLuxuryModelsDataProvider() {
-
         Map<String, Set<String>> makeToModels = Map.of(
                 "Mercedes", Set.of("C-Class", "E-Class", "S-Class"),
                 "BMW", Set.of("3-Series", "5-Series", "7-Series"),
                 "Audi", Set.of("A4", "A6", "A8"),
                 "Lexus", Set.of("ES", "GS", "LS")
         );
-
         return new ModelsDataProvider(makeToModels);
     }
 
@@ -63,9 +58,7 @@ public class ModelsDataProvider {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         ModelsDataProvider modelsDataProvider = (ModelsDataProvider) o;
-
         return makeToModels.equals(modelsDataProvider.makeToModels);
     }
 

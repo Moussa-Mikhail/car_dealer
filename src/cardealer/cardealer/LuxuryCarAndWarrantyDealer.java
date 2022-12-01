@@ -1,7 +1,7 @@
 package cardealer.cardealer;
 
-import cardealer.utils.ModelsDataProvider;
 import cardealer.carinfo.CarInfo;
+import cardealer.utils.ModelsDataProvider;
 
 /**
  * @author Moussa

@@ -1,11 +1,11 @@
 package cardealer.cardealer;
 
-import cardealer.utils.GetRandom;
-import cardealer.utils.ModelsDataProvider;
 import cardealer.TransactionLog;
 import cardealer.buyer.IBuyer;
 import cardealer.carinfo.CarInfo;
 import cardealer.transaction.CarTransaction;
+import cardealer.utils.GetRandom;
+import cardealer.utils.ModelsDataProvider;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -60,7 +60,6 @@ public abstract class AbstractCarDealer implements ISellsCars {
         if (!hasCar(carInfo)) {
             return;
         }
-
         int price = getPrice(carInfo);
         CarTransaction transaction = new CarTransaction(buyer.getName(), carInfo, price);
         transactions.addTransaction(transaction);
@@ -71,7 +70,6 @@ public abstract class AbstractCarDealer implements ISellsCars {
 
     protected void removeCar(CarInfo carInfo) {
         carInfoToNumber.merge(carInfo, -1, Integer::sum);
-
         if (carInfoToNumber.get(carInfo) == 0) {
             carInfoToNumber.remove(carInfo);
         }

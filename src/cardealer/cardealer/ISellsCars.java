@@ -45,6 +45,4 @@ public interface ISellsCars {
      * @return returns the set of available makes.
      */
     Set<CarInfo> getAvailableCars();
-
-
 }

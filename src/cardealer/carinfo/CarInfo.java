@@ -11,7 +11,6 @@ import java.util.Objects;
  * @author Moussa
  */
 public final class CarInfo {
-
     private final String make;
     private final String model;
     private final int year;
@@ -29,7 +28,6 @@ public final class CarInfo {
         String model = GetRandom.getRandomElement(modelsDataProvider.getModels(make));
         int year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
         String color = GetRandom.getRandomElement(List.of(Color.values())).toString();
-
         return new CarInfo(make, model, year, color);
     }
 
@@ -62,9 +60,7 @@ public final class CarInfo {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         CarInfo carInfo = (CarInfo) o;
-
         if (year != carInfo.year) {
             return false;
         }

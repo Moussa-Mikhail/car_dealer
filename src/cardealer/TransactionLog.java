@@ -33,9 +33,7 @@ public class TransactionLog {
         int maxNumberLength = String.valueOf(transactionsList.size()).length();
         int headerPaddingLength = maxNumberLength + 1;
         String format = "%-" + headerPaddingLength + "s %-" + maxBuyerNameLength + "s | %-" + maxInfoLength + "s | %" + maxPriceLength + "s%n";
-
         System.out.printf(format, " ", NAME_HEADER, INFO_HEADER, PRICE_HEADER);
-
         for (int num = 0; num < transactionsList.size(); num++) {
             ITransaction transaction = transactionsList.get(num);
             String buyerName = transaction.getBuyerName();
@@ -43,10 +41,7 @@ public class TransactionLog {
             int price = transaction.getPrice();
             String numStr = num + 1 + ".";
             String transactionString = String.format(format, numStr, buyerName, info, price);
-
             System.out.print(transactionString);
         }
-
     }
-
 }
