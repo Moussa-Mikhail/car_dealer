@@ -1,5 +1,7 @@
 package cardealer.utils;
 
+import static java.util.Locale.ENGLISH;
+
 /**
  * @author Moussa
  */
@@ -27,6 +29,6 @@ public enum Color {
 
     @Override
     public String toString() {
-        return name().charAt(0) + name().substring(1).toLowerCase();
+        return name().charAt(0) + name().substring(1).toLowerCase(ENGLISH);
     }
 }
