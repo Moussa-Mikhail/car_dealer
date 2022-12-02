@@ -11,8 +11,8 @@ public final class PromptUser {
     }
 
     /**
-     * @param prompt The prompt to display to the user
-     * @return true if the user selects yes, false otherwise
+     * @param prompt The prompt to display to the user.
+     * @return true if the user selects yes, false if the user selects no.
      */
     public static boolean yesOrNoPrompt(String prompt) {
         String choice = getChoice(prompt, "Yes", "No");
