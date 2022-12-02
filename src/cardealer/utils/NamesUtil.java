@@ -20,8 +20,6 @@ public final class NamesUtil {
     static {
         URL url = NamesUtil.class.getResource(FILENAME);
         assert url != null;
-        // Copied and modified from
-        // https://www.digitalocean.com/community/tutorials/java-read-file-line-by-line
         Path path;
         try {
             path = Paths.get(url.toURI());
