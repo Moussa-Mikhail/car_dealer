@@ -28,15 +28,15 @@ public final class PromptUser {
         System.out.print("Enter your choice: ");
         int choice = nextInt();
         while (choice < 1 || choice > options.length) {
-            System.out.println("Invalid choice. Please try again.");
+            System.out.println("Invalid choice. Please enter a valid number.");
             choice = nextInt();
         }
         return options[choice - 1];
     }
 
     public static int nextInt() {
-        // Necessary because Scanner.nextInt() does not consume newline.
-        // which breaks the nextLine() call.
+        // Necessary because Scanner.nextInt() does not read newline
+        // which breaks the subsequent nextLine() call.
         // See https://stackoverflow.com/a/13102045/18650633
         return Integer.parseInt(Main.CONSOLE.nextLine());
     }
