@@ -27,14 +27,11 @@ public class Main {
         do {
             String name = getName();
             System.out.printf("Hello %s!%n%n", name);
-
             String choice = PromptUser.getChoice("What kind of car are you looking for?", "Standard", "Luxury");
             boolean isLuxury = "Luxury".equals(choice);
             final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
-
             CarInfo carInfo = getCarSelection(carDealer);
             System.out.printf("You have selected a %s.%n", carInfo);
-
             int price = carDealer.getPrice(carInfo);
             System.out.printf("The price of this car is $%d.%n", price);
             boolean wantsToBuy = PromptUser.yesOrNoPrompt("Would you like to buy this car?");
@@ -55,7 +52,6 @@ public class Main {
         System.out.println("Standard Car Dealer Transactions:");
         STANDARD_CAR_DEALER.printTransactions();
         System.out.printf("Standard Car Dealer Total Sales: $%d%n%n", STANDARD_CAR_DEALER.getTotalSales());
-
         System.out.println("Luxury Car Dealer Transactions:");
         LUXURY_CAR_DEALER.printTransactions();
         System.out.printf("Luxury Car Dealer Total Sales: $%d%n", LUXURY_CAR_DEALER.getTotalSales());
