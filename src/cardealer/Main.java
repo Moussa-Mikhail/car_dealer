@@ -86,10 +86,10 @@ public class Main {
      */
     private static CarInfo getCarSelection(ISellsCars carDealer) {
         Set<CarInfo> carOptions = carDealer.getAvailableCars();
-        getCarChoice("make", CarInfo::getMake, carOptions);
-        getCarChoice("model", CarInfo::getModel, carOptions);
-        getCarChoice("color", CarInfo::getColor, carOptions);
-        getCarChoice("year", CarInfo::getYear, carOptions);
+        getCarAttributeChoice("make", CarInfo::getMake, carOptions);
+        getCarAttributeChoice("model", CarInfo::getModel, carOptions);
+        getCarAttributeChoice("color", CarInfo::getColor, carOptions);
+        getCarAttributeChoice("year", CarInfo::getYear, carOptions);
 
         if (carOptions.isEmpty()) {
             throw new NoCarOptionsRemainingException("No car options remaining. This should never happen.");
@@ -99,7 +99,7 @@ public class Main {
         return carOptions.iterator().next();
     }
 
-    private static void getCarChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
+    private static void getCarAttributeChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
         Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
         Object chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
