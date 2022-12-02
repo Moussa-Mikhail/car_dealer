@@ -25,7 +25,8 @@ public class Main {
     public static void main(String... args) {
         boolean keepGoing;
         do {
-            String name = getName();
+            System.out.println("What is your name?");
+            String name = CONSOLE.nextLine();
             System.out.printf("Hello %s!%n%n", name);
 
             String choice = PromptUser.getChoice("What kind of car are you looking for?", "Standard", "Luxury");
@@ -59,11 +60,6 @@ public class Main {
         System.out.println("Luxury Car Dealer Transactions:");
         LUXURY_CAR_DEALER.printTransactions();
         System.out.printf("Luxury Car Dealer Total Sales: $%d%n", LUXURY_CAR_DEALER.getTotalSales());
-    }
-
-    private static String getName() {
-        System.out.println("What is your name?");
-        return CONSOLE.nextLine();
     }
 
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
