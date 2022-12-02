@@ -8,6 +8,8 @@ import cardealer.cardealer.ISellsWarranty;
 import cardealer.cardealer.LuxuryCarAndWarrantyDealer;
 import cardealer.cardealer.StandardCarAndWarrantyDealer;
 import cardealer.carinfo.CarInfo;
+import cardealer.exceptions.MultipleCarOptionsRemainingException;
+import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
 
 import java.util.Scanner;
