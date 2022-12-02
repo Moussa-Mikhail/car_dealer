@@ -1,4 +1,4 @@
-package cardealer.utils;
+package cardealer.exceptions;
 
 /**
  * @author Moussa

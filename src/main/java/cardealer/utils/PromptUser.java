@@ -1,6 +1,8 @@
 package cardealer.utils;
 
 import cardealer.Main;
+import cardealer.exceptions.EmptyInputException;
+import cardealer.exceptions.InvalidInputException;
 
 /**
  * @author Moussa
@@ -29,23 +31,21 @@ public final class PromptUser {
         int minChoice = 1;
         int maxChoice = options.length;
         int choice = 0;
+        boolean isChoiceOutOfBounds;
         do {
             System.out.print("Enter your choice: ");
             try {
-                choice = nextBoundedInt(minChoice, maxChoice);
+                choice = nextInt();
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
-        } while (isNotInBounds(choice, minChoice, maxChoice));
-        return options[choice - 1];
-    }
 
-    public static int nextBoundedInt(int min, int max) throws InvalidInputException {
-        int choice = nextInt();
-        if (isNotInBounds(choice, min, max)) {
-            throw new ChoiceOutOfBoundsException(String.format("Please enter an integer between %d and %d, inclusive.", min, max));
-        }
-        return choice;
+            isChoiceOutOfBounds = isNotInBounds(choice, minChoice, maxChoice);
+            if (isChoiceOutOfBounds) {
+                System.out.printf("Please enter a number between %d and %d.%n", minChoice, maxChoice);
+            }
+        } while (isChoiceOutOfBounds);
+        return options[choice - 1];
     }
 
     private static boolean isNotInBounds(int choice, int minChoice, int maxChoice) {
