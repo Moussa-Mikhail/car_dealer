@@ -78,13 +78,24 @@ public class Main {
         }
     }
 
+    /**
+     * @param carDealer the car dealer to get the car selection from
+     * @return the carInfo with the attributes the user selected
+     * @throws MultipleCarOptionsRemainingException if the selection process results in multiple options remaining
+     * @throws NoCarOptionsRemainingException       if the selection process results in no options remaining
+     */
     private static CarInfo getCarSelection(ISellsCars carDealer) {
         Set<CarInfo> carOptions = carDealer.getAvailableCars();
         getCarChoice("make", CarInfo::getMake, carOptions);
         getCarChoice("model", CarInfo::getModel, carOptions);
         getCarChoice("color", CarInfo::getColor, carOptions);
         getCarChoice("year", CarInfo::getYear, carOptions);
-        assert carOptions.size() == 1;
+
+        if (carOptions.isEmpty()) {
+            throw new NoCarOptionsRemainingException("No car options remaining. This should never happen.");
+        } else if (carOptions.size() > 1) {
+            throw new MultipleCarOptionsRemainingException("Multiple car options remaining. Perhaps the developer forgot to ask about all the attributes?");
+        }
         return carOptions.iterator().next();
     }
 
