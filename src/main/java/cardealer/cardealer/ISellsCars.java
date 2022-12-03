@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public interface ISellsCars {
     /**
+     * Checks if the cardealer has the input car
+     *
      * @param carInfo the car info
      * @return true if the car is available, false otherwise.
      */
@@ -25,24 +27,28 @@ public interface ISellsCars {
     int getPrice(CarInfo carInfo);
 
     /**
-     * sells the car to buyer
+     * Sells the car to buyer
      *
      * @param buyer the buyer
      */
     void sellCar(IBuyer buyer);
 
     /**
-     * prints all transactions.
+     * Prints all transactions in a formatted table.
      */
     void printTransactions();
 
     /**
+     * Gets the total sales.
+     *
      * @return the total sales.
      */
     int getTotalSales();
 
     /**
-     * @return returns the set of available makes.
+     * Returns the set of available cars.
+     *
+     * @return the set of available cars.
      */
     Set<CarInfo> getAvailableCars();
 }
