@@ -3,6 +3,7 @@ package cardealer.utils;
 import cardealer.exceptions.EmptyInputException;
 import cardealer.exceptions.InvalidInputException;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,24 +26,33 @@ public final class PromptUser {
     }
 
     /**
-     * @param prompt The prompt to display to the user.
-     * @param options The options to display to the user.
-     * @return The option selected by the user.
-     * @throws IllegalArgumentException if the options array is empty.
+     * Overload of {@link #getChoice(String, List)} that allows the user to use varargs.
+     *
+     * @see #getChoice(String, List)
      */
     @SafeVarargs
     public static <T> T getChoice(String prompt, T... options) {
-        if (options.length == 0) {
+        return getChoice(prompt, List.of(options));
+    }
+
+    /**
+     * @param prompt   The prompt to display to the user.
+     * @param options  The options to display to the user.
+     * @return The option selected by the user.
+     * @throws IllegalArgumentException if the options array is empty.*
+     */
+    public static <T> T getChoice(String prompt, List<T> options) {
+        if (options.isEmpty()) {
             throw new IllegalArgumentException("No options input or options array is empty.");
         }
 
         System.out.println(prompt);
-        for (int i = 0; i < options.length; i++) {
-            System.out.printf("%d. %s%n", i + 1, options[i]);
+        for (int i = 0; i < options.size(); i++) {
+            System.out.printf("%d. %s%n", i + 1, options.get(i));
         }
 
         int minChoice = 1;
-        int maxChoice = options.length;
+        int maxChoice = options.size();
         int choice = 0;
         boolean isChoiceOutOfBounds;
         do {
@@ -58,7 +68,7 @@ public final class PromptUser {
                 System.out.printf("Please enter a number between %d and %d, inclusive.%n", minChoice, maxChoice);
             }
         } while (isChoiceOutOfBounds);
-        return options[choice - 1];
+        return options.get(choice - 1);
     }
 
     private static boolean isNotInBounds(int choice, int minChoice, int maxChoice) {
