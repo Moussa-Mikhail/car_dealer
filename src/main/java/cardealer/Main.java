@@ -98,7 +98,14 @@ public class Main {
     private static void getCarAttributeChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
         Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
-        Object chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
+        Object chosenAttribute;
+
+        try {
+            chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
+        } catch (IllegalArgumentException e) {
+            throw new NoCarOptionsRemainingException("No car options remaining. Perhaps a developer made a mistake in the filtering process.", e);
+        }
+
         carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
     }
 }
