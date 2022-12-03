@@ -24,8 +24,18 @@ public final class PromptUser {
         return "Yes".equals(choice);
     }
 
+    /**
+     * @param prompt The prompt to display to the user.
+     * @param options The options to display to the user.
+     * @return The option selected by the user.
+     * @throws IllegalArgumentException if the options array is empty.
+     */
     @SafeVarargs
     public static <T> T getChoice(String prompt, T... options) {
+        if (options.length == 0) {
+            throw new IllegalArgumentException("No options input or options array is empty.");
+        }
+
         System.out.println(prompt);
         for (int i = 0; i < options.length; i++) {
             System.out.printf("%d. %s%n", i + 1, options[i]);
@@ -45,7 +55,7 @@ public final class PromptUser {
 
             isChoiceOutOfBounds = isNotInBounds(choice, minChoice, maxChoice);
             if (isChoiceOutOfBounds) {
-                System.out.printf("Please enter a number between %d and %d.%n", minChoice, maxChoice);
+                System.out.printf("Please enter a number between %d and %d, inclusive.%n", minChoice, maxChoice);
             }
         } while (isChoiceOutOfBounds);
         return options[choice - 1];
