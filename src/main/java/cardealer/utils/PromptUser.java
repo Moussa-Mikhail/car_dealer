@@ -1,13 +1,16 @@
 package cardealer.utils;
 
-import cardealer.Main;
 import cardealer.exceptions.EmptyInputException;
 import cardealer.exceptions.InvalidInputException;
+
+import java.util.Scanner;
 
 /**
  * @author Moussa
  */
 public final class PromptUser {
+    public static final Scanner CONSOLE = new Scanner(System.in);
+
     private PromptUser() {
         throw new UnsupportedOperationException("Utility class.");
     }
@@ -56,7 +59,7 @@ public final class PromptUser {
         // This is necessary because Scanner.nextInt() does not read newline
         // which will break the subsequent nextLine() call.
         // See https://stackoverflow.com/a/13102045/18650633
-        String input = Main.CONSOLE.nextLine();
+        String input = CONSOLE.nextLine();
 
         if (input.isEmpty()) {
             throw new EmptyInputException("Input is empty. Please enter an integer.");

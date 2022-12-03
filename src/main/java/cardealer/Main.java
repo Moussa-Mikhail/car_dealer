@@ -12,7 +12,6 @@ import cardealer.exceptions.MultipleCarOptionsRemainingException;
 import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
 
-import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -22,7 +21,6 @@ import java.util.function.Function;
 public class Main {
     public static final ISellsCars LUXURY_CAR_DEALER = new LuxuryCarAndWarrantyDealer();
     public static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
-    public static final Scanner CONSOLE = new Scanner(System.in);
 
     public static void main(String... args) {
         boolean keepGoing;
@@ -61,7 +59,7 @@ public class Main {
 
     private static String getName() {
         System.out.println("What is your name?");
-        return CONSOLE.nextLine();
+        return PromptUser.CONSOLE.nextLine();
     }
 
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
