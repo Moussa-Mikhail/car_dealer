@@ -7,12 +7,12 @@ import java.util.Objects;
  */
 public class StandardTransaction implements ITransaction {
     private final String buyerName;
-    private final String info;
+    private final String description;
     private final int price;
 
-    public StandardTransaction(String buyerName, String info, int price) {
+    public StandardTransaction(String buyerName, String description, int price) {
         this.buyerName = buyerName;
-        this.info = info;
+        this.description = description;
         this.price = price;
     }
 
@@ -20,7 +20,7 @@ public class StandardTransaction implements ITransaction {
     public String toString() {
         return "StandardTransaction{" +
                 "buyerName='" + buyerName + '\'' +
-                ", info='" + info + '\'' +
+                ", info='" + description + '\'' +
                 ", price=" + price +
                 '}';
     }
@@ -40,12 +40,12 @@ public class StandardTransaction implements ITransaction {
         if (!buyerName.equals(that.buyerName)) {
             return false;
         }
-        return info.equals(that.info);
+        return description.equals(that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(buyerName, info, price);
+        return Objects.hash(buyerName, description, price);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class StandardTransaction implements ITransaction {
     }
 
     @Override
-    public String getInfo() {
-        return info;
+    public String getDescription() {
+        return description;
     }
 
     @Override
