@@ -12,8 +12,10 @@ import cardealer.exceptions.MultipleCarOptionsRemainingException;
 import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
 
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author Moussa
@@ -95,10 +97,10 @@ public class Main {
         return carOptions.iterator().next();
     }
 
-    private static void getCarAttributeChoice(String attribute, Function<CarInfo, Object> getAttribute, Set<CarInfo> carOptions) {
+    private static <T> void getCarAttributeChoice(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
-        Object[] availableAttributes = carOptions.stream().map(getAttribute).distinct().toArray(Object[]::new);
-        Object chosenAttribute;
+        List<T> availableAttributes = carOptions.stream().map(getAttribute).distinct().collect(Collectors.toList());
+        T chosenAttribute;
 
         try {
             chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
