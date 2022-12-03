@@ -88,9 +88,9 @@ public class Main {
         getCarAttributeChoice("year", CarInfo::getYear, carOptions);
 
         if (carOptions.isEmpty()) {
-            throw new NoCarOptionsRemainingException("No car options remaining. This should never happen.");
+            throw new NoCarOptionsRemainingException("No car options remaining. Perhaps a developer made a mistake in the filtering process.");
         } else if (carOptions.size() > 1) {
-            throw new MultipleCarOptionsRemainingException("Multiple car options remaining. Perhaps the developer forgot to ask about all the attributes?");
+            throw new MultipleCarOptionsRemainingException("Multiple car options remaining. Perhaps a developer forgot to ask about all the attributes?");
         }
         return carOptions.iterator().next();
     }
