@@ -8,8 +8,12 @@ import cardealer.transaction.WarrantyTransaction;
  * @author Moussa
  */
 public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer implements ISellsWarranty {
-    public static final String WARRANTY_INFO = "Extended Warranty";
+    protected static final String WARRANTY_DESCRIPTION = "Extended Warranty";
     protected static final int WARRANTY_PRICE = 2000;
+
+    public static String getWarrantyDescription() {
+        return WARRANTY_DESCRIPTION;
+    }
 
     @Override
     public void sellWarranty(IBuyer buyer, CarInfo carInfo) {
