@@ -68,6 +68,7 @@ public final class PromptUser {
                 System.out.printf("Please enter an integer between %d and %d, inclusive.%n", minChoice, maxChoice);
             }
         } while (isChoiceOutOfBounds);
+        System.out.println();
         return options.get(choice - 1);
     }
 
@@ -82,13 +83,13 @@ public final class PromptUser {
         String input = CONSOLE.nextLine();
 
         if (input.isEmpty()) {
-            throw new EmptyInputException("Input is empty. Please enter an integer.");
+            throw new EmptyInputException("Input is empty.");
         }
 
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException("Input could not be parsed as an integer. Please enter a valid integer.", e);
+            throw new InvalidInputException("Input could not be parsed as an integer.", e);
         }
     }
 }

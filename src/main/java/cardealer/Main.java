@@ -91,9 +91,9 @@ public class Main {
         getCarAttributeChoice("year", CarInfo::getYear, carOptions);
 
         if (carOptions.isEmpty()) {
-            throw new NoCarOptionsRemainingException("No car options remaining. Perhaps a developer made a mistake in the filtering process.");
+            throw new NoCarOptionsRemainingException("No car options remaining.");
         } else if (carOptions.size() > 1) {
-            throw new MultipleCarOptionsRemainingException("Multiple car options remaining. Perhaps a developer forgot to ask about all the attributes.");
+            throw new MultipleCarOptionsRemainingException("Multiple car options remaining.");
         }
         return carOptions.iterator().next();
     }
@@ -106,7 +106,7 @@ public class Main {
         try {
             chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
         } catch (IllegalArgumentException e) {
-            throw new NoCarOptionsRemainingException("No car options remaining. Perhaps a developer made a mistake in the filtering process.", e);
+            throw new NoCarOptionsRemainingException("No car options remaining.", e);
         }
 
         carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
