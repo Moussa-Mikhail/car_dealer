@@ -78,29 +78,34 @@ public class Main {
     }
 
     /**
-     * @param carDealer the car dealer to get the car selection from
-     * @return the carInfo with the attributes the user selected
-     * @throws MultipleCarOptionsRemainingException if the selection process results in multiple options remaining
-     * @throws NoCarOptionsRemainingException       if the selection process results in no options remaining
+     * @param carDealer the car dealer to get the car selection from.
+     * @return the carInfo with the attributes the user selected.
+     * @throws MultipleCarOptionsRemainingException if the selection process results in multiple options remaining.
+     * @throws NoCarOptionsRemainingException       if the selection process results in no options remaining.
      */
     private static CarInfo getCarSelection(ISellsCars carDealer) {
-        Set<CarInfo> carOptions = carDealer.getAvailableCars();
-        getCarAttributeChoice("make", CarInfo::getMake, carOptions);
-        getCarAttributeChoice("model", CarInfo::getModel, carOptions);
-        getCarAttributeChoice("color", CarInfo::getColor, carOptions);
-        getCarAttributeChoice("year", CarInfo::getYear, carOptions);
+        Set<CarInfo> cars = carDealer.getAvailableCars();
+        getCarAttributeChoice("make", CarInfo::getMake, cars);
+        getCarAttributeChoice("model", CarInfo::getModel, cars);
+        getCarAttributeChoice("color", CarInfo::getColor, cars);
+        getCarAttributeChoice("year", CarInfo::getYear, cars);
 
-        if (carOptions.isEmpty()) {
+        if (cars.isEmpty()) {
             throw new NoCarOptionsRemainingException("No car options remaining.");
-        } else if (carOptions.size() > 1) {
+        } else if (cars.size() > 1) {
             throw new MultipleCarOptionsRemainingException("Multiple car options remaining.");
         }
-        return carOptions.iterator().next();
+        return cars.iterator().next();
     }
 
-    private static <T> void getCarAttributeChoice(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> carOptions) {
+    /**
+     * @param attribute    the attribute to ask the user about.
+     * @param getAttribute the getter for the attribute.
+     * @param cars         the set of cars to filter.
+     */
+    private static <T> void getCarAttributeChoice(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> cars) {
         String prompt = String.format("We have the following %ss available:", attribute);
-        List<T> availableAttributes = carOptions.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
+        List<T> availableAttributes = cars.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
         T chosenAttribute;
 
         try {
@@ -108,7 +113,6 @@ public class Main {
         } catch (IllegalArgumentException e) {
             throw new NoCarOptionsRemainingException("No car options remaining.", e);
         }
-
-        carOptions.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
+        cars.removeIf(carInfo -> !getAttribute.apply(carInfo).equals(chosenAttribute));
     }
 }
