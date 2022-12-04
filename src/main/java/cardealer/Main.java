@@ -12,6 +12,7 @@ import cardealer.exceptions.MultipleCarOptionsRemainingException;
 import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
@@ -92,14 +93,14 @@ public class Main {
         if (carOptions.isEmpty()) {
             throw new NoCarOptionsRemainingException("No car options remaining. Perhaps a developer made a mistake in the filtering process.");
         } else if (carOptions.size() > 1) {
-            throw new MultipleCarOptionsRemainingException("Multiple car options remaining. Perhaps a developer forgot to ask about all the attributes?");
+            throw new MultipleCarOptionsRemainingException("Multiple car options remaining. Perhaps a developer forgot to ask about all the attributes.");
         }
         return carOptions.iterator().next();
     }
 
     private static <T> void getCarAttributeChoice(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> carOptions) {
         String prompt = String.format("We have the following %ss available:", attribute);
-        List<T> availableAttributes = carOptions.stream().map(getAttribute).distinct().collect(Collectors.toList());
+        List<T> availableAttributes = carOptions.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
         T chosenAttribute;
 
         try {
