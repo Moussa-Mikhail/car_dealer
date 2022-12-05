@@ -31,4 +31,5 @@ bin/
 .DS_Store
 
 ### Java ###
-*.class
+/target/
+/logs/
