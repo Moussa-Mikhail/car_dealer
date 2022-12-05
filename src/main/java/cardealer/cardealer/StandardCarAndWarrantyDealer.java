@@ -14,15 +14,4 @@ public final class StandardCarAndWarrantyDealer extends AbstractCarAndWarrantyDe
         populateInventory(INITIAL_NUM_CARS, STANDARD_MODELS_DATA_PROVIDER, MIN_YEAR, YEAR_RANGE);
         setPrices(MIN_PRICE_IN_THOUSANDS, PRICE_RANGE_IN_THOUSANDS);
     }
-
-    @Override
-    public String toString() {
-        return "CarDealer{" +
-                "carInfoToNumber=" + carInfoToNumber +
-                ", carInfoToPrice=" + carInfoToPrice +
-                ", transactions=" + transactions +
-                ", numCarsSold=" + numCarsSold +
-                ", totalSales=" + totalSales +
-                '}';
-    }
 }

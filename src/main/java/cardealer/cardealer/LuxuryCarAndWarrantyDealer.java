@@ -21,11 +21,6 @@ public final class LuxuryCarAndWarrantyDealer extends AbstractCarAndWarrantyDeal
     }
 
     @Override
-    public String toString() {
-        return "LuxuryCarDealer{} " + super.toString();
-    }
-
-    @Override
     public int calcWarrantyPrice(CarInfo carInfo) {
         return WARRANTY_PRICE;
     }
