@@ -78,8 +78,8 @@ public final class PromptUser {
 
     public static int nextInt() throws InvalidInputException {
         // This is necessary because Scanner.nextInt() does not read newline
-        // which will break the subsequent nextLine() call.
-        // See https://stackoverflow.com/a/13102045/18650633
+        // which will break any subsequent nextLine() call.
+        // See https://stackoverflow.com/a/13102045/18650633.
         String input = CONSOLE.nextLine();
 
         if (input.isEmpty()) {
