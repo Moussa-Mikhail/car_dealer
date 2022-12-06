@@ -6,6 +6,8 @@ import cardealer.carinfo.CarInfo;
 import cardealer.transaction.CarTransaction;
 import cardealer.utils.GetRandom;
 import cardealer.utils.ModelsDataProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +21,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
     protected static final int INITIAL_NUM_CARS = 400;
     protected static final int MIN_PRICE_IN_THOUSANDS = 40;
     protected static final int PRICE_RANGE_IN_THOUSANDS = 30;
+    private static final Logger LOGGER = LogManager.getLogger();
     protected final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
     protected final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
     protected final TransactionLog transactions = new TransactionLog();
@@ -30,10 +33,12 @@ public abstract class AbstractCarDealer implements ISellsCars {
             CarInfo carInfo = CarInfo.generateRandomCarInfo(modelsDataProvider, minYear, yearRange);
             addCar(carInfo);
         }
+        LOGGER.info("Inventory populated with {} cars.", initialNumCars);
     }
 
     protected void addCar(CarInfo carInfo) {
         carInfoToNumber.merge(carInfo, 1, Integer::sum);
+        LOGGER.trace("1 {} has been added to the inventory.", carInfo);
     }
 
     protected void setPrices(int minPriceInThousands, int priceRangeInThousands) {
@@ -41,6 +46,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
             int priceInThousands = GetRandom.RANDOM_GEN.nextInt(priceRangeInThousands) + minPriceInThousands;
             int price = priceInThousands * 1000;
             carInfoToPrice.put(carInfo, price);
+            LOGGER.trace("Price of {} is set to {}.", carInfo, price);
         }
     }
 
@@ -61,11 +67,13 @@ public abstract class AbstractCarDealer implements ISellsCars {
             return;
         }
         int price = getPrice(carInfo);
-        CarTransaction transaction = new CarTransaction(buyer.getName(), carInfo, price);
-        transactions.addTransaction(transaction);
+        String name = buyer.getName();
+        CarTransaction transaction = new CarTransaction(name, carInfo, price);
         removeCar(carInfo);
+        transactions.addTransaction(transaction);
         totalSales += price;
         numCarsSold++;
+        LOGGER.info("{} bought a {} for ${}", name, carInfo, price);
     }
 
     protected void removeCar(CarInfo carInfo) {
@@ -73,6 +81,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
         if (carInfoToNumber.get(carInfo) == 0) {
             carInfoToNumber.remove(carInfo);
         }
+        LOGGER.info("1 {} has been removed from the inventory.", carInfo);
     }
 
     @Override
@@ -87,7 +96,9 @@ public abstract class AbstractCarDealer implements ISellsCars {
 
     @Override
     public int getPrice(CarInfo carInfo) {
-        return carInfoToPrice.getOrDefault(carInfo, -1);
+        int price = carInfoToPrice.getOrDefault(carInfo, -1);
+        LOGGER.info("Price of {} is ${}", carInfo, price);
+        return price;
     }
 
     @Override

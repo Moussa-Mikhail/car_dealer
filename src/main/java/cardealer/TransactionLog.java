@@ -1,6 +1,8 @@
 package cardealer;
 
 import cardealer.transaction.ITransaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ public class TransactionLog {
     private static final String NAME_HEADER = "Name";
     private static final String DESCRIPTION_HEADER = "Description";
     private static final String PRICE_HEADER = "Price";
+    private static final Logger LOGGER = LogManager.getLogger(TransactionLog.class);
     private final List<ITransaction> transactionsList = new ArrayList<>();
     private int maxBuyerNameLength = NAME_HEADER.length();
     private int maxInfoLength = DESCRIPTION_HEADER.length();
@@ -19,7 +22,7 @@ public class TransactionLog {
 
     @SuppressWarnings("unused")
     public List<ITransaction> getTransactionsList() {
-        return transactionsList;
+        return new ArrayList<>(transactionsList);
     }
 
     public void addTransaction(ITransaction transaction) {
@@ -27,6 +30,7 @@ public class TransactionLog {
         maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
         maxInfoLength = Math.max(maxInfoLength, transaction.getDescription().length());
         maxPriceLength = Math.max(maxPriceLength, String.valueOf(transaction.getPrice()).length());
+        LOGGER.info("Transaction added to log: {}", transaction);
     }
 
     public void printTransactions() {
@@ -43,5 +47,6 @@ public class TransactionLog {
             String transactionString = String.format(format, numStr, buyerName, description, price);
             System.out.print(transactionString);
         }
+        LOGGER.info("Transactions printed.");
     }
 }

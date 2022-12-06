@@ -3,6 +3,8 @@ package cardealer.cardealer;
 import cardealer.buyer.IBuyer;
 import cardealer.carinfo.CarInfo;
 import cardealer.transaction.WarrantyTransaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Moussa
@@ -10,6 +12,7 @@ import cardealer.transaction.WarrantyTransaction;
 public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer implements ISellsWarranty {
     protected static final String WARRANTY_DESCRIPTION = "Extended Warranty";
     protected static final int WARRANTY_PRICE = 2000;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static String getWarrantyDescription() {
         return WARRANTY_DESCRIPTION;
@@ -21,6 +24,7 @@ public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer imp
         totalSales += price;
         WarrantyTransaction transaction = new WarrantyTransaction(buyer.getName(), price);
         transactions.addTransaction(transaction);
+        LOGGER.info("Warranty sold to {} for {}.", buyer.getName(), price);
     }
 
     @Override
