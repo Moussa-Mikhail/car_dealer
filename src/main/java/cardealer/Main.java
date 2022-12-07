@@ -72,14 +72,14 @@ public class Main {
 
     private static String getName() {
         System.out.println("What is your name?");
-        do {
+        while (true) {
             String name = PromptUser.CONSOLE.nextLine();
             if (name != null && !name.isEmpty()) {
                 LOGGER.info("User entered name: {}", name);
                 return name;
             }
             System.out.println("Please enter a valid name.");
-        } while (true);
+        }
     }
 
     private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
