@@ -15,6 +15,7 @@ public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer imp
     private static final Logger LOGGER = LogManager.getLogger();
 
     protected AbstractCarAndWarrantyDealer() {
+        super();
         LOGGER.info("Abstract Car and Warranty dealer created.");
     }
 
