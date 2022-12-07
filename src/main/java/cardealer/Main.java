@@ -87,9 +87,9 @@ public class Main {
         String name = buyer.getName();
         int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
         String prompt = String.format("Would you like to buy a warranty for $%d", warrantyPrice);
-        boolean wantsToBuyWarranty = PromptUser.yesOrNoPrompt(prompt);
-        LOGGER.info("{} chose to buy a warranty: {}", name, wantsToBuyWarranty);
-        if (wantsToBuyWarranty) {
+        boolean wantsWarranty = PromptUser.yesOrNoPrompt(prompt);
+        LOGGER.info("{} chose to buy a warranty: {}", name, wantsWarranty);
+        if (wantsWarranty) {
             carDealer.sellWarranty(buyer, carInfo);
             System.out.printf("Congratulations %s, you have bought an extended warranty for $%d.%n", name, warrantyPrice);
         }
