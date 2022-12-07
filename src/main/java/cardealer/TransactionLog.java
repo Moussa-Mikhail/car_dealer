@@ -20,6 +20,10 @@ public class TransactionLog {
     private int maxInfoLength = DESCRIPTION_HEADER.length();
     private int maxPriceLength = PRICE_HEADER.length();
 
+    public TransactionLog() {
+        LOGGER.info("TransactionLog created.");
+    }
+
     @SuppressWarnings("unused")
     public List<ITransaction> getTransactionsList() {
         return new ArrayList<>(transactionsList);
