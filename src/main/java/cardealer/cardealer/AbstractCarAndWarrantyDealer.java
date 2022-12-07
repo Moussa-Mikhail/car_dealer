@@ -14,6 +14,10 @@ public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer imp
     protected static final int WARRANTY_PRICE = 2000;
     private static final Logger LOGGER = LogManager.getLogger();
 
+    protected AbstractCarAndWarrantyDealer() {
+        LOGGER.info("Abstract Car and Warranty dealer created.");
+    }
+
     public static String getWarrantyDescription() {
         return WARRANTY_DESCRIPTION;
     }

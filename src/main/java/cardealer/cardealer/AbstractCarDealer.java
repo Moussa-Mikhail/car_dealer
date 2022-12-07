@@ -28,6 +28,10 @@ public abstract class AbstractCarDealer implements ISellsCars {
     protected int numCarsSold = 0;
     protected int totalSales = 0;
 
+    protected AbstractCarDealer() {
+        LOGGER.info("Abstract Car dealer created.");
+    }
+
     protected void populateInventory(int initialNumCars, ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
         for (int i = 0; i < initialNumCars; i++) {
             CarInfo carInfo = CarInfo.generateRandomCarInfo(modelsDataProvider, minYear, yearRange);
