@@ -14,6 +14,7 @@ public final class StandardCarAndWarrantyDealer extends AbstractCarAndWarrantyDe
     private static final Logger LOGGER = LogManager.getLogger();
 
     public StandardCarAndWarrantyDealer() {
+        super();
         LOGGER.info("StandardCarAndWarrantyDealer created.");
         populateInventory(INITIAL_NUM_CARS, STANDARD_MODELS_DATA_PROVIDER, MIN_YEAR, YEAR_RANGE);
         setPrices(MIN_PRICE_IN_THOUSANDS, PRICE_RANGE_IN_THOUSANDS);
