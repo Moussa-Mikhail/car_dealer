@@ -19,6 +19,7 @@ public final class LuxuryCarAndWarrantyDealer extends AbstractCarAndWarrantyDeal
     private static final Logger LOGGER = LogManager.getLogger();
 
     public LuxuryCarAndWarrantyDealer() {
+        super();
         LOGGER.info("LuxuryCarAndWarrantyDealer created.");
         populateInventory(INITIAL_NUM_CARS, LUXURY_MODELS_DATA_PROVIDER, MIN_YEAR, YEAR_RANGE);
         setPrices(MIN_PRICE_IN_THOUSANDS, PRICE_RANGE_IN_THOUSANDS);
