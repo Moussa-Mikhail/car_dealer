@@ -24,11 +24,6 @@ public class TransactionLog {
         LOGGER.info("TransactionLog created.");
     }
 
-    @SuppressWarnings("unused")
-    public List<ITransaction> getTransactionsList() {
-        return new ArrayList<>(transactionsList);
-    }
-
     public void addTransaction(ITransaction transaction) {
         transactionsList.add(transaction);
         maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
