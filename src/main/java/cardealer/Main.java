@@ -103,10 +103,10 @@ public class Main {
      */
     private static CarInfo getCarSelection(ISellsCars carDealer) {
         Set<CarInfo> cars = carDealer.getAvailableCars();
-        getCarAttributeChoice("make", CarInfo::getMake, cars);
-        getCarAttributeChoice("model", CarInfo::getModel, cars);
-        getCarAttributeChoice("color", CarInfo::getColor, cars);
-        getCarAttributeChoice("year", CarInfo::getYear, cars);
+        filterCarsByAttribute("make", CarInfo::getMake, cars);
+        filterCarsByAttribute("model", CarInfo::getModel, cars);
+        filterCarsByAttribute("color", CarInfo::getColor, cars);
+        filterCarsByAttribute("year", CarInfo::getYear, cars);
 
         if (cars.isEmpty()) {
             throw new NoCarOptionsRemainingException("No car options remaining.");
@@ -121,7 +121,7 @@ public class Main {
      * @param getAttribute the getter for the attribute.
      * @param cars         the set of cars to filter.
      */
-    private static <T> void getCarAttributeChoice(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> cars) {
+    private static <T> void filterCarsByAttribute(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> cars) {
         String prompt = String.format("We have the following %ss available:", attribute);
         List<T> availableAttributes = cars.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
         T chosenAttribute;
