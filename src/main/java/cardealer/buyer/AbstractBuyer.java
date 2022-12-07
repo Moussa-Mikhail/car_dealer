@@ -27,14 +27,14 @@ abstract class AbstractBuyer implements IBuyer {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        AbstractBuyer that = (AbstractBuyer) o;
+        AbstractBuyer that = (AbstractBuyer) other;
         if (!name.equals(that.name)) {
             return false;
         }
