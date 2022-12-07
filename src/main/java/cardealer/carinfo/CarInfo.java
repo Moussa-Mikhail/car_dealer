@@ -53,14 +53,14 @@ public final class CarInfo {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        CarInfo carInfo = (CarInfo) o;
+        CarInfo carInfo = (CarInfo) other;
         if (year != carInfo.year) {
             return false;
         }

@@ -51,14 +51,14 @@ public class ModelsDataProvider {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        ModelsDataProvider modelsDataProvider = (ModelsDataProvider) o;
+        ModelsDataProvider modelsDataProvider = (ModelsDataProvider) other;
         return makeToModels.equals(modelsDataProvider.makeToModels);
     }
 
