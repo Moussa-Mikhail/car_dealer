@@ -2,6 +2,8 @@ package cardealer.utils;
 
 import cardealer.exceptions.EmptyInputException;
 import cardealer.exceptions.InvalidInputException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +13,7 @@ import java.util.Scanner;
  */
 public final class PromptUser {
     public static final Scanner CONSOLE = new Scanner(System.in);
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private PromptUser() {
         throw new UnsupportedOperationException("Utility class.");
@@ -90,6 +93,18 @@ public final class PromptUser {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new InvalidInputException("Input could not be parsed as an integer.", e);
+        }
+    }
+
+    public static String getName() {
+        System.out.println("What is your name?");
+        while (true) {
+            String name = CONSOLE.nextLine();
+            if (name != null && !name.isEmpty()) {
+                LOGGER.info("User entered name: {}", name);
+                return name;
+            }
+            System.out.println("Please enter a valid name.");
         }
     }
 }

@@ -31,7 +31,7 @@ public class Main {
         try {
             boolean keepGoing;
             do {
-                String name = getName();
+                String name = PromptUser.getName();
                 System.out.printf("Hello %s!%n%n", name);
                 String choice = PromptUser.getChoice("What kind of car are you looking for?", "Standard", "Luxury");
                 LOGGER.info("{} chose: {}", name, choice);
@@ -67,18 +67,6 @@ public class Main {
             System.out.printf("Luxury Car Dealer Total Sales: $%d%n", LUXURY_CAR_DEALER.getTotalSales());
         } catch (Exception e) {
             LOGGER.fatal("An uncaught exception occurred", e);
-        }
-    }
-
-    private static String getName() {
-        System.out.println("What is your name?");
-        while (true) {
-            String name = PromptUser.CONSOLE.nextLine();
-            if (name != null && !name.isEmpty()) {
-                LOGGER.info("User entered name: {}", name);
-                return name;
-            }
-            System.out.println("Please enter a valid name.");
         }
     }
 
