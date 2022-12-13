@@ -59,8 +59,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        Node<T> node = getNode(index);
-        return node.value;
+        return getNode(index).value;
     }
 
     /*default*/ Node<T> getNode(int index) {
@@ -143,7 +142,8 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
+    public boolean addAll(int start, Collection<? extends T> c) {
+        int index = start;
         for (T elem : c) {
             add(index, elem);
             index++;
