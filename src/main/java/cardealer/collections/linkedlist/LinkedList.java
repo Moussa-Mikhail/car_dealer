@@ -1,5 +1,8 @@
 package cardealer.collections.linkedlist;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.*;
 
 /**
@@ -7,15 +10,15 @@ import java.util.*;
  */
 @SuppressWarnings("PMD.GodClass")
 public class LinkedList<T> implements List<T> {
-    private Node<T> first = null;
-    private Node<T> last = null;
+    private @Nullable Node<T> first = null;
+    private @Nullable Node<T> last = null;
     private int size = 0;
 
     public LinkedList() {
         // empty constructor
     }
 
-    private LinkedList(Node<T> first, Node<T> last, int size) {
+    private LinkedList(@Nullable Node<T> first, @Nullable Node<T> last, int size) {
         this.first = first;
         this.last = last;
         this.size = size;
@@ -32,18 +35,18 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public @NotNull Iterator<T> iterator() {
         return new LinkedListIterator<>(this);
     }
 
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return this.toArray(new Object[0]);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T1> T1[] toArray(T1[] a) {
+    public <T1> T1 @NotNull [] toArray(T1 @NotNull [] a) {
 
         T1[] arr = a;
 
@@ -75,6 +78,7 @@ public class LinkedList<T> implements List<T> {
 
         Node<T> node = first;
         for (int i = 0; i < index; i++) {
+            assert node != null;
             node = node.next;
         }
         return node;
@@ -87,19 +91,20 @@ public class LinkedList<T> implements List<T> {
     }
 
     @SuppressWarnings("PMD.CompareObjectsWithEquals")
-        /*default*/ void unlink(Node<T> node) {
+        /*default*/ void unlink(@NotNull Node<T> node) {
         if (node == first) {
             first = null;
         } else if (node == last) {
             last = node.prev;
         } else {
+            assert node.next != null;
             node.next.prev = node.prev;
         }
         size--;
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull Collection<?> c) {
         for (Object elem : c) {
             if (!contains(elem)) {
                 return false;
@@ -120,7 +125,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
+    public boolean addAll(@NotNull Collection<? extends T> c) {
         for (T elem : c) {
             add(elem);
         }
@@ -139,6 +144,7 @@ public class LinkedList<T> implements List<T> {
             return true;
         }
 
+        assert last != null;
         last.next = node;
         node.prev = last;
         last = node;
@@ -147,7 +153,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean addAll(int start, Collection<? extends T> c) {
+    public boolean addAll(int start, @NotNull Collection<? extends T> c) {
         int index = start;
         for (T elem : c) {
             add(index, elem);
@@ -188,7 +194,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
         boolean changed = false;
         for (Object elem : c) {
             changed = changed || remove(elem);
@@ -224,7 +230,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         boolean changed = false;
         Node<T> current = first;
         while (current != null) {
@@ -256,6 +262,7 @@ public class LinkedList<T> implements List<T> {
         checkIndex(index);
         Node<T> prev = getNode(index - 1);
         Node<T> node = prev.next;
+        assert node != null;
         prev.next = node.next;
         size--;
         return node.value;
@@ -289,17 +296,17 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public ListIterator<T> listIterator() {
+    public @NotNull ListIterator<T> listIterator() {
         return new LinkedListIterator<>(this);
     }
 
     @Override
-    public ListIterator<T> listIterator(int index) {
+    public @NotNull ListIterator<T> listIterator(int index) {
         return new LinkedListIterator<>(this, index);
     }
 
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
+    public @NotNull List<T> subList(int fromIndex, int toIndex) {
         Node<T> subFirst = getNode(fromIndex);
         Node<T> subLast = getNode(toIndex);
         int subSize = toIndex - fromIndex;
@@ -307,7 +314,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (T elem : this) {

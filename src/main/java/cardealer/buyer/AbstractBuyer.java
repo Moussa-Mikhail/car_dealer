@@ -1,6 +1,7 @@
 package cardealer.buyer;
 
 import cardealer.carinfo.CarInfo;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ abstract class AbstractBuyer implements IBuyer {
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(@Nullable Object other) {
         if (this == other) {
             return true;
         }

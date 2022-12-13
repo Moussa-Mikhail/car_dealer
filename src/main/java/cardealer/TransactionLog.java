@@ -3,6 +3,7 @@ package cardealer;
 import cardealer.transaction.ITransaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class TransactionLog {
         LOGGER.info("TransactionLog created.");
     }
 
-    public void addTransaction(ITransaction transaction) {
+    public void addTransaction(@NotNull ITransaction transaction) {
         transactionsList.add(transaction);
         maxBuyerNameLength = Math.max(maxBuyerNameLength, transaction.getBuyerName().length());
         maxInfoLength = Math.max(maxInfoLength, transaction.getDescription().length());

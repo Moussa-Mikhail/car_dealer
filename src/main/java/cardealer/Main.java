@@ -12,6 +12,7 @@ import cardealer.exceptions.MultipleCarOptionsRemainingException;
 import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Main {
         }
     }
 
-    private static void offerWarranty(ISellsWarranty carDealer, IBuyer buyer) {
+    private static void offerWarranty(@NotNull ISellsWarranty carDealer, @NotNull IBuyer buyer) {
         CarInfo carInfo = buyer.getWantedCar();
         String name = buyer.getName();
         int warrantyPrice = carDealer.calcWarrantyPrice(carInfo);
@@ -89,7 +90,7 @@ public class Main {
      * @throws MultipleCarOptionsRemainingException if the selection process results in multiple options remaining.
      * @throws NoCarOptionsRemainingException       if the selection process results in no options remaining.
      */
-    private static CarInfo getCarSelection(ISellsCars carDealer) {
+    private static CarInfo getCarSelection(@NotNull ISellsCars carDealer) {
         Set<CarInfo> cars = carDealer.getAvailableCars();
         filterCarsByAttribute("make", CarInfo::getMake, cars);
         filterCarsByAttribute("model", CarInfo::getModel, cars);
@@ -109,7 +110,7 @@ public class Main {
      * @param getAttribute the getter for the attribute.
      * @param cars         the set of cars to filter.
      */
-    private static <T> void filterCarsByAttribute(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> cars) {
+    private static <T> void filterCarsByAttribute(String attribute, @NotNull Function<CarInfo, T> getAttribute, @NotNull Set<CarInfo> cars) {
         String prompt = String.format("We have the following %ss available:", attribute);
         List<T> availableAttributes = cars.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
 

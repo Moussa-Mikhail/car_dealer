@@ -1,5 +1,7 @@
 package cardealer.collections.insertionordermap;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -44,7 +46,7 @@ public class InsertionOrderMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void putAll(Map<? extends K, ? extends V> m) {
+    public void putAll(@NotNull Map<? extends K, ? extends V> m) {
         for (Entry<? extends K, ? extends V> entry : m.entrySet()) {
             put(entry.getKey(), entry.getValue());
         }
@@ -65,26 +67,26 @@ public class InsertionOrderMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public Set<K> keySet() {
+    public @NotNull Set<K> keySet() {
         return map.keySet();
     }
 
     @Override
-    public Collection<V> values() {
+    public @NotNull Collection<V> values() {
         return map.values();
     }
 
     @Override
-    public Set<Entry<K, V>> entrySet() {
+    public @NotNull Set<Entry<K, V>> entrySet() {
         return map.entrySet();
     }
 
-    public List<K> keyList() {
+    public @NotNull List<K> keyList() {
         return new ArrayList<>(list);
     }
 
     @Override
-    public void forEach(BiConsumer<? super K, ? super V> action) {
+    public void forEach(@NotNull BiConsumer<? super K, ? super V> action) {
         for (K key : list) {
             action.accept(key, map.get(key));
         }

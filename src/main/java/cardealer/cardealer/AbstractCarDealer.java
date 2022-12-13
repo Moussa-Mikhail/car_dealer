@@ -8,6 +8,7 @@ import cardealer.utils.GetRandom;
 import cardealer.utils.ModelsDataProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -32,7 +33,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
         LOGGER.info("Abstract Car dealer created.");
     }
 
-    protected void populateInventory(int initialNumCars, ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
+    protected void populateInventory(int initialNumCars, @NotNull ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
         for (int i = 0; i < initialNumCars; i++) {
             CarInfo carInfo = CarInfo.generateRandomCarInfo(modelsDataProvider, minYear, yearRange);
             addCar(carInfo);
@@ -55,7 +56,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
     }
 
     @Override
-    public Set<CarInfo> getAvailableCars() {
+    public @NotNull Set<CarInfo> getAvailableCars() {
         return new HashSet<>(carInfoToNumber.keySet());
     }
 
@@ -65,7 +66,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
     }
 
     @Override
-    public void sellCar(IBuyer buyer) {
+    public void sellCar(@NotNull IBuyer buyer) {
         CarInfo carInfo = buyer.getWantedCar();
         if (!hasCar(carInfo)) {
             return;

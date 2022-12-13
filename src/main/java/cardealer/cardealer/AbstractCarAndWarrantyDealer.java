@@ -5,6 +5,7 @@ import cardealer.carinfo.CarInfo;
 import cardealer.transaction.WarrantyTransaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Moussa
@@ -19,12 +20,12 @@ public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer imp
         LOGGER.info("Abstract Car and Warranty dealer created.");
     }
 
-    public static String getWarrantyDescription() {
+    public static @NotNull String getWarrantyDescription() {
         return WARRANTY_DESCRIPTION;
     }
 
     @Override
-    public void sellWarranty(IBuyer buyer, CarInfo carInfo) {
+    public void sellWarranty(@NotNull IBuyer buyer, CarInfo carInfo) {
         int price = calcWarrantyPrice(carInfo);
         totalSales += price;
         WarrantyTransaction transaction = new WarrantyTransaction(buyer.getName(), price);

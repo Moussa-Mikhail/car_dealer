@@ -3,6 +3,8 @@ package cardealer.carinfo;
 import cardealer.utils.Color;
 import cardealer.utils.GetRandom;
 import cardealer.utils.ModelsDataProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +25,7 @@ public final class CarInfo {
         this.color = color;
     }
 
-    public static CarInfo generateRandomCarInfo(ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
+    public static @NotNull CarInfo generateRandomCarInfo(@NotNull ModelsDataProvider modelsDataProvider, int minYear, int yearRange) {
         String make = GetRandom.getRandomElement(modelsDataProvider.getMakes());
         String model = GetRandom.getRandomElement(modelsDataProvider.getModels(make));
         int year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
@@ -53,7 +55,7 @@ public final class CarInfo {
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(@Nullable Object other) {
         if (this == other) {
             return true;
         }

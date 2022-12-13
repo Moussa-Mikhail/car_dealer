@@ -3,6 +3,7 @@ package cardealer.buyer;
 import cardealer.carinfo.CarInfo;
 import cardealer.utils.ModelsDataProvider;
 import cardealer.utils.NamesUtil;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Moussa
@@ -14,7 +15,7 @@ public final class RandomBuyerGenerator {
     }
 
     @SuppressWarnings("unused")
-    public static LuxuryBuyer generateLuxuryBuyer() {
+    public static @NotNull LuxuryBuyer generateLuxuryBuyer() {
         String name = NamesUtil.getRandomName();
         ModelsDataProvider modelsDataProvider = ModelsDataProvider.getLuxuryModelsDataProvider();
         CarInfo wantedCar = CarInfo.generateRandomCarInfo(modelsDataProvider, 2010, 10);
@@ -22,7 +23,7 @@ public final class RandomBuyerGenerator {
     }
 
     @SuppressWarnings("unused")
-    public static IBuyer generateStandardBuyer() {
+    public static @NotNull IBuyer generateStandardBuyer() {
         String name = NamesUtil.getRandomName();
         ModelsDataProvider modelsDataProvider = ModelsDataProvider.getStandardModelsDataProvider();
         CarInfo wantedCar = CarInfo.generateRandomCarInfo(modelsDataProvider, 2010, 10);

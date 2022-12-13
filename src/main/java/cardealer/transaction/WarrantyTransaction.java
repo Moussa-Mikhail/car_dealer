@@ -1,6 +1,7 @@
 package cardealer.transaction;
 
 import cardealer.cardealer.AbstractCarAndWarrantyDealer;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Moussa
@@ -11,7 +12,7 @@ public final class WarrantyTransaction extends StandardTransaction {
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return "WarrantyTransaction{} " + super.toString();
     }
 }

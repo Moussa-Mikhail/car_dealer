@@ -1,5 +1,7 @@
 package cardealer.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import static java.util.Locale.ENGLISH;
 
 /**
@@ -28,7 +30,7 @@ public enum Color {
     WHITE;
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return name().charAt(0) + name().substring(1).toLowerCase(ENGLISH);
     }
 }

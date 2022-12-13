@@ -1,5 +1,8 @@
 package cardealer.transaction;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Objects;
 
 /**
@@ -17,7 +20,7 @@ public class StandardTransaction implements ITransaction {
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return "StandardTransaction{" +
                 "buyerName='" + buyerName + '\'' +
                 ", info='" + description + '\'' +
@@ -26,7 +29,7 @@ public class StandardTransaction implements ITransaction {
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(@Nullable Object other) {
         if (this == other) {
             return true;
         }

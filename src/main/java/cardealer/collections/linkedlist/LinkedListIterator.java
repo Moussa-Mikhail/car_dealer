@@ -1,5 +1,8 @@
 package cardealer.collections.linkedlist;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
@@ -8,18 +11,18 @@ import java.util.NoSuchElementException;
  */
 public class LinkedListIterator<T> implements ListIterator<T> {
     private final LinkedList<T> list;
-    private Node<T> lastReturned = null;
+    private @Nullable Node<T> lastReturned = null;
     private int index;
     private Node<T> prev;
 
-    public LinkedListIterator(LinkedList<T> list) {
+    public LinkedListIterator(@NotNull LinkedList<T> list) {
         this.list = list;
         this.index = 0;
         this.prev = new Node<>(null);
         this.prev.next = list.getNode(0);
     }
 
-    public LinkedListIterator(LinkedList<T> list, int index) {
+    public LinkedListIterator(@NotNull LinkedList<T> list, int index) {
         this.list = list;
         this.index = index;
         this.prev = list.getNode(index - 1);
@@ -31,6 +34,7 @@ public class LinkedListIterator<T> implements ListIterator<T> {
             throw new NoSuchElementException();
         }
         lastReturned = prev.next;
+        assert lastReturned != null;
         T value = lastReturned.value;
         prev = prev.next;
         index++;

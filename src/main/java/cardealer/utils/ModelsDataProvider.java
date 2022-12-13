@@ -1,5 +1,8 @@
 package cardealer.utils;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -14,7 +17,7 @@ public class ModelsDataProvider {
         this.makeToModels = makeToModels;
     }
 
-    public static ModelsDataProvider getStandardModelsDataProvider() {
+    public static @NotNull ModelsDataProvider getStandardModelsDataProvider() {
         Map<String, Set<String>> makeToModels = Map.of(
                 "Toyota", Set.of("Camry", "Corolla", "RAV4"),
                 "Honda", Set.of("Accord", "Civic", "CR-V"),
@@ -25,7 +28,7 @@ public class ModelsDataProvider {
         return new ModelsDataProvider(makeToModels);
     }
 
-    public static ModelsDataProvider getLuxuryModelsDataProvider() {
+    public static @NotNull ModelsDataProvider getLuxuryModelsDataProvider() {
         Map<String, Set<String>> makeToModels = Map.of(
                 "Mercedes", Set.of("C-Class", "E-Class", "S-Class"),
                 "BMW", Set.of("3-Series", "5-Series", "7-Series"),
@@ -35,7 +38,7 @@ public class ModelsDataProvider {
         return new ModelsDataProvider(makeToModels);
     }
 
-    public Set<String> getMakes() {
+    public @NotNull Set<String> getMakes() {
         return makeToModels.keySet();
     }
 
@@ -44,14 +47,14 @@ public class ModelsDataProvider {
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return "Models{" +
                 "makeToModels=" + makeToModels +
                 '}';
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(@Nullable Object other) {
         if (this == other) {
             return true;
         }

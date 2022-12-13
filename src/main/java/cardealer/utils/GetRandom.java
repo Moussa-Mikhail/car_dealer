@@ -1,5 +1,7 @@
 package cardealer.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -14,12 +16,12 @@ public final class GetRandom {
         throw new UnsupportedOperationException("Utility class.");
     }
 
-    public static <E> E getRandomElement(List<E> list) {
+    public static <E> E getRandomElement(@NotNull List<E> list) {
         int randIdx = RANDOM_GEN.nextInt(list.size());
         return list.get(randIdx);
     }
 
-    public static <E> E getRandomElement(Collection<E> collection) {
+    public static <E> @NotNull E getRandomElement(@NotNull Collection<E> collection) {
         // Copied from https://stackoverflow.com/a/40087987/18650633
         return collection.stream()
                 .skip(RANDOM_GEN.nextInt(collection.size()))

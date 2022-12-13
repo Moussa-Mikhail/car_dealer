@@ -1,5 +1,7 @@
 package cardealer.collections.sortedarray;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 /**
@@ -15,7 +17,7 @@ public class SortedArray<T> implements Collection<T> {
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
+    public boolean addAll(@NotNull Collection<? extends T> c) {
         for (T t : c) {
             add(t);
         }
@@ -81,22 +83,22 @@ public class SortedArray<T> implements Collection<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public @NotNull Iterator<T> iterator() {
         return list.iterator();
     }
 
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return list.toArray();
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
+    public <T1> T1 @NotNull [] toArray(T1 @NotNull [] a) {
         return list.toArray(a);
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull Collection<?> c) {
         for (Object o : c) {
             if (!contains(o)) {
                 return false;
@@ -111,7 +113,7 @@ public class SortedArray<T> implements Collection<T> {
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
         boolean changed = false;
         for (Object o : c) {
             changed = changed || remove(o);
@@ -126,7 +128,7 @@ public class SortedArray<T> implements Collection<T> {
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         boolean changed = false;
         for (T elem : list) {
             if (!c.contains(elem)) {

@@ -1,5 +1,7 @@
 package cardealer.collections.chainlist;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 /**
@@ -10,7 +12,7 @@ public class ChainList<T> implements List<Iterable<T>> {
     private final List<Iterable<T>> list = new ArrayList<>();
 
     @Override
-    public boolean addAll(Collection<? extends Iterable<T>> c) {
+    public boolean addAll(@NotNull Collection<? extends Iterable<T>> c) {
         return list.addAll(c);
     }
 
@@ -30,17 +32,17 @@ public class ChainList<T> implements List<Iterable<T>> {
     }
 
     @Override
-    public Iterator<Iterable<T>> iterator() {
+    public @NotNull Iterator<Iterable<T>> iterator() {
         return list.iterator();
     }
 
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return list.toArray();
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
+    public <T1> T1 @NotNull [] toArray(T1 @NotNull [] a) {
         return list.toArray(a);
     }
 
@@ -55,22 +57,22 @@ public class ChainList<T> implements List<Iterable<T>> {
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull Collection<?> c) {
         return new HashSet<>(list).containsAll(c);
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends Iterable<T>> c) {
+    public boolean addAll(int index, @NotNull Collection<? extends Iterable<T>> c) {
         return list.addAll(index, c);
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
         return list.removeAll(c);
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         return list.retainAll(c);
     }
 
@@ -110,21 +112,21 @@ public class ChainList<T> implements List<Iterable<T>> {
     }
 
     @Override
-    public ListIterator<Iterable<T>> listIterator() {
+    public @NotNull ListIterator<Iterable<T>> listIterator() {
         return list.listIterator();
     }
 
     @Override
-    public ListIterator<Iterable<T>> listIterator(int index) {
+    public @NotNull ListIterator<Iterable<T>> listIterator(int index) {
         return list.listIterator(index);
     }
 
     @Override
-    public List<Iterable<T>> subList(int fromIndex, int toIndex) {
+    public @NotNull List<Iterable<T>> subList(int fromIndex, int toIndex) {
         return list.subList(fromIndex, toIndex);
     }
 
-    public ChainedIterator<T> chainedIterator() {
+    public @NotNull ChainedIterator<T> chainedIterator() {
         return new ChainedIterator<>(this.list);
     }
 }

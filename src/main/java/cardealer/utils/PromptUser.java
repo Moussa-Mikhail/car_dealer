@@ -4,6 +4,7 @@ import cardealer.exceptions.EmptyInputException;
 import cardealer.exceptions.InvalidInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +45,7 @@ public final class PromptUser {
      * @return The option selected by the user.
      * @throws IllegalArgumentException if the options array is empty.*
      */
-    public static <T> T getChoice(String prompt, List<T> options) {
+    public static <T> T getChoice(String prompt, @NotNull List<T> options) {
         if (options.isEmpty()) {
             throw new IllegalArgumentException("No options input or options array is empty.");
         }
@@ -96,7 +97,7 @@ public final class PromptUser {
         }
     }
 
-    public static String getName() {
+    public static @NotNull String getName() {
         System.out.println("What is your name?");
         while (true) {
             String name = CONSOLE.nextLine();
