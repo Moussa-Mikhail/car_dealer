@@ -10,11 +10,6 @@ public class SortedArray<T> implements Collection<T> {
     private final List<T> list = new ArrayList<>();
     private final Comparator<T> comparator;
 
-    public SortedArray(Collection<T> collection, Comparator<T> comparator) {
-        this(comparator);
-        addAll(collection);
-    }
-
     public SortedArray(Comparator<T> comparator) {
         this.comparator = comparator;
     }
