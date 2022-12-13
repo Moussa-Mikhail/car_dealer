@@ -11,6 +11,7 @@ public class LinkedList<T> implements List<T> {
     private int size = 0;
 
     public LinkedList() {
+        // empty constructor
     }
 
     private LinkedList(Node<T> first, Node<T> last, int size) {
