@@ -42,14 +42,15 @@ public class CollectionsDemo {
         }
     }
 
+    @SuppressWarnings("PMD.ForLoopCanBeForeach")
     public static void testChainList() {
         ChainList<Object> chainList = new ChainList<>();
         chainList.add(Arrays.asList("Hello", "how", "are", "You?"));
         chainList.add(Arrays.asList("I", "am", "fine", "thank", "you."));
         chainList.add(Arrays.asList(1, 2, 3));
         for (ChainedIterator<Object> it = chainList.chainedIterator(); it.hasNext(); ) {
-            Object s = it.next();
-            System.out.println(s);
+            Object item = it.next();
+            System.out.println(item);
         }
     }
 
