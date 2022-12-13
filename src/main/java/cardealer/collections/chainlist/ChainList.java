@@ -9,14 +9,6 @@ import java.util.*;
 public class ChainList<T> implements List<Iterable<T>> {
     private final List<Iterable<T>> list = new ArrayList<>();
 
-    public ChainList() {
-    }
-
-    @SafeVarargs
-    public ChainList(Iterable<T>... iterables) {
-        addAll(Arrays.asList(iterables));
-    }
-
     @Override
     public boolean addAll(Collection<? extends Iterable<T>> c) {
         return list.addAll(c);
