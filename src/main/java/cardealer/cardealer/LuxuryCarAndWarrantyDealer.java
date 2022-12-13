@@ -16,7 +16,7 @@ public final class LuxuryCarAndWarrantyDealer extends AbstractCarAndWarrantyDeal
     private static final int PRICE_RANGE_IN_THOUSANDS = 60;
     private static final int MIN_YEAR = 2010;
     private static final int YEAR_RANGE = 10;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(LuxuryCarAndWarrantyDealer.class);
 
     public LuxuryCarAndWarrantyDealer() {
         super();

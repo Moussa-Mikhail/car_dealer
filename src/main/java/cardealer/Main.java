@@ -11,6 +11,7 @@ import cardealer.carinfo.CarInfo;
 import cardealer.exceptions.MultipleCarOptionsRemainingException;
 import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 public class Main {
     private static final ISellsCars LUXURY_CAR_DEALER = new LuxuryCarAndWarrantyDealer();
     private static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
-    private static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String... args) {
         try {

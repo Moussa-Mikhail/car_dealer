@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class AbstractCarAndWarrantyDealer extends AbstractCarDealer implements ISellsWarranty {
     protected static final String WARRANTY_DESCRIPTION = "Extended Warranty";
     protected static final int WARRANTY_PRICE = 2000;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(AbstractCarAndWarrantyDealer.class);
 
     protected AbstractCarAndWarrantyDealer() {
         super();

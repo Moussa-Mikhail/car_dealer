@@ -22,7 +22,7 @@ public abstract class AbstractCarDealer implements ISellsCars {
     protected static final int INITIAL_NUM_CARS = 400;
     protected static final int MIN_PRICE_IN_THOUSANDS = 40;
     protected static final int PRICE_RANGE_IN_THOUSANDS = 30;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(AbstractCarDealer.class);
     protected final Map<CarInfo, Integer> carInfoToNumber = new HashMap<>();
     protected final Map<CarInfo, Integer> carInfoToPrice = new HashMap<>();
     protected final TransactionLog transactions = new TransactionLog();

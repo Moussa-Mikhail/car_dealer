@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public final class PromptUser {
     public static final Scanner CONSOLE = new Scanner(System.in);
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(PromptUser.class);
 
     private PromptUser() {
         throw new UnsupportedOperationException("Utility class.");

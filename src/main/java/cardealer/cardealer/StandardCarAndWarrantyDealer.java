@@ -11,7 +11,7 @@ public final class StandardCarAndWarrantyDealer extends AbstractCarAndWarrantyDe
     private static final int MIN_YEAR = 2010;
     private static final int YEAR_RANGE = 10;
     private static final ModelsDataProvider STANDARD_MODELS_DATA_PROVIDER = ModelsDataProvider.getStandardModelsDataProvider();
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(StandardCarAndWarrantyDealer.class);
 
     public StandardCarAndWarrantyDealer() {
         super();

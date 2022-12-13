@@ -19,7 +19,7 @@ import java.util.List;
 public final class NamesUtil {
     private static final List<String> NAMES = new ArrayList<>();
     private static final String FILENAME = "names.txt";
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(NamesUtil.class);
 
     static {
         URL url = NamesUtil.class.getResource(FILENAME);
