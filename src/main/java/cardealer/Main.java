@@ -112,8 +112,8 @@ public class Main {
     private static <T> void filterCarsByAttribute(String attribute, Function<CarInfo, T> getAttribute, Set<CarInfo> cars) {
         String prompt = String.format("We have the following %ss available:", attribute);
         List<T> availableAttributes = cars.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
-        T chosenAttribute;
 
+        T chosenAttribute;
         try {
             chosenAttribute = PromptUser.getChoice(prompt, availableAttributes);
         } catch (IllegalArgumentException e) {
