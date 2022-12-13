@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * @author Moussa
  */
+@SuppressWarnings("PMD.GodClass")
 public class LinkedList<T> implements List<T> {
     private Node<T> first = null;
     private Node<T> last = null;
@@ -43,18 +44,21 @@ public class LinkedList<T> implements List<T> {
     @SuppressWarnings("unchecked")
     @Override
     public <T1> T1[] toArray(T1[] a) {
+
+        T1[] arr = a;
+
         if (a.length < size) {
-            a = (T1[]) new Object[size];
+            arr = (T1[]) new Object[size];
         }
 
         for (int i = 0; i < size; i++) {
-            a[i] = (T1) get(i);
+            arr[i] = (T1) get(i);
         }
 
         if (a.length > size) {
-            a[size] = null;
+            arr[size] = null;
         }
-        return a;
+        return arr;
     }
 
     @Override
@@ -82,9 +86,10 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    /*default*/ void unlink(Node<T> node) {
+    @SuppressWarnings("PMD.CompareObjectsWithEquals")
+        /*default*/ void unlink(Node<T> node) {
         if (node == first) {
-            first = node.next;
+            first = null;
         } else if (node == last) {
             last = node.prev;
         } else {
