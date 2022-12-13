@@ -11,7 +11,7 @@
     <Loggers>
         <Root level="debug">
             <AppenderRef ref="Console">
-                <ThresholdFilter level="DEBUG" onMatch="DENY"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT"/>
             </AppenderRef>
             <AppenderRef ref="File">
             </AppenderRef>
