@@ -33,3 +33,4 @@ bin/
 ### Java ###
 /target/
 /logs/
+/dependency-reduced-pom.xml
