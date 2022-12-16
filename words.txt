@@ -1,17 +1,4 @@
-apple
-banana
-core
-Core
-delta
-delta
-delta
-delay
-Apple
-Java
-java
-python
-Python
-z
-zz
-Z
-Zz
+she sells sea-shells on the sea-shore.
+the shells she sells are sea-shells, i’m sure.
+for if she sells sea-shells on the sea-shore
+then i’m sure she sells sea-shore shells.
