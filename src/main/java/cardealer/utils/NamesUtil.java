@@ -1,14 +1,13 @@
 package cardealer.utils;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,21 +21,35 @@ public final class NamesUtil {
     private static final Logger LOGGER = LogManager.getLogger(NamesUtil.class);
 
     static {
-        URL url = NamesUtil.class.getResource(FILENAME);
-        assert url != null;
-        Path path = null;
-        try {
-            path = Paths.get(url.toURI());
-        } catch (URISyntaxException e) {
-            LOGGER.error("Error getting path to names file.", e);
+        ClassLoader classLoader = NamesUtil.class.getClassLoader();
+        InputStream fileStream = classLoader.getResourceAsStream(FILENAME);
+        if (fileStream == null) {
+            String message = "File not found: " + FILENAME;
+            LOGGER.fatal(message);
+            System.out.println(message);
+            System.exit(1);
         }
 
-        assert path != null;
-        try (var lines = Files.lines(path)) {
-            lines.forEach(NAMES::add);
+        List<String> names = null;
+        File file = null;
+        try {
+            file = File.createTempFile("temp", ".txt");
+            FileUtils.copyInputStreamToFile(fileStream, file);
         } catch (IOException e) {
-            LOGGER.error("Error reading names file.", e);
+            LOGGER.fatal(e.getMessage());
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
+
+        try {
+            names = FileUtils.readLines(file, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            LOGGER.fatal(e.getMessage());
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+
+        NAMES.addAll(names);
     }
 
     private NamesUtil() {
