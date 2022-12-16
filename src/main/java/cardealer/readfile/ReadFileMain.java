@@ -56,7 +56,7 @@ public class ReadFileMain {
 
         file = new File(FILENAME);
         try {
-            FileUtils.writeLines(file, lines);
+            FileUtils.writeLines(file, "UTF-8", lines);
         } catch (IOException e) {
             LOGGER.fatal(e.getMessage());
             System.out.println(e.getMessage());
