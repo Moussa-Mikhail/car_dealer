@@ -33,6 +33,7 @@ public class ReadFileMain {
             System.exit(1);
         }
 
+        // Remove result message if it exists.
         String lastLine = lines.get(lines.size() - 1);
         if (lastLine.startsWith(RESULT_PREFIX)) {
             lines.remove(lines.size() - 1);
