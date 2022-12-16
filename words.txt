@@ -15,4 +15,3 @@ z
 zz
 Z
 Zz
-Number of unique words: 11.
