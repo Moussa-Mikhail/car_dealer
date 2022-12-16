@@ -1,0 +1,18 @@
+apple
+banana
+core
+Core
+delta
+delta
+delta
+delay
+Apple
+Java
+java
+python
+Python
+z
+zz
+Z
+Zz
+Number of unique words: 11.
