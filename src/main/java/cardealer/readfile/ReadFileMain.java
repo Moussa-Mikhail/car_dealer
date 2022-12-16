@@ -15,6 +15,7 @@ import java.util.Set;
  * @author Moussa
  */
 public class ReadFileMain {
+    public static final String RESULT_FORMAT = "Number of unique words:";
     private static final String FILENAME = "words.txt";
     private static final Logger LOGGER = LogManager.getLogger(ReadFileMain.class);
 
@@ -31,14 +32,14 @@ public class ReadFileMain {
         }
 
         String lastLine = words.get(words.size() - 1);
-        if (lastLine.startsWith("Number of unique words:")) {
+        if (lastLine.startsWith(RESULT_FORMAT)) {
             words.remove(words.size() - 1);
         }
 
         Set<String> uniqueWords = new HashSet<>(words);
-        String message = String.format("Number of unique words: %d.", uniqueWords.size());
+        String result = String.format("Number of unique words: %d.", uniqueWords.size());
 
-        words.add(message);
+        words.add(result);
 
         file = new File(FILENAME);
         try {
