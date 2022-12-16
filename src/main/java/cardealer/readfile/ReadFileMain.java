@@ -43,7 +43,9 @@ public class ReadFileMain {
         for (String line : lines) {
             String[] split = StringUtils.split(line);
             // Remove punctuation.
-            Arrays.stream(split).map(s -> StringUtils.replaceChars(s, ",.", "")).forEach(words::add);
+            Arrays.stream(split)
+                    .map(s -> StringUtils.replaceChars(s, ",.", ""))
+                    .forEach(words::add);
         }
 
         System.out.println("Number of words: " + words.size());
