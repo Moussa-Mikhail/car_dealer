@@ -6,7 +6,6 @@ import cardealer.utils.ModelsDataProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,7 +28,7 @@ public final class CarInfo {
         String make = GetRandom.getRandomElement(modelsDataProvider.getMakes());
         String model = GetRandom.getRandomElement(modelsDataProvider.getModels(make));
         int year = GetRandom.RANDOM_GEN.nextInt(yearRange) + minYear;
-        String color = GetRandom.getRandomElement(List.of(Color.values())).toString();
+        String color = GetRandom.getRandomElement(Color.values()).toString();
         return new CarInfo(make, model, year, color);
     }
 

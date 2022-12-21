@@ -16,6 +16,10 @@ public final class GetRandom {
         throw new UnsupportedOperationException("Utility class.");
     }
 
+    public static <E> E getRandomElement(E[] array) {
+        return getRandomElement(List.of(array));
+    }
+
     public static <E> E getRandomElement(@NotNull List<E> list) {
         int randIdx = RANDOM_GEN.nextInt(list.size());
         return list.get(randIdx);
