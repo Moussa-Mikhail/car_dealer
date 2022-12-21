@@ -1,6 +1,6 @@
 package cardealer.carinfo;
 
-import cardealer.utils.Color;
+import cardealer.enums.Color;
 import cardealer.utils.GetRandom;
 import cardealer.utils.ModelsDataProvider;
 import org.jetbrains.annotations.NotNull;

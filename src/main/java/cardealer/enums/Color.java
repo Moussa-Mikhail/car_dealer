@@ -1,8 +1,6 @@
-package cardealer.utils;
+package cardealer.enums;
 
 import org.jetbrains.annotations.NotNull;
-
-import static java.util.Locale.ENGLISH;
 
 /**
  * @author Moussa
@@ -11,26 +9,31 @@ public enum Color {
     /**
      * Black
      */
-    BLACK,
+    BLACK("Black"),
     /**
      * Blue
      */
-    BLUE,
+    BLUE("Blue"),
     /**
      * Red
      */
-    RED,
+    RED("Red"),
     /**
      * Silver
      */
-    SILVER,
+    SILVER("Silver"),
     /**
      * White
      */
-    WHITE;
+    WHITE("White");
+    private String colorName;
+
+    Color(String colorName) {
+        this.colorName = colorName;
+    }
 
     @Override
     public @NotNull String toString() {
-        return name().charAt(0) + name().substring(1).toLowerCase(ENGLISH);
+        return colorName;
     }
 }
