@@ -64,7 +64,7 @@ public class Main {
                 LOGGER.info("{} Car Dealer Transactions:", type);
                 ISellsCars carDealer = carDealerType.getCarDealer();
                 carDealer.printTransactions();
-                LOGGER.info("{} Car Dealer Total Sales: ${}%n%n", type, carDealer.getTotalSales());
+                LOGGER.info("{} Car Dealer Total Sales: ${}", type, carDealer.getTotalSales());
             }
         } catch (Exception e) {
             LOGGER.fatal("An uncaught exception occurred", e);
