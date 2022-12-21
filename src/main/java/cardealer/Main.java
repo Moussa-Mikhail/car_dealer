@@ -5,9 +5,8 @@ import cardealer.buyer.LuxuryBuyer;
 import cardealer.buyer.StandardBuyer;
 import cardealer.cardealer.ISellsCars;
 import cardealer.cardealer.ISellsWarranty;
-import cardealer.cardealer.LuxuryCarAndWarrantyDealer;
-import cardealer.cardealer.StandardCarAndWarrantyDealer;
 import cardealer.carinfo.CarInfo;
+import cardealer.enums.CarDealerType;
 import cardealer.exceptions.MultipleCarOptionsRemainingException;
 import cardealer.exceptions.NoCarOptionsRemainingException;
 import cardealer.utils.PromptUser;
@@ -25,9 +24,8 @@ import java.util.stream.Collectors;
  * @author Moussa
  */
 public class Main {
-    private static final ISellsCars LUXURY_CAR_DEALER = new LuxuryCarAndWarrantyDealer();
-    private static final ISellsCars STANDARD_CAR_DEALER = new StandardCarAndWarrantyDealer();
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
+    private static final CarDealerType[] CARD_DEALER_TYPES = CarDealerType.values();
 
     public static void main(String... args) {
         try {
@@ -35,10 +33,10 @@ public class Main {
             do {
                 String name = PromptUser.getName();
                 System.out.printf("Hello %s!%n%n", name);
-                String choice = PromptUser.getChoice("What kind of car are you looking for?", "Standard", "Luxury");
-                LOGGER.info("{} chose: {}", name, choice);
-                boolean isLuxury = "Luxury".equals(choice);
-                final ISellsCars carDealer = isLuxury ? LUXURY_CAR_DEALER : STANDARD_CAR_DEALER;
+                CarDealerType chosenDealerType = PromptUser.getChoice("What kind of car are you looking for?", CARD_DEALER_TYPES);
+                LOGGER.info("{} chose: {}", name, chosenDealerType.getType());
+                boolean isLuxury = "Luxury".equals(chosenDealerType.getType());
+                final ISellsCars carDealer = chosenDealerType.getCarDealer();
                 CarInfo carInfo = getCarSelection(carDealer);
                 System.out.printf("You have selected a %s.%n", carInfo);
                 LOGGER.info("{} selected a {}", name, carInfo);
@@ -61,12 +59,13 @@ public class Main {
                 LOGGER.info("User chose to keep going: {}", keepGoing);
             } while (keepGoing);
 
-            System.out.println("Standard Car Dealer Transactions:");
-            STANDARD_CAR_DEALER.printTransactions();
-            System.out.printf("Standard Car Dealer Total Sales: $%d%n%n", STANDARD_CAR_DEALER.getTotalSales());
-            System.out.println("Luxury Car Dealer Transactions:");
-            LUXURY_CAR_DEALER.printTransactions();
-            System.out.printf("Luxury Car Dealer Total Sales: $%d%n", LUXURY_CAR_DEALER.getTotalSales());
+            for (CarDealerType carDealerType : CARD_DEALER_TYPES) {
+                String type = carDealerType.getType();
+                LOGGER.info("{} Car Dealer Transactions:", type);
+                ISellsCars carDealer = carDealerType.getCarDealer();
+                carDealer.printTransactions();
+                LOGGER.info("{} Car Dealer Total Sales: ${}%n%n", type, carDealer.getTotalSales());
+            }
         } catch (Exception e) {
             LOGGER.fatal("An uncaught exception occurred", e);
         }
