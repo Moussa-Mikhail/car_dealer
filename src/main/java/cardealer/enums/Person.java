@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author Moussa
  */
+@SuppressWarnings("NonFinalFieldInEnum")
 public enum Person {
     ALICE("Alice", "Smith"),
     BOB("Bob", "Baker"),

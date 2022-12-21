@@ -7,6 +7,7 @@ import cardealer.cardealer.StandardCarAndWarrantyDealer;
 /**
  * @author Moussa
  */
+@SuppressWarnings("NonFinalFieldInEnum")
 public enum CarDealerType {
     STANDARD(new StandardCarAndWarrantyDealer(), "Standard"),
     LUXURY(new LuxuryCarAndWarrantyDealer(), "Luxury");

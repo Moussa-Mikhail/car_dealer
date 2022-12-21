@@ -3,6 +3,7 @@ package cardealer.enums;
 /**
  * @author Moussa
  */
+@SuppressWarnings("NonFinalFieldInEnum")
 public enum Make {
     AUDI("Audi"),
     BMW("BMW"),

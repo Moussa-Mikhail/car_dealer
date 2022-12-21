@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author Moussa
  */
+@SuppressWarnings("NonFinalFieldInEnum")
 public enum Color {
     /**
      * Black

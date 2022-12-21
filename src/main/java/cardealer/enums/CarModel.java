@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author Moussa
  */
+@SuppressWarnings("NonFinalFieldInEnum")
 public enum CarModel {
     AUDI(Make.AUDI, "A4", 2015, 20000),
     BMW(Make.BMW, "X5", 2016, 25000),
