@@ -113,7 +113,8 @@ public class Main {
      */
     private static <T> void filterCarsByAttribute(String attribute, @NotNull Function<CarInfo, T> getAttribute, @NotNull Set<CarInfo> cars) {
         String prompt = String.format("We have the following %ss available:", attribute);
-        List<T> availableAttributes = cars.stream().map(getAttribute).distinct().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
+        List<T> availableAttributes = cars.stream().map(getAttribute).distinct()
+                .sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
 
         T chosenAttribute;
         try {
