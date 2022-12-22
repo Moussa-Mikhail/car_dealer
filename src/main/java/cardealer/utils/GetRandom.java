@@ -16,7 +16,8 @@ public final class GetRandom {
         throw new UnsupportedOperationException("Utility class.");
     }
 
-    public static <E> E getRandomElement(E[] array) {
+    @SafeVarargs
+    public static <E> E getRandomElement(E... array) {
         return getRandomElement(List.of(array));
     }
 
