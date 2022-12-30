@@ -24,6 +24,7 @@ public class MessageRunnable implements Runnable {
 
     @Override
     public void run() {
+        String threadName = Thread.currentThread().getName();
         while (messageNumber < numMessagesToSend) {
             try {
                 // Simulate a long-running operation.
@@ -33,13 +34,12 @@ public class MessageRunnable implements Runnable {
                 Thread.currentThread().interrupt();
             }
 
-            String threadName = Thread.currentThread().getName();
             String message = String.format(MESSAGE_FORMAT, threadName, messageNumber + 1);
             list.add(message);
             messageNumber++;
             LOGGER.info(message);
         }
-        LOGGER.info("MessageRunnable finished.");
+        LOGGER.info("MessageRunnable in {} finished.", threadName);
         connection.close();
     }
 }
