@@ -34,3 +34,5 @@ bin/
 /target/
 /logs/
 /dependency-reduced-pom.xml
+/src/main/java/cardealer/library/n.mwb.bak
+/src/main/java/cardealer/library/library.mwb.bak
