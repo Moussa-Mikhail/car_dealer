@@ -1,4 +1,4 @@
-package cardealer.library;
+package cardealer.library.sql;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
