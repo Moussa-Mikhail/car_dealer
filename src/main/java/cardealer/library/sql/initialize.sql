@@ -44,7 +44,7 @@ VALUES ("checked out"),
        ("damaged"),
        ("destroyed");
 
-INSERT INTO checkout(member_id, book_id, employee_id, checkout_date, return_by_date)
+INSERT INTO checkout(member_id, book_id, employee_id, date, return_by_date)
 VALUES (2, 1, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
        (3, 4, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
        (3, 5, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY));
