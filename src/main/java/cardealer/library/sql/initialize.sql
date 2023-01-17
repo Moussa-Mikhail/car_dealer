@@ -20,7 +20,7 @@ VALUES ("Artemis Fowl", 1, 1, "978-1368036986", 5),
        ("Fake Book 1", 4, 5, "0", 10),
        ("Fake Book 2", 4, 5, "1", 10);
 
-INSERT INTO member(first_name, last_name, date_joined)
+INSERT INTO member(first_name, last_name, joined_date)
 VALUES ("Moussa", "Mikhail", CURDATE()),
        ("John", "Doe", CURDATE()),
        ("Alice", "Smith", CURDATE()),
@@ -32,11 +32,11 @@ VALUES ("Late"),
        ("Damaged"),
        ("Destroyed");
 
-INSERT INTO employee(first_name, last_name, salary, date_hired)
+INSERT INTO employee(first_name, last_name, salary, hired_date)
 VALUES ("Moussa", "Mikhail", 50000, CURDATE()),
        ("Fake", "Employee", 100000, CURDATE());
 
-INSERT INTO status(description)
+INSERT INTO return_status(description)
 VALUES ("checked out"),
        ("returned"),
        ("late"),
@@ -44,7 +44,7 @@ VALUES ("checked out"),
        ("damaged"),
        ("destroyed");
 
-INSERT INTO checkout(member_id, book_id, employee_id, date, return_by_date)
+INSERT INTO checkout(member_id, book_id, employee_id, checkout_date, due_date)
 VALUES (2, 1, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
        (3, 4, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
        (3, 5, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY));

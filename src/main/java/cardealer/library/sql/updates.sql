@@ -14,11 +14,11 @@ UPDATE book
 
 -- returns
 UPDATE checkout
-	SET status_id = 2
+	SET return_status_id = 2
 	WHERE checkout_id = 2;
 
 UPDATE checkout
-	SET status_id = 2
+	SET return_status_id = 2
 	WHERE checkout_id = 3;
 
 UPDATE book 
@@ -31,7 +31,7 @@ UPDATE book
 
 -- Late return
 UPDATE checkout
-	SET status_id = 3
+	SET return_status_id = 3
     WHERE checkout_id = 1;
 
 UPDATE book

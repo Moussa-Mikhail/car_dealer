@@ -22,7 +22,7 @@ LEFT JOIN checkout
 ON member.member_id = checkout.member_id
 LEFT JOIN book
 ON book.book_id = checkout.book_id
-WHERE checkout.status_id = 3;
+WHERE checkout.return_status_id = 3;
 
 -- All fees
 SELECT first_name, last_name, amount
