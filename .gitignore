@@ -37,3 +37,4 @@ bin/
 n.mwb.bak
 library.mwb.bak
 db.properties
+/library_out.xml
