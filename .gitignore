@@ -36,3 +36,4 @@ bin/
 /dependency-reduced-pom.xml
 n.mwb.bak
 library.mwb.bak
+db.properties
