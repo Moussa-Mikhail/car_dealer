@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Moussa
@@ -42,21 +41,17 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO {
     }
 
     @Override
-    public Optional<Book> getBookByISBN(String isbn) {
+    public Book getBookByISBN(String isbn) throws SQLException {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM book WHERE isbn = (?)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, isbn);
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) {
-                    return Optional.empty();
+                    throw new SQLException("No book found with isbn " + isbn);
                 }
-                Book book = createEntityFromRow(rs);
-                return Optional.of(book);
+                return createEntityFromRow(rs);
             }
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            return Optional.empty();
         } finally {
             try {
                 connectionPool.releaseConnection(connection);
