@@ -15,22 +15,30 @@ public class JaxbMain {
     public static void main(String[] args) {
         try {
             JAXBContext context = JAXBContext.newInstance(Library.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            Library library = new Library();
-            Book book = new Book();
-            book.setId(1);
-            book.setTitle("The Hobbit");
-            book.setAuthorId(1);
-            book.setGenreId(1);
-            book.setIsbn("123456789");
-            book.setQuantity(1);
-            library.getBooks().add(book);
-            marshaller.marshal(library, new File("library_out.xml"));
 
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            library = (Library) unmarshaller.unmarshal(JaxbMain.class.getResource("/library.xml"));
-            System.out.println(library.getBooks());
+            Library library = (Library) unmarshaller.unmarshal(JaxbMain.class.getResource("/library.xml"));
+            for (Book book : library.getBooks()) {
+                System.out.println(book);
+            }
+            System.out.println();
+
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            Book newBook = new Book();
+            newBook.setId(3);
+            newBook.setTitle("The Hobbit");
+            newBook.setAuthorId(2);
+            newBook.setGenreId(2);
+            newBook.setIsbn("123-45678-90112");
+            newBook.setQuantity(4);
+            library.getBooks().add(newBook);
+
+            for (Book book : library.getBooks()) {
+                System.out.println(book);
+            }
+            marshaller.marshal(library, new File("library_out.xml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
