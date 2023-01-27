@@ -1,0 +1,88 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Artemis Fowl",
+      "authorId": 1,
+      "genreId": 1,
+      "isbn": "978-1368036986",
+      "quantity": 4
+    },
+    {
+      "id": 2,
+      "title": "Artemis Fowl: The Arctic Incident",
+      "authorId": 1,
+      "genreId": 1,
+      "isbn": "978-0-43945070-6",
+      "quantity": 3
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "firstName": "Moussa",
+      "lastName": "Mikhail",
+      "joinedDate": "2023-01-20"
+    },
+    {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "joinedDate": "2023-01-20"
+    },
+    {
+      "id": 3,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "joinedDate": "2023-01-20"
+    },
+    {
+      "id": 4,
+      "firstName": "Fake",
+      "lastName": "Person",
+      "joinedDate": "2023-01-20"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "salary": 40000,
+      "hiredDate": "2023-01-20"
+    },
+    {
+      "id": 2,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "salary": 40000,
+      "hiredDate": "2023-01-20"
+    }
+  ],
+  "returnStatuses": [
+    {
+      "id": 1,
+      "description": "checked out"
+    },
+    {
+      "id": 2,
+      "description": "returned"
+    },
+    {
+      "id": 3,
+      "description": "late"
+    }
+  ],
+  "checkouts": [
+    {
+      "id": 1,
+      "memberId": 1,
+      "bookId": 1,
+      "employeeId": 1,
+      "returnStatusId": 1,
+      "checkoutDate": "2023-01-20",
+      "dueDate": "2023-01-20",
+      "returnedDate": "2023-01-26"
+    }
+  ]
+}
