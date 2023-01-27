@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="library.xsd" xmlns="library.xsd"
+           elementFormDefault="qualified">
+    <xs:element name="library">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="books"/>
+                <xs:element ref="members"/>
+                <xs:element ref="employees"/>
+                <xs:element ref="returnStatuses"/>
+                <xs:element ref="checkouts"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="books">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="book" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="members">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="member" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="employees">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="employee" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="returnStatuses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="returnStatus" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="checkouts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="checkout" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="book">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:integer"/>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="authorId" type="xs:integer"/>
+                <xs:element name="genreId" type="xs:integer"/>
+                <xs:element name="isbn" type="xs:string"/>
+                <xs:element name="quantity" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="member">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:integer"/>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+                <xs:element name="joinedDate" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="employee">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:integer"/>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+                <xs:element name="salary" type="xs:integer"/>
+                <xs:element name="hiredDate" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="returnStatus">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:integer"/>
+                <xs:element name="description" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="checkout">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:integer"/>
+                <xs:element name="memberId" type="xs:integer"/>
+                <xs:element name="bookId" type="xs:integer"/>
+                <xs:element name="employeeId" type="xs:integer"/>
+                <xs:element name="returnStatusId" type="xs:integer"/>
+                <xs:element name="checkoutDate" type="xs:date"/>
+                <xs:element name="dueDate" type="xs:date"/>
+                <xs:element name="returnedDate" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
