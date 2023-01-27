@@ -1,9 +1,12 @@
 package library.models;
 
+import library.DateAdapter;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 
 /**
@@ -77,6 +80,7 @@ public class Checkout implements IdGettable {
         this.returnStatusId = returnStatusId;
     }
 
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public Date getCheckoutDate() {
         return checkoutDate;
     }
@@ -85,6 +89,7 @@ public class Checkout implements IdGettable {
         this.checkoutDate = checkoutDate;
     }
 
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public Date getDueDate() {
         return dueDate;
     }
@@ -93,6 +98,7 @@ public class Checkout implements IdGettable {
         this.dueDate = dueDate;
     }
 
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public Date getReturnedDate() {
         return returnedDate;
     }

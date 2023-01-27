@@ -1,9 +1,12 @@
 package library.models;
 
+import library.DateAdapter;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 
 /**
@@ -63,6 +66,7 @@ public class Employee implements IdGettable {
         this.salary = salary;
     }
 
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public Date getHiredDate() {
         return hiredDate;
     }
