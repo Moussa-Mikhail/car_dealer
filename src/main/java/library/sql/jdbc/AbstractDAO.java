@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Moussa
@@ -23,7 +22,7 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
     private static final ConnectionPool CONNECTION_POOL = ConnectionPool.getInstance();
 
     @Override
-    public Optional<T> getEntityById(long id) {
+    public T getEntityById(long id) throws SQLException {
         return getEntityById(id, getTableName());
     }
 
@@ -32,7 +31,7 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
      */
     protected abstract String getTableName();
 
-    protected Optional<T> getEntityById(long id, String tableName) {
+    protected T getEntityById(long id, String tableName) throws SQLException {
         Connection connection = CONNECTION_POOL.getConnection();
         String query = entityByIdQuery(tableName);
 
@@ -40,14 +39,10 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) {
-                    return Optional.empty();
+                    throw new SQLException("No entity found with id " + id);
                 }
-                T entity = createEntityFromRow(rs);
-                return Optional.of(entity);
+                return createEntityFromRow(rs);
             }
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            return Optional.empty();
         } finally {
             try {
                 CONNECTION_POOL.releaseConnection(connection);
@@ -72,11 +67,11 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
     protected abstract T createEntityFromRow(ResultSet rs) throws SQLException;
 
     @Override
-    public boolean updateEntity(T entity) {
+    public void updateEntity(T entity) throws SQLException {
         String tableName = getTableName();
         List<String> columnNames = getColumnNames();
         String query = updateQuery(tableName, columnNames);
-        return executeUpdate(query, entity, this::setUpdatePreparedStatement);
+        executeUpdate(query, entity, this::setUpdatePreparedStatement);
     }
 
     /**
@@ -88,17 +83,12 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
      * @param query                The query to execute. Can be an INSERT, UPDATE or DELETE query.
      * @param entity               The entity to use to set the PreparedStatement.
      * @param setPreparedStatement The method to set the PreparedStatement. Accepts a PreparedStatement and an entity.
-     * @return True if the entity was inserted/updated/deleted successfully, false otherwise.
      */
-    private boolean executeUpdate(String query, T entity, SetPreparedStatement<T> setPreparedStatement) {
+    private void executeUpdate(String query, T entity, SetPreparedStatement<T> setPreparedStatement) throws SQLException {
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             setPreparedStatement.setValues(ps, entity);
             ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            return false;
         } finally {
             try {
                 CONNECTION_POOL.releaseConnection(connection);
@@ -133,11 +123,11 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
     protected abstract void setCreatePreparedStatement(PreparedStatement ps, T entity) throws SQLException;
 
     @Override
-    public boolean createEntity(T entity) {
+    public void createEntity(T entity) throws SQLException {
         String tableName = getTableName();
         List<String> columnNames = getColumnNames();
         String query = createQuery(tableName, columnNames);
-        return executeUpdate(query, entity, this::setUpdatePreparedStatement);
+        executeUpdate(query, entity, this::setUpdatePreparedStatement);
     }
 
     protected String createQuery(String tableName, List<String> columnNames) {
@@ -160,17 +150,13 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
     }
 
     @Override
-    public boolean deleteEntity(long id) {
+    public void deleteEntity(long id) throws SQLException {
         String tableName = getTableName();
         Connection connection = CONNECTION_POOL.getConnection();
         String query = deleteQuery(tableName);
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setLong(1, id);
             ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            return false;
         } finally {
             try {
                 CONNECTION_POOL.releaseConnection(connection);
