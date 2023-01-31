@@ -24,7 +24,12 @@ public class Main {
                 System.out.println(book);
             }
 
-            Book firstBook = bookDAO.getEntityById(1).orElseThrow();
+            Book firstBook = bookDAO.getEntityById(1);
+
+            if (firstBook == null) {
+                LOGGER.error("Book not found");
+                return;
+            }
 
             System.out.println(firstBook);
 

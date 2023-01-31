@@ -2,7 +2,6 @@ package library.sql;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Moussa
@@ -10,27 +9,24 @@ import java.util.Optional;
 public interface IBaseDAO<T> {
     /**
      * @param id the id of the object to be retrieved
-     * @return Optional containing the object if found, empty Optional otherwise
+     * @return The object if found, throws otherwise
      */
-    Optional<T> getEntityById(long id);
+    T getEntityById(long id) throws SQLException;
 
     /**
      * @param entity Entity to be updated
-     * @return whether the update was successful or not
      */
-    boolean updateEntity(T entity);
+    void updateEntity(T entity) throws SQLException;
 
     /**
      * @param entity Entity to be created
-     * @return whether the creation was successful or not
      */
-    boolean createEntity(T entity);
+    void createEntity(T entity) throws SQLException;
 
     /**
      * @param id the id of the object to be deleted
-     * @return whether the deletion was successful or not
      */
-    boolean deleteEntity(long id);
+    void deleteEntity(long id) throws SQLException;
 
     /**
      * @return List of all entities
