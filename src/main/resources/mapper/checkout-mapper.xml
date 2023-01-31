@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.sql.ICheckoutDAO">
+    <resultMap id="Checkout" type="library.models.Checkout" autoMapping="false">
+        <result property="id" column="checkout_id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="returnStatusId" column="return_status_id"/>
+        <result property="checkoutDate" column="checkout_date"/>
+        <result property="dueDate" column="due_date"/>
+        <result property="returnedDate" column="returned_date"/>
+    </resultMap>
+    <select id="getEntityById" resultMap="Checkout">
+        SELECT *
+        FROM checkout
+        WHERE checkout_id = #{id};
+    </select>
+    <update id="updateEntity" parameterType="Checkout">
+        UPDATE checkout
+        SET member_id        = #{memberId},
+            book_id          = #{bookId},
+            employee_id      = #{employeeId},
+            return_status_id = #{returnStatusId},
+            checkout_date    = #{checkoutDate},
+            due_date         = #{dueDate},
+            returned_date    = #{returnedDate}
+        WHERE checkout_id = #{id};
+    </update>
+    <insert id="createEntity" parameterType="Checkout">
+        INSERT INTO checkout (member_id, book_id, employee_id, return_status_id, checkout_date, due_date, returned_date)
+        VALUES (#{memberId}, #{bookId}, #{employeeId}, #{returnStatusId}, #{checkoutDate}, #{dueDate}, #{returnedDate});
+    </insert>
+    <delete id="deleteEntity" parameterType="long">
+        DELETE
+        from checkout
+        WHERE checkout_id = #{id};
+    </delete>
+    <select id="getAllEntities" resultMap="Checkout">
+        SELECT *
+        FROM checkout;
+    </select>
+</mapper>
