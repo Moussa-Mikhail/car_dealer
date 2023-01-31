@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.sql.IMemberDAO">
+    <resultMap type="Member" id="MemberResultMap" autoMapping="false">
+        <result property="id" column="member_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="joinedDate" column="joined_date"/>
+    </resultMap>
+    <select id="getEntityById" resultMap="MemberResultMap">
+        SELECT *
+        FROM member
+        WHERE member_id = #{id};
+    </select>
+    <update id="updateEntity" parameterType="Member">
+        UPDATE member
+        SET first_name  = #{firstName},
+            last_name   = #{lastName},
+            joined_date = #{joinedDate}
+        WHERE member_id = #{id};
+    </update>
+    <insert id="createEntity" parameterType="Member">
+        INSERT INTO member (first_name, last_name, joined_date)
+        VALUES (#{firstName}, #{lastName}, #{joinedDate});
+    </insert>
+    <delete id="deleteEntity" parameterType="long">
+        DELETE
+        from member
+        WHERE member_id = #{id};
+    </delete>
+    <select id="getAllEntities" resultMap="MemberResultMap">
+        SELECT *
+        FROM member;
+    </select>
+</mapper>

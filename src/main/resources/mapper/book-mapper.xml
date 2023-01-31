@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.sql.IBookDAO">
+    <resultMap type="Book" id="BookResultMap" autoMapping="false">
+        <result property="id" column="book_id"/>
+        <result property="title" column="title"/>
+        <result property="authorId" column="author_id"/>
+        <result property="genreId" column="genre_id"/>
+        <result property="isbn" column="isbn"/>
+        <result property="quantity" column="quantity"/>
+    </resultMap>
+    <select id="getEntityById" resultMap="BookResultMap">
+        SELECT *
+        FROM book
+        WHERE book_id = #{id};
+    </select>
+    <update id="updateEntity" parameterType="Book">
+        UPDATE book
+        SET title     = #{title},
+            author_id = #{authorId},
+            genre_id  = #{genreId},
+            isbn      = #{isbn},
+            quantity  = #{quantity}
+        WHERE book_id = #{id};
+    </update>
+    <insert id="createEntity" parameterType="Book">
+        INSERT INTO book (title, author_id, genre_id, isbn, quantity)
+        VALUES (#{title}, #{authorId}, #{genreId}, #{isbn}, #{quantity});
+    </insert>
+    <delete id="deleteEntity" parameterType="long">
+        DELETE
+        from book
+        WHERE book_id = #{id};
+    </delete>
+    <select id="getAllEntities" resultMap="BookResultMap">
+        SELECT *
+        FROM book;
+    </select>
+    <select id="getBookByISBN" parameterType="String">
+        SELECT *
+        FROM book
+        WHERE isbn = #{isbn};
+    </select>
+</mapper>

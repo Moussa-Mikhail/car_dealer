@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.sql.IGenreDAO">
+    <resultMap id="Genre" type="library.models.Genre" autoMapping="false">
+        <result property="id" column="genre_id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <select id="getEntityById" resultMap="Genre">
+        SELECT *
+        FROM genre
+        WHERE genre_id = #{id};
+    </select>
+    <update id="updateEntity" parameterType="Genre">
+        UPDATE genre
+        SET name = #{name}
+        WHERE genre_id = #{id};
+    </update>
+    <insert id="createEntity" parameterType="Genre">
+        INSERT INTO genre (name)
+        VALUES (#{name});
+    </insert>
+    <delete id="deleteEntity" parameterType="long">
+        DELETE
+        from genre
+        WHERE genre_id = #{id};
+    </delete>
+    <select id="getAllEntities" resultMap="Genre">
+        SELECT *
+        FROM genre;
+    </select>
+</mapper>
