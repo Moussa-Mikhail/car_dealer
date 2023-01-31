@@ -1,0 +1,96 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Artemis Fowl",
+      "authorId": 1,
+      "genreId": 1,
+      "isbn": "978-1368036986",
+      "quantity": 4
+    },
+    {
+      "id": 2,
+      "title": "Artemis Fowl: The Arctic Incident",
+      "authorId": 1,
+      "genreId": 1,
+      "isbn": "978-0-43945070-6",
+      "quantity": 3
+    },
+    {
+      "id": 3,
+      "title": "New Book",
+      "authorId": 2,
+      "genreId": 2,
+      "isbn": "123-45678-90112",
+      "quantity": 4
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "firstName": "Moussa",
+      "lastName": "Mikhail",
+      "joinedDate": 1674194400000
+    },
+    {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "joinedDate": 1674194400000
+    },
+    {
+      "id": 3,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "joinedDate": 1674194400000
+    },
+    {
+      "id": 4,
+      "firstName": "Fake",
+      "lastName": "Person",
+      "joinedDate": 1674194400000
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "salary": 40000,
+      "hiredDate": 1674194400000
+    },
+    {
+      "id": 2,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "salary": 40000,
+      "hiredDate": 1674194400000
+    }
+  ],
+  "checkouts": [
+    {
+      "id": 1,
+      "memberId": 1,
+      "bookId": 1,
+      "employeeId": 1,
+      "returnStatusId": 1,
+      "checkoutDate": 1674194400000,
+      "dueDate": 1674194400000,
+      "returnedDate": 1674712800000
+    }
+  ],
+  "returnStatuses": [
+    {
+      "id": 1,
+      "description": "checked out"
+    },
+    {
+      "id": 2,
+      "description": "returned"
+    },
+    {
+      "id": 3,
+      "description": "late"
+    }
+  ]
+}
