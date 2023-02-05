@@ -23,15 +23,7 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
 
     @Override
     public T getEntityById(long id) throws SQLException {
-        return getEntityById(id, getTableName());
-    }
-
-    /**
-     * @return gets Table Name from child class.
-     */
-    protected abstract String getTableName();
-
-    protected T getEntityById(long id, String tableName) throws SQLException {
+        String tableName = getTableName();
         Connection connection = CONNECTION_POOL.getConnection();
         String query = QueryUtil.entityByIdQuery(tableName);
 
@@ -51,6 +43,11 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
             }
         }
     }
+
+    /**
+     * @return gets Table Name from child class.
+     */
+    protected abstract String getTableName();
 
     /**
      * Creates an entity from a row in the ResultSet.
