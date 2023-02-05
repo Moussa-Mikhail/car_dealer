@@ -4,6 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Functional interface to set the values of a PreparedStatement using an entity.
+ * Its functional method is {@link #setValues(PreparedStatement, T)}.
+ *
+ * @param <T> Type of the entity to set the PreparedStatement with.
  * @author Moussa
  */
 @FunctionalInterface
