@@ -64,7 +64,7 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
         String tableName = getTableName();
         List<String> columnNames = getColumnNames();
         String query = QueryUtil.updateQuery(tableName, columnNames);
-        executeCommand(query, entity, this::setUpdatePreparedStatement);
+        executeCommand(query, this::setUpdatePreparedStatement, entity);
     }
 
     /**
@@ -74,10 +74,10 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
 
     /**
      * @param query                   The query to execute. Can be an INSERT, UPDATE or DELETE query.
-     * @param entity                  The entity to use to set the PreparedStatement.
      * @param preparedStatementSetter The method to set the PreparedStatement. Accepts a PreparedStatement and an entity.
+     * @param entity                  The entity to use to set the PreparedStatement.
      */
-    private void executeCommand(String query, T entity, PreparedStatementSetter<T> preparedStatementSetter) throws SQLException {
+    private void executeCommand(String query, PreparedStatementSetter<T> preparedStatementSetter, T entity) throws SQLException {
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             preparedStatementSetter.setValues(ps, entity);
@@ -108,7 +108,7 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
         String tableName = getTableName();
         List<String> columnNames = getColumnNames();
         String query = QueryUtil.createQuery(tableName, columnNames);
-        executeCommand(query, entity, this::setCreatePreparedStatement);
+        executeCommand(query, this::setCreatePreparedStatement, entity);
     }
 
     @Override
