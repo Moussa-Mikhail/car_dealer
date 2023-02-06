@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * @author Moussa
  */
 @FunctionalInterface
-public interface SetPreparedStatement<T> {
+public interface PreparedStatementSetter<T> {
     /**
      * Set the values of the PreparedStatement using the entity.
      *

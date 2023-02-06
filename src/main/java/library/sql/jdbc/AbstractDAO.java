@@ -3,7 +3,7 @@ package library.sql.jdbc;
 import library.models.IdGettable;
 import library.sql.ConnectionPool;
 import library.sql.IBaseDAO;
-import library.sql.SetPreparedStatement;
+import library.sql.PreparedStatementSetter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -73,14 +73,14 @@ public abstract class AbstractDAO<T extends IdGettable> implements IBaseDAO<T> {
     protected abstract List<String> getColumnNames();
 
     /**
-     * @param query                The query to execute. Can be an INSERT, UPDATE or DELETE query.
-     * @param entity               The entity to use to set the PreparedStatement.
-     * @param setPreparedStatement The method to set the PreparedStatement. Accepts a PreparedStatement and an entity.
+     * @param query                   The query to execute. Can be an INSERT, UPDATE or DELETE query.
+     * @param entity                  The entity to use to set the PreparedStatement.
+     * @param preparedStatementSetter The method to set the PreparedStatement. Accepts a PreparedStatement and an entity.
      */
-    private void executeCommand(String query, T entity, SetPreparedStatement<T> setPreparedStatement) throws SQLException {
+    private void executeCommand(String query, T entity, PreparedStatementSetter<T> preparedStatementSetter) throws SQLException {
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(query)) {
-            setPreparedStatement.setValues(ps, entity);
+            preparedStatementSetter.setValues(ps, entity);
             ps.executeUpdate();
         } finally {
             try {
